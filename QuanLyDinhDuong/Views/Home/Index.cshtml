@@ -1,0 +1,108 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+    #imgBackground {
+        background-image: url('../../images/background.jpg');
+        width: 100%;
+        margin-top: 04px;
+        height: 550px;
+        float: left;
+    }
+
+    .chucnang li {
+        background: linear-gradient(#f7f7f7, #dbdbdb);
+        opacity: 95%;
+        height: 120px;
+        width: 300px;
+        padding: 20px;
+        margin-top: 350px;
+        list-style-type: none;
+        margin-left: 180px;
+        color: black;
+        font-family: 'Times New Roman', Times, serif;
+        text-decoration: none;
+        display: inline-block;
+        line-height: 30px;
+    }
+
+
+    .chucnang a {
+        color: black;
+        display: block;
+    }
+
+        .chucnang a:hover {
+            margin-top: -20px;
+            margin-left: -20px;
+            height: 120px;
+            width: 300px;
+            padding: 20px;
+            opacity: 95%;
+            background: linear-gradient(#4edebf, #21c6c6);
+            color: white;
+        }
+
+    .chucnang2 {
+        background: linear-gradient(#f7f7f7, #dbdbdb);
+        opacity: 95%;
+        height: 120px;
+        width: 300px;
+        padding: 20px;
+        margin-top: 350px;
+        margin-left: 450px;
+        color: black;
+        font-family: 'Times New Roman', Times, serif;
+        text-decoration: none;
+    }
+
+        .chucnang2 a {
+            color: black;
+            display: block;
+        }
+
+            .chucnang2 a:hover {
+                text-decoration: none;
+                margin-top: -20px;
+                margin-left: -20px;
+                height: 120px;
+                width: 300px;
+                padding: 20px;
+                opacity: 95%;
+                background: linear-gradient(#4edebf, #21c6c6);
+                color: white;
+            }
+</style>
+
+<!-- <div id="imgBackground" >
+    <div class="chucnang">
+        <a style="font-size: 24px;font-family: 'Times New Roman', Times, serif;">Thực phẩm <br>
+            <p style="font-size: 18px;">Danh sách thực phẩm bao gồm các thông tin và chất dinh dưỡng </p>
+        </a>
+    </div>
+
+</div> -->
+
+<div id="imgBackground">
+    <ul class="chucnang">
+        <li>
+            <a style="font-size: 24px;font-family: 'Times New Roman', Times, serif; text-decoration: none" href="@Url.Action("ThucPham","ThucPham")">
+                Thực phẩm <br>
+                <p style="font-size: 18px;">Danh sách thực phẩm bao gồm các thông tin và chất dinh dưỡng </p>
+            </a>
+        </li>
+
+        <li>
+            <a style="font-size: 24px;font-family: 'Times New Roman', Times, serif; text-decoration: none" href="@Url.Action("TinhToanChiSo","Home")">
+                Tính Toán Chỉ Số<br>
+                <p style="font-size: 18px;">Nhập thông tin để tính ra các chỉ số dinh dưỡng của cơ thể bạn</p>
+            </a>
+        </li>
+
+    </ul>
+</div>
+
+

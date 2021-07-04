@@ -1,0 +1,10 @@
+﻿
+@model IEnumerable<QuanLyDinhDuong.Models.LOAITHUCPHAM>
+
+@foreach (var item in Model)
+{
+    <a href="@Url.Action("TPTheoLoai", "ThucPham", new {id = item.MALOAITHUCPHAM}) class="list-group-item">
+        @item.TENLOAITHUCPHAM
+    </a>
+    
+}    
