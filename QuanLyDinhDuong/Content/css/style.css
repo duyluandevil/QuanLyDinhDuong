@@ -1,4 +1,4 @@
-/*****
+﻿/*****
 *
 *
 *Author Name : Mostafizur Rahman
@@ -11,11 +11,13 @@
 ****/
 
 body {
+    
     margin: 0;
     padding: 0;
-    font-family: 'BenchNine', sans-serif;
+    font-family: 'Open Sans', sans-serif;
 }
 li {
+    
     list-style: none;
 }
 a:hover,
@@ -36,12 +38,18 @@ h2 {
     position: fixed;
     width: 100%;
     z-index: 99999;
+
 }
+
 .header-backup {
     width: 20px;
     height: 119px;
     background: transparent;
     margin: auto;
+    /*width: 20px;
+    height: 119px;
+    background: transparent;
+    margin: auto;*/
 }
 .top-header img.logo {
     margin-bottom: 25px;
@@ -53,6 +61,7 @@ h2 {
     -ms-transition: all .5s ease 0s;
 }
 .navbar-default {
+    
     background-color: transparent;
     border-color: transparent;
     margin-bottom: 0;
@@ -70,11 +79,13 @@ h2 {
     color: #fff;
 }
 ul.nav {
+
     margin: 0;
     padding: 0;
 }
+/*Chỉnh sửa phần menu đầu tiên*/
 .navbar-default .navbar-nav>li>a {
-    font-size: 24px;
+    font-size: 17px;
     color: #737373;
     text-transform: uppercase;
     transition: all .7s ease 0s;
@@ -557,7 +568,7 @@ li a.active {
     background: url(../img/btn-bg.jpg);
     background-repeat: no-repeat;
     padding: 0;
-    font-family: 'BenchNine', sans-serif;
+    font-family: 'Open Sans', sans-serif;
     font-weight: bold;
 }
 .contact-form {
@@ -899,3 +910,6 @@ responsive area
         font-size: 10px;
     }
 }
+
+/*LoGin*/
+

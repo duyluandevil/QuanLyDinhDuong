@@ -122,6 +122,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\NguoiDungController.cs" />
     <Compile Include="Controllers\ThucPhamController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -140,14 +141,17 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\css\bootstrap.min.css" />
     <Content Include="Content\css\font-awesome.min.css" />
+    <Content Include="Content\css\font1.css" />
+    <Content Include="Content\css\font2.css" />
     <Content Include="Content\css\style.css" />
     <Content Include="Content\fonts\fontawesome-webfont.svg" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Content\img\btn-bg.jpg" />
-    <Content Include="Content\img\item1.jpg" />
-    <Content Include="Content\img\item2.jpg" />
-    <Content Include="Content\img\item3.jpg" />
+    <Content Include="Content\img\item1.png" />
+    <Content Include="Content\img\item2.png" />
+    <Content Include="Content\img\item3.png" />
     <Content Include="Content\img\logo.png" />
+    <Content Include="Content\img\logo1.png" />
     <Content Include="Content\img\member1.jpg" />
     <Content Include="Content\img\member2.jpg" />
     <Content Include="Content\img\member3.jpg" />
@@ -166,8 +170,10 @@
     <Content Include="Content\js\bootstrap.min.js" />
     <Content Include="Content\js\custom.js" />
     <Content Include="Content\js\gmaps.js" />
+    <Content Include="Content\js\googlemap.js" />
     <Content Include="Content\js\html5shiv.js" />
     <Content Include="Content\js\jquery-2.1.1.js" />
+    <Content Include="Content\js\LoginJs.js" />
     <Content Include="Content\js\modernizr.js" />
     <Content Include="Content\js\respond.min.js" />
     <Content Include="Content\js\smoothscroll.js" />
@@ -201,6 +207,7 @@
     </None>
     <None Include="Properties\PublishProfiles\Default Settings.pubxml" />
     <None Include="Properties\PublishProfiles\Default Settings1.pubxml" />
+    <None Include="Properties\PublishProfiles\Default Settings2.pubxml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -227,6 +234,7 @@
     <Content Include="Views\Home\TinhToanChiSo.cshtml" />
     <Content Include="Views\ThucPham\LoaiThucPham.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\NguoiDung\Dangnhap.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
