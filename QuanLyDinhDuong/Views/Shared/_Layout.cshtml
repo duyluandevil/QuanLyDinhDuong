@@ -1,7 +1,7 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
 <head>
-    
+
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -15,13 +15,13 @@
 
     <link href="~/Content/css/font1.css" rel="stylesheet" type="text/css" />
     <link href="~/Content/css/font2.css" rel="stylesheet" type="text/css" />
- 
+
     <script src="~/Content/js/modernizr.js"></script>
     <!--[if lt IE 9]>
       <script src="js/html5shiv.js"></script>
       <script src="js/respond.min.js"></script>
     <![endif]-->
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body>
     <!-- ====================================================
@@ -31,7 +31,7 @@
             <div class="row">
                 <div class="col-xs-5 header-logo">
                     <br>
-                    <a href="index.html"><img src="~/Content/img/logo1.png" alt="" class="img-responsive logo"></a>
+                    <a href="@Url.Action("Index","Home")"><img src="~/Content/img/logo1.png" alt="" class="img-responsive logo"></a>
                 </div>
 
                 <div class="col-md-7 ">
@@ -51,11 +51,11 @@
                             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 
                                 <ul class="nav navbar-nav navbar-right">
-                                    <li><a class="menu" href="#home">TRANG CHỦ</a></li>
-                                    <li><a class="menu" href="#about">GIỚI THIỆU</a></li>
-                                    <li><a class="menu" href="#service">CHỨC NĂNG</a></li>
-                                    <li><a class="menu" href="#team">ĐỘI NGŨ</a></li>
-                                    <li><a class="menu" href="#contact">LIÊN HỆ</a></li>
+                                    <li><a class="menu" href="@Url.Action("Index","Home")#home">TRANG CHỦ</a></li>
+                                    <li><a class="menu" href="@Url.Action("Index","Home")#about">GIỚI THIỆU</a></li>
+                                    <li><a class="menu" href="@Url.Action("Index","Home")#service">CƠ THỂ</a></li>
+                                    <li><a class="menu" href="@Url.Action("Index","Home")#team">ĐỘI NGŨ</a></li>
+                                    <li><a class="menu" href="@Url.Action("Index","Home")#contact">LIÊN HỆ</a></li>
                                 </ul>
                             </div><!-- /navbar-collapse -->
                         </div><!-- / .container-fluid -->
