@@ -11,11 +11,13 @@
         font: 600 16px/18px 'Open Sans', sans-serif
     }*/
     .background {
-        background: #76b852; /* fallback for old browsers */
-        background: -webkit-linear-gradient(right, #76b852, #8DC26F);
+        background-image: url('../../Content/img/bg_login.png');
+        background-size: cover;
+        /*background: #76b852;*/ /* fallback for old browsers */
+        /*background: -webkit-linear-gradient(right, #76b852, #8DC26F);
         background: -moz-linear-gradient(right, #76b852, #8DC26F);
         background: -o-linear-gradient(right, #76b852, #8DC26F);
-        background: linear-gradient(to left, #76b852, #8DC26F);
+        background: linear-gradient(to left, #76b852, #8DC26F);*/
         /*font-family: Arial, sans-serif;*/
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
@@ -23,6 +25,7 @@
     }
     .login-box {
         width: 100%;
+        height:850px;
         margin: auto;
         max-width: 525px;
         min-height: 670px;
@@ -226,36 +229,38 @@
                     <div class="login-snip">
                         <input id="tab-1" type="radio" name="tab" class="sign-in" checked><label for="tab-1" class="tab">Đăng Nhập</label> <input id="tab-2" type="radio" name="tab" class="sign-up"><label for="tab-2" class="tab">Đăng Ký</label>
                         <div class="login-space">
-                            <div class="login">
+                            <div style="margin-top:20px;" class="login">
                                 <div class="group"> @*<label for="user" class="label">Tài khoản</label>*@ <input id="user" type="text" class="input" placeholder="Nhập tên tài khoản"> </div>
                                 <div class="group"> @*<label for="pass" class="label">Mật khẩu</label>*@ <input id="pass" type="password" class="input" data-type="password" placeholder="Nhập mật khẩu"> </div>
                                 @*<div class="group"> <input id="check" type="checkbox" class="check" checked> <label for="check"><span class="icon"></span> Lưu đăng nhập</label> </div>*@
-                                <div class="group"> <input type="submit" class="button" value="Đăng nhập"> </div>
+                                <div class="group"> <input type="submit" style="color:#dddddd;" class="button" value="Đăng nhập"> </div>
                                 <div class="hr"></div>
-                                <div class="foot"> <a href="#">Quên mật khẩu?</a> </div>
+                                <div class="foot"> <a style="color:#dddddd;" href="#">Quên mật khẩu?</a> </div>
                             </div>
-                            <div class="sign-up-form">
+                            <div style="margin-top:20px;" class="sign-up-form">
                                 <div class="group"> @*<label for="user" class="label">Tên tài khoản</label>*@ <input id="user" type="text" class="input" placeholder="Nhập tên tài khoản của bạn"> </div>
                                 <div class="group"> @*<label for="pass" class="label">Mật khẩu</label>*@ <input id="pass" type="password" class="input" data-type="password" placeholder="Nhập mật khẩu"> </div>
                                 <div class="group"> @*<label for="pass" class="label">Nhập lại mật khẩu</label>*@ <input id="pass" type="password" class="input" data-type="password" placeholder="Nhập lại mật khẩu"> </div>
-                                <div class="group"> @*<label for="pass" class="label">Email</label>*@ <input id="pass" type="text" class="input" placeholder="Nhập địa chỉ email của bạn"> </div>
+                                <div class="group"> @*<label for="pass" class="label">Email</label>*@ <input id="email" type="email" class="input" placeholder="Nhập địa chỉ email của bạn"> </div>
+                                <div class="group"> @*<label for="pass" class="label">Email</label>*@ <input id="sdt" type="text" class="input" placeholder="Nhập số điện thoại của bạn"> </div>
+                                <div class="group"> <label style="font-size:20px" for="pass" class="label">Nhập ngày sinh</label> <input id="ngaysinh" type="date" class="input" </div>
                                 <div class="group">
-                                    <label for="pass" class="label">Giới tính</label>
+                                    <label for="pass" class="label" style="font-size:20px;margin-top:10px">Giới tính</label>
                                     <div class="form-check" style="text-align:center">
                                         <input class="form-check-input" type="radio" name="RadioGioiTinh" id="RadioNam">
-                                        <label class="form-check-label" for="RadioNam">
+                                        <label class="form-check-label" style="color:white" for="RadioNam">
                                             Nam
                                         </label>
                                         <input class="form-check-input" type="radio" name="RadioGioiTinh" id="RadioNu" checked>
-                                        <label class="form-check-label" for="RadioNu">
+                                        <label class="form-check-label" style="color:white" for="RadioNu">
                                             Nữ
                                         </label>
                                     </div>
                                 </div>
-                                
-                                <div class="group"> <input type="submit" class="button" value="Đăng ký"> </div>
+
+                                <div class="group"> <input type="submit" style="margin-top:10px" class="button" value="Đăng ký"> </div>
                                 <div class="hr"></div>
-                                <div class="foot"> <label for="tab-1">Bạn đã có tài khoản?</label> </div>
+                                <div class="foot"> <label style="color:#dddddd;" for="tab-1">Bạn đã có tài khoản?</label> </div>
                             </div>
                         </div>
                     </div>
