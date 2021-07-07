@@ -54,7 +54,7 @@ namespace QuanLyDinhDuong.Models
     #endregion
 		
 		public dbQlDDDataContext() : 
-				base(global::System.Configuration.ConfigurationManager.ConnectionStrings["QLDDConnectionString1"].ConnectionString, mappingSource)
+				base(global::System.Configuration.ConfigurationManager.ConnectionStrings["QLDDConnectionString2"].ConnectionString, mappingSource)
 		{
 			OnCreated();
 		}

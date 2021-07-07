@@ -1,4 +1,5 @@
-﻿using System;
+﻿using QuanLyDinhDuong.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -9,14 +10,20 @@ namespace QuanLyDinhDuong.Controllers
     public class NguoiDungController : Controller
     {
         // GET: NguoiDung
+        dbQlDDDataContext data = new dbQlDDDataContext();
+        public ActionResult Index()
+        {
+            return View();
+        }
+        [HttpGet]
         public ActionResult Dangnhap()
         {
             return View();
         }
+        //public ActionResult Dangnhap(FormCollection collection,TAIKHOAN tk)
+        //{
 
-        public ActionResult DangKy()
-        {
-            return View();
-        }
+        //    return this.Dangnhap();
+        //}
     }
 }
