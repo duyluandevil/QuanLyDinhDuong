@@ -18,5 +18,10 @@ namespace QuanLyDinhDuong.Controllers
         {
             return View();
         }
+
+        public ActionResult TrangCaNhan()
+        {
+            return View();
+        }
     }
 }

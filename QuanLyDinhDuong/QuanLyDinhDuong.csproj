@@ -139,6 +139,8 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\bootstrap.min.profile.js" />
+    <Content Include="Content\bootstrap.min1.profile.js" />
     <Content Include="Content\css\bootstrap.min.css" />
     <Content Include="Content\css\font-awesome.min.css" />
     <Content Include="Content\css\font1.css" />
@@ -169,6 +171,7 @@
     <Content Include="Content\img\slide-one.jpg" />
     <Content Include="Content\img\slide-three.jpg" />
     <Content Include="Content\img\slide-two.jpg" />
+    <Content Include="Content\jquery.min.profile.js" />
     <Content Include="Content\js\bootstrap.min.js" />
     <Content Include="Content\js\custom.js" />
     <Content Include="Content\js\gmaps.js" />
@@ -237,6 +240,7 @@
     <Content Include="Views\ThucPham\LoaiThucPham.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\NguoiDung\Dangnhap.cshtml" />
+    <Content Include="Views\NguoiDung\TrangCaNhan.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
