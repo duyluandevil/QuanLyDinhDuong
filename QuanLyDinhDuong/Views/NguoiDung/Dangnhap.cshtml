@@ -232,19 +232,25 @@
             <div class="card">
                 <div class="login-box">
                     <div class="login-snip">
-                        <input id="tab-1" type="radio" name="tab" class="sign-in" checked><label for="tab-1" class="tab">Đăng Nhập</label> <input id="tab-2" type="radio" name="tab" class="sign-up"><label for="tab-2" class="tab">Đăng Ký</label>
+                        <input id="tab-1" type="radio" name="tab" class="sign-in" checked>
+                        <label for="tab-1" class="tab">Đăng Nhập</label> 
+                        <input id="tab-2" type="radio" name="tab" class="sign-up">
+                        <label for="tab-2" class="tab">Đăng Ký</label>
                         <div class="login-space">
+                            <h4 style="color:red; text-align:center">@ViewBag.ThongBao</h4>
                             <div style="margin-top:20px;" class="login">
 
                                 <div class="group">
                                     @*<label for="user" class="label">Tài khoản</label>*@
-                                    @Html.TextBoxFor(m => m.IDTAIKHOAN, new { @class = "input", @placeholder= "Nhập tên tài khoản"})
+                                    @Html.TextBoxFor(m => m.IDTAIKHOAN, new { @class = "input", @placeholder = "Nhập tên tài khoản" })
+                                    @ViewData["Loi1"]
                                     @*<input id="user" type="text" class="input" placeholder="Nhập tên tài khoản">*@
                                 </div>
                                 <div class="group">
                                     @*<label for="pass" class="label">Mật khẩu</label>*@
                                     @*<input id="pass" type="password" class="input" data-type="password" placeholder="Nhập mật khẩu">*@
                                     @Html.PasswordFor(m => m.MATKHAU, new { @class = "input", @placeholder = "Nhập mật khẩu" })
+                                    @ViewData["Loi2"]
                                 </div>
                                 @*<div class="group"> <input id="check" type="checkbox" class="check" checked> <label for="check"><span class="icon"></span> Lưu đăng nhập</label> </div>*@
 
@@ -254,44 +260,36 @@
                                 <div class="foot"> <a style="color:#dddddd;" href="#">Quên mật khẩu?</a> </div>
                             </div>
                             <div style="margin-top:20px;" class="sign-up-form">
-                                <div class="group">
-                                    @*<label for="user" class="label">Tên tài khoản</label>*@
-                                    @*<input id="user" type="text" class="input" placeholder="Nhập tên tài khoản của bạn">*@
-                                    @Html.TextBoxFor(m => m.IDTAIKHOAN, new { @class = "input", @placeholder = "Nhập tên tài khoản" })
+                                <div class="group">    
+                                    <input id="TaiKhoan" name="TaiKhoan" type="text" class="input" placeholder="Nhập tên tài khoản của bạn" value="@ViewData["Loi3"]">
                                 </div>
                                 <div class="group">
-                                    @*<label for="pass" class="label">Mật khẩu</label>*@
-                                    @*<input id="pass" type="password" class="input" data-type="password" placeholder="Nhập mật khẩu">*@
-                                    @Html.PasswordFor(m => m.MATKHAU, new { @class = "input", @placeholder = "Nhập mật khẩu" })
+
+                                    <input id="MatKhau" name="MatKhau" type="password" class="input" data-type="password" placeholder="Nhập mật khẩu" value="@ViewData["Loi4"]">
                                 </div>
                                 <div class="group">
-                                    @*<label for="pass" class="label">Nhập lại mật khẩu</label>*@
-                                    @*<input id="pass2" type="password" class="input" data-type="password" placeholder="Nhập lại mật khẩu">*@
-                                    @Html.PasswordFor(m => m.MATKHAU, new { @class = "input", @placeholder = "Nhập lại mật khẩu" })
-                                    @*@Html.Password("NhaplaiMk")*@
+                                    
+                                    <input id="NhapLaiMatKhau" name="NhapLaiMatKhau" type="password" class="input" data-type="password" placeholder="Nhập lại mật khẩu" value="@ViewData["Loi5"]">
                                 </div>
                                 <div class="group">
-                                    @*<label for="pass" class="label">Email</label>*@
-                                    @*<input id="email" type="email" class="input" placeholder="Nhập địa chỉ email của bạn">*@
-                                    @Html.TextBoxFor(m => m.EMAIL, new { @class = "input", @placeholder = "Nhập địa chỉ email của bạn"})
+                                    
+                                    <input id="email" name="email" type ="email" class="input" placeholder="Nhập địa chỉ email của bạn" value="@ViewData["Loi6"]">
                                 </div>
                                 <div class="group">
-                                    @*<label for="pass" class="label">Email</label>*@
-                                    @*<input id="sdt" type="text" class="input" placeholder="Nhập số điện thoại của bạn">*@
-                                    @Html.TextBoxFor(m => m.SDT, new { @class = "input", @placeholder = "Nhập số điện thoại của bạn" })
-                                </div>
-                                <div class="group"> 
-                                    <label style="font-size:20px" class="label">Nhập ngày sinh</label> 
-                                    @*<input id="ngaysinh" type="date" class="input">*@
+                                    <input id="sdt" name="sdt" type="text" class="input" placeholder="Nhập số điện thoại của bạn" value="@ViewData["Loi7"]">
                                 </div>
                                 <div class="group">
-                                    <label for="pass" class="label" style="font-size:20px;margin-top:10px">Giới tính</label>
+                                    <label style="font-size:20px" class="label">Nhập ngày sinh</label>
+                                    <input id="ngaysinh" name="ngaysinh" type="date" class="input" value="@ViewData["Loi8"]">
+                                </div>
+                                <div class="group">
+                                    <label class="label" style="font-size:20px;margin-top:10px">Giới tính</label>
                                     <div class="form-check" style="text-align:center">
-                                        <input class="form-check-input" type="radio" name="RadioGioiTinh" id="RadioNam">
+                                        <input class="form-check-input" type="radio" name="RadioGioiTinh" id="RadioNam" value="Nam">
                                         <label class="form-check-label" style="color:white" for="RadioNam">
                                             Nam
                                         </label>
-                                        <input class="form-check-input" type="radio" name="RadioGioiTinh" id="RadioNu" checked>
+                                        <input class="form-check-input" type="radio" name="RadioGioiTinh" id="RadioNu" value="Nữ" checked>
                                         <label class="form-check-label" style="color:white" for="RadioNu">
                                             Nữ
                                         </label>
