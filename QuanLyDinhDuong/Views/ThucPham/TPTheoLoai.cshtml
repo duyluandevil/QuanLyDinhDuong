@@ -1,0 +1,43 @@
+﻿@model IEnumerable<QuanLyDinhDuong.Models.THUCPHAM>
+@{
+    ViewBag.Title = "TPTheoLoai";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>TPTheoLoai</h2>
+
+<div class="row">
+    @foreach (var item in Model)
+    {
+        <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+            <div class="panel panel-default" style="width:300px;">
+                <div class="panel panel-heading" style="width:300px;"> @item.TENTHUCPHAM</div>
+                <div class="panel-body">
+                    <p>
+                        <img src="@item.ANHBIA" alt="hinh thumbnail" style="width:200px; height:100px" />
+                    </p>
+                    <p>
+                        <strong>Lượng đạm: </strong>@item.DAM
+                    </p>
+                    <p>
+                        <strong>Lượng xơ: </strong>@item.XO
+                    </p>
+                    <p>
+                        <strong>Lượng béo: </strong>@item.BEO
+                    </p>
+                    <p>
+                        <strong>Tổng calo: </strong>@item.CALO
+                    </p>
+
+                </div>
+                <div class="panel-footer clearfix">
+                    <div class="pull-right">
+                        <a href="#" class="btn btn-primary">Thêm vào thực đơn</a>
+                        <a href="#" class="btn btn-primary">Xem thêm...</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+

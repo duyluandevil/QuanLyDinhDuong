@@ -1,66 +1,98 @@
 ﻿
+
+
+@using QuanLyDinhDuong.Models;
+@using PagedList.Mvc;
+@model PagedList.PagedList<THUCPHAM>
+
 @{
     ViewBag.Title = "ThucPham";
     Layout = "~/Views/Shared/_Layout.cshtml";
-}
+}   
 
 <style>
     #imgBackground {
         background-image: url('../../images/foodbanner.jpeg');
         width: 1280px;
         margin-top: 04px;
-        height: 550px;
+        height: 100%;
         float: left;
+    }
+
+    .background {
+        padding-top: 60px;
+        margin-top: 100px;
+        margin-left: 120px;
+        background-color: white;
+        width: 1000px;
+        height: 1000px;
+        box-shadow: 0px 0px 30px black;
     }
 </style>
 <div class="header-backup"></div>
 <div id="imgBackground">
+    <div class="background">
 
-    @Html.Action("LoaiThucPham", "ThucPham")
-    <!-- menu list -->
-   
-        <div class="col-md-3" >
-        <div id="list-example" class="list-group" >
-        <a class="list-group-item list-group-item-action" href="#list-item-1" >
-        <svg class="menu__item-icon" id="Capa_1" enable-background="new 0 0 512 512" height="15" viewBox="0 0 512 512" width="15" > <g > <i class="fab fa-playstation" > </i > </g > </svg >
-        <span class="text-2" > PlayStation 5</span >
-        </a >
-        <a class="list-group-item list-group-item-action" href="#list-item-2" >
-        <svg class="menu__item-icon" id="Capa_1" enable-background="new 0 0 512 512" height="15" viewBox="0 0 512 512" width="15" > <g > <i class="fab fa-playstation" > </i > </g > </svg >
-        <span class="text-2" > PlayStation 4</span >
-        </a >
-        <a class="list-group-item list-group-item-action" href="#list-item-3" >
-        <svg class="menu__item-icon" viewBox="0 0 64 64" width="15" height="15" > <g > <i class="fab fa-xbox" > </i > </g > </svg >
-        <span class="text-2" > Xbox Series X | S</span >
-        </a >
-        <a class="list-group-item list-group-item-action" href="#list-item-4" >
-        <svg class="menu__item-icon" viewBox="0 0 512 512" width="15" height="15" > <g > <i class="fab fa-xbox" > </i > </g > </svg >
-        <span class="text-2" > Xbox One | Xbox 360</span >
-        </a >
-        <a class="list-group-item list-group-item-action" href="#list-item-4" >
-        <svg class="menu__item-icon" id="Capa_1" enable-background="new 0 0 513.529 513.529" height="15" viewBox="0 0 513.529 513.529" width="15" > <g > <i class="fas fa-gamepad" > </i > </g > </svg >
-        <span class="text-2" > Nintendo Switch</span >
-        </a >
-        <a class="list-group-item list-group-item-action" href="#list-item-4" >
-        <svg class="menu__item-icon" id="Capa_1" enable-background="new 0 0 512 512" height="15" viewBox="0 0 512 512" width="15" > <g > <i class="fas fa-gamepad" > </i > </g > </svg >
-        <span class="text-2" > Nintendo Switch Lite</span >
-        </a >
-        <a class="list-group-item list-group-item-action" href="#list-item-4" >
-        <svg class="menu__item-icon" id="Capa_1" enable-background="new 0 0 512 512" height="15" viewBox="0 0 512 512" width="15" > <g > <i class="fab fa-steam" > </i > </g > </svg >
-        <span class="text-2" > Game</span >
-        </a >
-        <a class="list-group-item list-group-item-action" href="#list-item-4" >
-        <svg class="menu__item-icon" id="Capa_1" enable-background="new 0 0 512 512" height="15" viewBox="0 0 512 512" width="15" > <g > <i class="far fa-newspaper" > </i > </g > </svg >
-        <span class="text-2" > Bản Tin</span >
-        </a >
-        <a class="list-group-item list-group-item-action" href="#list-item-4" >
-        <svg class="menu__item-icon" id="Capa_1" enable-background="new 0 0 512 512" height="15" viewBox="0 0 512 512" width="15" > <g > <i class="fas fa-keyboard" > </i > </g > </svg >
-        <span class="text-2" > Phụ Kiện</span >
-        </a >
-        <a class="list-group-item list-group-item-action" href="#list-item-4" >
-        <svg class="menu__item-icon" id="Capa_1" enable-background="new 0 0 512 512" height="15" viewBox="0 0 512 512" width="15" > <g > <i class="fas fa-tools" > </i > </g > </svg >
-        <span class="text-2" > Sửa Chữa</span >
-        </a >
-        </div >
-        </div >
+        @Html.Action("LoaiThucPham", "ThucPham")
+
+        @*<div style="float:left; width:300px; "  >
+                    <div id="list-example" class="list-group">
+                        <div class="list-group-item list-group-item-action" href="#list-item-1">
+                            <svg class="menu__item-icon" id="Capa_1" enable-background="new 0 0 512 512" height="15" viewBox="0 0 512 512" width="15"> <g> <i class="fab fa-playstation"> </i> </g> </svg>
+                            <span class="text-2"> Loại thực phẩm</span>
+        {
+                    <div id="list-example" class="list-group">
+                        <a class="list-group-item list-group-item-action" href="#list-item-1">
+                            <svg class="menu__item-icon" id="Capa_1" enable-background="new 0 0 512 512" height="15" viewBox="0 0 512 512" width="15"> <g> <i class="fab fa-playstation"> </i> </g> </svg>
+                            <span class="text-2"></span>
+                        </a>
+                    </div>
+                }
+                    </div>
+                </div>*@
+
+        @foreach (var item in Model)
+        {
+            <div style="float:right;" class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                <div class="panel panel-default" style="width:300px;">
+                    <div class="panel panel-heading" style="width:300px;"> @item.TENTHUCPHAM</div>
+                    <div class="panel-body">
+                        <p>
+                            <img src="@item.ANHBIA" alt="hinh thumbnail" style="width:200px; height:100px" />
+                        </p>
+                        <p>
+                            <strong>Lượng đạm: </strong>@item.DAM
+                        </p>
+                        <p>
+                            <strong>Lượng xơ: </strong>@item.XO
+                        </p>
+                        <p>
+                            <strong>Lượng béo: </strong>@item.BEO
+                        </p>
+                        <p>
+                            <strong>Tổng calo: </strong>@item.CALO
+                        </p>
+
+                    </div>
+                    <div class="panel-footer clearfix">
+                        <div class="pull-right">
+                            <a href="#" class="btn btn-primary">Thêm vào thực đơn</a>
+                            <a href="#" class="btn btn-primary">Xem thêm...</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+        @*Trang @(Model.PageCount<Model.PageNumber?0:Model.PageNumber)/@Model.PageCount*@
+        <div style="text-align:center;" class="MenuTrang">
+            @Html.PagedListPager(Model, page=>Url.Action("ThucPham", new { page = page }))
+        </div>
+        <style>
+            .MenuTrang{
+                display:inline;
+            }
+        </style>
+    </div>
+</div>
+
 

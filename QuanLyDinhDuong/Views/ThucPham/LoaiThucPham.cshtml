@@ -1,10 +1,25 @@
 ﻿
 @model IEnumerable<QuanLyDinhDuong.Models.LOAITHUCPHAM>
 
-@foreach (var item in Model)
-{
-    <a href="@Url.Action("TPTheoLoai", "ThucPham", new {id = item.MALOAITHUCPHAM}) class="list-group-item">
-        @item.TENLOAITHUCPHAM
-    </a>
-    
-}    
+<div style="float:left; width:300px; height:1000px; margin-left:20px;">
+    <div id="list-example" class="list-group" style="float:left; width:300px; height:1000px;">
+        <div style="text-align:center;" class="list-group-item list-group-item-action" href="#list-item-1" >
+            <svg class="menu__item-icon" id="Capa_1" enable-background="new 0 0 512 512" height="100%" viewBox="0 0 512 512" width="15"> 
+            <span  class="text-2">LOẠI THỰC PHẨM</span>
+            <div>
+                @foreach (var item in Model)
+                {
+                    <a class="list-group-item list-group-item-action" href="#list-item-1">
+                        @*<svg class="menu__item-icon" id="Capa_1" enable-background="new 0 0 512 512" height="15" viewBox="0 0 512 512" width="15"> <g> <i class="fab fa-playstation"> </i> </g> </svg>*@
+                        <span @*class="text-2"*@>@item.TENLOAITHUCPHAM</span>
+                    </a>
+                }
+
+
+                <div style="margin-top:30px; font-size:15px;">THANH TÌM KIẾM
+                    <input type="search" style="width:100%;" />
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -54,7 +54,7 @@ namespace QuanLyDinhDuong.Models
     #endregion
 		
 		public dbQlDDDataContext() : 
-				base(global::System.Configuration.ConfigurationManager.ConnectionStrings["QLDDConnectionString2"].ConnectionString, mappingSource)
+				base(global::System.Configuration.ConfigurationManager.ConnectionStrings["QLDDConnectionString1"].ConnectionString, mappingSource)
 		{
 			OnCreated();
 		}
@@ -1547,6 +1547,8 @@ namespace QuanLyDinhDuong.Models
 		
 		private System.Nullable<double> _CALO;
 		
+		private string _ANHBIA;
+		
 		private System.Nullable<int> _MALOAITHUCPHAM;
 		
 		private EntitySet<CTTD> _CTTDs;
@@ -1569,6 +1571,8 @@ namespace QuanLyDinhDuong.Models
     partial void OnXOChanged();
     partial void OnCALOChanging(System.Nullable<double> value);
     partial void OnCALOChanged();
+    partial void OnANHBIAChanging(string value);
+    partial void OnANHBIAChanged();
     partial void OnMALOAITHUCPHAMChanging(System.Nullable<int> value);
     partial void OnMALOAITHUCPHAMChanged();
     #endregion
@@ -1696,6 +1700,26 @@ namespace QuanLyDinhDuong.Models
 					this._CALO = value;
 					this.SendPropertyChanged("CALO");
 					this.OnCALOChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ANHBIA", DbType="VarChar(50)")]
+		public string ANHBIA
+		{
+			get
+			{
+				return this._ANHBIA;
+			}
+			set
+			{
+				if ((this._ANHBIA != value))
+				{
+					this.OnANHBIAChanging(value);
+					this.SendPropertyChanging();
+					this._ANHBIA = value;
+					this.SendPropertyChanged("ANHBIA");
+					this.OnANHBIAChanged();
 				}
 			}
 		}

@@ -76,7 +76,7 @@ namespace QuanLyDinhDuong.Controllers
                 tk.NGAYSINH = DateTime.Parse(ngaysinh);
                 data.TAIKHOANs.InsertOnSubmit(tk);
                 data.SubmitChanges();
-                return View("Index");
+                return Dangnhap();
             }
             //else if (ngaysinh)
             //{
