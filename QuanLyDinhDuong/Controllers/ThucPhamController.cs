@@ -24,9 +24,9 @@ namespace QuanLyDinhDuong.Controllers
             int pageSize = 4;
             int pageNum = (page ?? 1);
 
-            var thucphammoi = layThucPham(10);
-            //var lstthucpham = (from ltp in data.THUCPHAMs select ltp).ToList();
-            return View(thucphammoi.ToPagedList(pageNum, pageSize));
+            //var thucphammoi = layThucPham(10);
+            var lstthucpham = (from ltp in data.THUCPHAMs select ltp).ToList();
+            return View(lstthucpham.ToPagedList(pageNum, pageSize));
         }
 
         public ActionResult LoaiThucPham()
@@ -36,19 +36,37 @@ namespace QuanLyDinhDuong.Controllers
         }
 
 
-        public ActionResult TPTheoLoai(int id)
+        public ActionResult TPTheoLoai(int id, int? page)
         {
-            var thucpham = from t in data.THUCPHAMs where t.MALOAITHUCPHAM == id select t;
-            return View(thucpham);
-        }
-
-        public ActionResult Index(int ? page)
-        {
-            int pageSize = 5;
+            int pageSize = 4;
             int pageNum = (page ?? 1);
 
-            var thucphammoi = layThucPham(10);
-            return View(thucphammoi.ToPagedList(pageNum, pageSize));
+            //var thucphammoi = layThucPham(10);
+
+            var thucpham = from t in data.THUCPHAMs where t.MALOAITHUCPHAM == id select t;
+            return View(thucpham.ToPagedList(pageNum, pageSize));
         }
+
+        public ActionResult ChiTietThucPham(string id)
+        {
+            var tp = (from t in data.THUCPHAMs where t.MATHUCPHAM == id select t).Single();
+            return View(tp);
+        }
+
+
+        private BENHNHAN getBenhNhan(string idTaiKhoan)
+        {
+            var benhnhan = (from bn in data.BENHNHANs where idTaiKhoan == bn.IDTAIKHOAN select bn).Single();
+            return benhnhan;
+        }
+        public ActionResult DanhSachThucDon()
+        {
+            var bn = getBenhNhan("duyluan0104");
+            var buoithucdon = (from t in data.THUCDONs where t.MABENHNHAN == bn.MABENHNHAN  select t).ToList();
+            return PartialView(buoithucdon);
+        }
+
+
+
     }
 }

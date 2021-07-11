@@ -251,6 +251,8 @@
     <Content Include="Views\NguoiDung\TrangCaNhan.cshtml" />
     <Content Include="Views\Home\KetQuaTinhToanChiSo.cshtml" />
     <Content Include="Views\ThucPham\TPTheoLoai.cshtml" />
+    <Content Include="Views\ThucPham\ChiTietThucPham.cshtml" />
+    <Content Include="Views\ThucPham\DanhSachThucDon.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

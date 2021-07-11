@@ -9,16 +9,22 @@
             <div>
                 @foreach (var item in Model)
                 {
-                    <a class="list-group-item list-group-item-action" href="#list-item-1">
-                        @*<svg class="menu__item-icon" id="Capa_1" enable-background="new 0 0 512 512" height="15" viewBox="0 0 512 512" width="15"> <g> <i class="fab fa-playstation"> </i> </g> </svg>*@
+                    <a href="@Url.Action("TPTheoLoai", "ThucPham", new { id = item.MALOAITHUCPHAM})" class="list -group-item list-group-item-action">
+                        <svg class="menu__item-icon" id="Capa_1" enable-background="new 0 0 512 512" height="15" viewBox="0 0 512 512" width="15"> <g> <i class="fab fa-playstation"> </i> </g> </svg>
                         <span @*class="text-2"*@>@item.TENLOAITHUCPHAM</span>
                     </a>
                 }
 
 
-                <div style="margin-top:30px; font-size:15px;">THANH TÌM KIẾM
+                <div style="margin-top:30px; font-size:15px;">
+                    THANH TÌM KIẾM
                     <input type="search" style="width:100%;" />
                 </div>
+
+                <a href="@Url.Action("ThucPham", "ThucPham")" style="margin-top:50px; font-size:15px;">
+                    Tất cả thực phẩm
+                   
+                </a>
             </div>
         </div>
     </div>
