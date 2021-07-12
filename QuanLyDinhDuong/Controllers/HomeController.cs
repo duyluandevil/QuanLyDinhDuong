@@ -30,61 +30,57 @@ namespace QuanLyDinhDuong.Controllers
         [HttpGet]
         public ActionResult TinhToanChiSo()
         {
-            taikhoan = laytaikhoan();
-            return View(taikhoan.LastOrDefault());
+            //taikhoan = laytaikhoan();
+
+            BENHNHAN bn = (from b in data.BENHNHANs where b.IDTAIKHOAN == "duyluan0104" select b).Single();
+
+            //String ho = bn.HOTEN;
+            //String Year = bn.NGAYSINH.Value.Year.ToString();
+
+
+            return View(bn);
         }
 
         [HttpPost]
-        public ActionResult TinhToanChiSo(FormCollection collection)
+        public ActionResult TinhToanChiSo(FormCollection collection,BENHNHAN bn)
         {
-            var cannang = collection["cannang"];
-            var chieucao = collection["txtChieuCao"];
-            var calo = collection["tdee"];
-            var bmi = collection["bmi"];
 
-            float cc, cn, bmii, caloo;
-            //var cc = float.Parse(chieucao.ToString());
+            bn = (from b in data.BENHNHANs where b.IDTAIKHOAN == "duyluan0104" select b).Single();
 
+            var ChieuCao = collection["chieucao"];
+            var CanNang = collection["cannang"];
+            var mucdovandong = collection["mucvandong"];
 
-            //if (cc <= 0)
-            //    ViewData["Loi1"] = "Chiều cao bạn nhập sai";
-            if (String.IsNullOrEmpty(chieucao))
-            {
-                ViewData["Loi1"] = "Bạn chưa nhập chiều cao";                   
-                
-            }
+            float cc = float.Parse(ChieuCao) /100;
+            float cn = float.Parse(CanNang);
 
-            else if(float.Parse(chieucao.ToString()) < 0)
-            {
-                ViewData["Loi1"] = "Bạn nhập sai chiều cao";
-                cc = float.Parse(chieucao.ToString());
-                
-            }
-            if (String.IsNullOrEmpty(cannang))
-            {
-                ViewData["Loi2"] = "Bạn chưa nhập cân nặng";
-                
-            }
+            double R = 0;
 
-            else if (float.Parse(cannang.ToString()) < 0)
-            {
-                ViewData["Loi2"] = "Bạn nhập sai cân nặng";
-                cn = float.Parse(cannang.ToString());
-                
-            }
-            else
-            {
-                bmii = float.Parse(bmi.ToString());
-                caloo = float.Parse(calo.ToString());
-                var benhnhan = (from b in data.BENHNHANs where b.IDTAIKHOAN == "duyluan0104" select b).Single();
+            if (mucdovandong =="vandongit")
+                R = 1.2;
+            if (mucdovandong == "vandongnhe")
+                R = 1.375;
+            if (mucdovandong == "vandongvua")
+                R = 1.55;
+            if (mucdovandong ==  "vandongnang")
+                R = 1.725;
+            if (mucdovandong == "vandongratnang")
+                R = 1.9;
 
-                benhnhan.BMI = bmii;
-                benhnhan.CALO = caloo;
-                data.SubmitChanges();
-                
-            }    
+            var BMI = cn / (cc * cc);
 
-            return this.TinhToanChiSo();
+            bn.BMI = BMI;
+
+            data.SubmitChanges();
+
+            return View();
+        }
+
+        public ActionResult KetQuaTinhToanChiSo()
+        {
+            BENHNHAN bn = (from b in data.BENHNHANs where b.IDTAIKHOAN == "duyluan0104" select b).Single();
+
+            return View(bn);
         }
 
     }

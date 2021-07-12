@@ -4,162 +4,283 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+<style>
+    /*body {
+        margin: 0;
+        color: #6a6f8c;
+        background: #c8c8c8;
+        font: 600 16px/18px 'Open Sans', sans-serif
+    }*/
+    .background {
+        background-image: url('../../Content/img/people_tinhtoanchiso.png');
+        /*background-image: url('../../Content/img/bg_login.png');*/
+        background-size: cover;
+        /*background: #76b852;*/ /* fallback for old browsers */
+        /*background: -webkit-linear-gradient(right, #76b852, #8DC26F);
+        background: -moz-linear-gradient(right, #76b852, #8DC26F);
+        background: -o-linear-gradient(right, #76b852, #8DC26F);
+        background: linear-gradient(to left, #76b852, #8DC26F);*/
+        /*font-family: Arial, sans-serif;*/
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        font: 600 16px/18px 'Open Sans', sans-serif
+    }
+    .login-box {
+        width: 100%;
+        height:900px;
+        margin: auto;
+        max-width: 525px;
+        min-height: 670px;
+        position: relative;
+        /*background: url(https://images.unsplash.com/photo-1507208773393-40d9fc670acf?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1268&q=80) no-repeat center;*/
+        box-shadow: 0 12px 15px 0 rgba(0, 0, 0, .24), 0 17px 50px 0 rgba(0, 0, 0, .19);
+    }
 
-@using (Html.BeginForm())
+    .login-snip {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        padding: 90px 70px 50px 70px;
+        /*background: rgba(0, 77, 77, .9);*/
+    }
 
-{
-    @Html.ValidationSummary(true)
-    <style>
-        .colorBackGround {
-            background-image: url('../../images/people_tinhtoanchiso.jpg');
-            height: 550px;
-            width: 1260px;
+        .login-snip .login,
+        .login-snip .sign-up-form {
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            position: absolute;
+            transform: rotateY(180deg);
+            backface-visibility: hidden;
+            transition: all .4s linear
         }
 
-        .tinhtoanchiso {
-            background: #2c3051;
-            opacity: 95%;
-            height: 550px;
-            width: 1260px;
-            position: relative;
+        .login-snip .sign-in,
+        .login-snip .sign-up,
+        .login-space .group .check {
+            display: none
         }
 
-        .person {
-            background-image: url('../../images/doctor_tinhtoanchiso.png');
-            position: relative;
+        .login-snip .tab,
+        .login-space .group .label,
+        .login-space .group .button {
+            text-transform: uppercase
         }
 
-        .textTinhToanChiSo {
-            margin-top: -150px;
-            padding-top: -100px;
-            padding-left: 500px;
-            position: relative;
-            height: 200px;
-            width: 400px;
+        .login-snip .tab {
+            font-size: 22px;
+            margin-right: 15px;
+            padding-bottom: 5px;
+            margin: 0 15px 10px 0;
+            display: inline-block;
+            border-bottom: 2px solid transparent
         }
 
-        .imgPerson {
-            background-image: url('../../images/doctor_tinhtoanchiso.png');
-            position: relative;
-            height: 500px;
-            width: 445px;
-            padding-top: 200px;
-            padding-left: 00px;
+        .login-snip .sign-in:checked + .tab,
+        .login-snip .sign-up:checked + .tab {
+            color: #fff;
+            border-color: #1161ee
         }
 
-        .txtNhap {
-            margin-top: 10px;
-            height: 30px;
-            width: 280px;
-            background: #2c3051;
-            border: 1px solid white;
-            text-align: center;
-            font-weight: bold;
-            color: white;
-            font-size: 13px;
+    .login-space {
+        min-height: 345px;
+        position: relative;
+        perspective: 1000px;
+        transform-style: preserve-3d
+    }
+
+        .login-space .group {
+            margin-bottom: 15px
         }
 
-        .btnNhap {
-            margin-top: 50px;
-            height: 30px;
-            width: 200px;
-            background: #6ab8ff;
-            border: 1px solid #5c9acc;
-            text-align: center;
-            font-weight: bold;
-            color: white;
-            font-size: 13px;
-        }
+            .login-space .group .label,
+            .login-space .group .input,
+            .login-space .group .button {
+                width: 100%;
+                color: #fff;
+                display: block
+            }
 
-        #form2 {
-            position: relative;
-            margin-top: -238px;
-            margin-left: 300px;
-        }
+            .login-space .group .input,
+            .login-space .group .button {
+                border: none;
+                padding: 15px 20px;
+                border-radius: 25px;
+                background: rgba(255, 255, 255, .1)
+            }
 
-        select {
-            margin-top: -10px;
-            height: 60px;
-            width: 400px;
-            padding: 16px 20px;
-            border: none;
-            border: 1px solid white;
-            background-color: #2c3051;
-            color: white;
-        }
+            .login-space .group input[data-type="password"] {
+                text-security: circle;
+                -webkit-text-security: circle
+            }
 
-        #form3 {
-            margin-top: 120px;
-        }
+            .login-space .group .label {
+                color: #aaa;
+                font-size: 12px
+            }
 
-        #form4 {
-            margin-top: -140px;
-            margin-left: 300px;
-        }
+            .login-space .group .button {
+                background: #1161ee
+            }
+
+            .login-space .group label .icon {
+                width: 15px;
+                height: 15px;
+                border-radius: 2px;
+                position: relative;
+                display: inline-block;
+                background: rgba(255, 255, 255, .1)
+            }
+
+                .login-space .group label .icon:before,
+                .login-space .group label .icon:after {
+                    content: '';
+                    width: 10px;
+                    height: 2px;
+                    background: #fff;
+                    position: absolute;
+                    transition: all .2s ease-in-out 0s
+                }
+
+                .login-space .group label .icon:before {
+                    left: 3px;
+                    width: 5px;
+                    bottom: 6px;
+                    transform: scale(0) rotate(0)
+                }
+
+                .login-space .group label .icon:after {
+                    top: 6px;
+                    right: 0;
+                    transform: scale(0) rotate(0)
+                }
+
+            .login-space .group .check:checked + label {
+                color: #fff
+            }
+
+                .login-space .group .check:checked + label .icon {
+                    background: #1161ee
+                }
+
+                    .login-space .group .check:checked + label .icon:before {
+                        transform: scale(1) rotate(45deg)
+                    }
+
+                    .login-space .group .check:checked + label .icon:after {
+                        transform: scale(1) rotate(-45deg)
+                    }
+
+    .login-snip .sign-in:checked + .tab + .sign-up + .tab + .login-space .login {
+        transform: rotate(0)
+    }
+
+    .login-snip .sign-up:checked + .tab + .login-space .sign-up-form {
+        transform: rotate(0)
+    }
+
+    *,
+    :after,
+    :before {
+        box-sizing: border-box
+    }
+
+    .clearfix:after,
+    .clearfix:before {
+        content: '';
+        display: table
+    }
+
+    .clearfix:after {
+        clear: both;
+        display: block
+    }
+
+    a {
+        color: inherit;
+        text-decoration: none
+    }
+
+    .hr {
+        height: 2px;
+        margin: 60px 0 50px 0;
+        background: rgba(255, 255, 255, .2)
+    }
+
+    .foot {
+        text-align: center
+    }
+
+    .card {
+        padding: 2% 0 2%;
+        margin: auto;
+        width: 500px;
+    }
+
+    ::placeholder {
+        color: #b3b3b3
+    }
+
+
+</style>
     </style>
 
 
-    <div class="colorBackGround">
-        <div class="tinhtoanchiso">
-            <div class="imgPerson">
-                <div class="textTinhToanChiSo" style="font-family: 'Gill Sans', 'Gill Sans MT', 'Calibri', 'Trebuchet MS', sans-serif; color: white;
-                            font-size: 24px;">
-                    <b>Tính toán chỉ số</b><br>
-                    <div style="font-size: 18px; margin-top: 5px;">
-                        Nhập các thông tin vào để tính toán số liệu
-                    </div>
+    <div class="header-backup"></div>
+    <div class="background">
+        <div class="background1">
+            <div class="row">
+                @*<div class="col-md-6 mx-auto p-0">*@
+                <div class="card">
+                    <div class="login-box">
+                        <div class="login-snip" style="text-align:center;">
+                            <input id="tab-1" type="radio" name="tab" class="sign-in" checked><label style="font-size:30px; color:white;" for="tab-1" class="tab">Tính toán chỉ số<p style="font-size:15px;margin-top:20px;">Bạn có thể thay đổi thông tin chiều cao và cân nặng</p></label> <input id="tab-2" type="radio" name="tab" class="sign-up" style="display:none;"><label style="display:none;" for="tab-2" class="tab">đăng ký</label>
+                            <div class="login-space">
+                                <div style="margin-top:20px;" class="login">
+                                    <div class="group"> <label style="font-size:18px; color:white;" for="hoten" class="label">Họ và tên</label> <input id="hoten" type="text" class="input" placeholder="Họ tên" value="@Model.HOTEN" disabled> </div>
+                                    <div class="group"> <label style="font-size:18px; color:white;" for="tuoitac" class="label">Tuổi tác</label> <input id="tuoitac" type="text" class="input" placeholder="Tuổi tác" value="@Model.NGAYSINH" disabled> </div>
+                                    <div class="group"> <label style="font-size:18px; color:white;" for="pass" class="label">Giới tính</label> <input id="gioitinh" type="text" class="input" placeholder="Giới tính" value="@Model.GIOITINH" disabled> </div>
+                                    <div class="group"> <label style="font-size:18px; color:white;" for="pass" class="label">Chiều cao (CM)</label> <input id="chieucao" name="chieucao" type="number" step="0.01" class="input" placeholder="Nhập chiều cao" value="170"> </div>
+                                    <div class="group"> <label style="font-size:18px; color:white;" for="pass" class="label">Cân nặng (KG)</label> <input id="cannang" name="cannang" type="number" step="0.01" class="input" placeholder="Nhập cân nặng" value="70"> </div>
+
+                                    <div class="group">
+                                        <label style="font-size:18px; color:white;" for="mucvandong">CHỌN MỨC VẬN ĐỘNG</label>
 
 
-                    <form action="#" method="post" name="nhapthongtin">
+                                        <select class="input" name="mucvandong" id="mucvandong">
+                                            <option style="color:black;" id="vandongit" value="vandongit">Người ít vận động</option>
+                                            <option style="color:black;" id="vandongnhe" value="vandongnhe">Người vận động nhẹ Vvận động 1 – 3 lần/tuần)</option>
+                                            <option style="color:black;" id="vandongvua" value="vandongvua">Người vận động vừa (Vận động3 – 5 lần/tuần)</option>
+                                            <option style="color:black;" id="vandongnang" value="vandongnang">Người vận động nặng (người lao động chân tay nhiều, vận động 6 – 7 lần/ tuần)</option>
+                                            <option style="color:black;" id="vandongratnang" value="vandongratnang">Người vận động rất nặng (người lao động phổ thông, vận động 2 lần/ngày)</option>
+                                        </select>
+                                        <div style="margin-top:30px;" class="group"> <a href="@Url.Action("KetQuaTinhToanChiSo", "Home")"><input type="submit" style="color:#dddddd;" class="button" value="Tính tóan"> </div></a>
+                                    </div>
 
-
-                        <input style="margin-top: 20px;" class="txtNhap" type="text" id="txtHoTen" name="hoten" placeholder="HỌ TÊN" value="@Model.HOTEN" />
-
-
-                        <select id="chonGioiTinh" style="margin-top: 10px; width: 285px; height:80px" id="country" name="country">
-                            <option value="nam">@Model.GIOITINH</option>
-                            <option value="nu">@Model.GIOITINH</option>
-                        </select>
-
-                        <form>
-                            <select id="chonMucDo" style="margin-top: 10px; margin-bottom:10px; width: 586px;" id="country" name="country">
-                                <option id="vandongit" value="vandongit">Người ít vận động (thường là người lớn tuổi, người làm việc văn phòng)</option>
-                                <option id="vandongnhe" value="vandongnhe">Người vận động nhẹ (người tập thể dục thể thao 1 – 3 lần/tuần)</option>
-                                <option id="vandongvua" value="vandongvua">Người vận động vừa (người vận động hàng ngày, luyện tập 3 – 5 lần/tuần)</option>
-                                <option id="vandongnang" value="vandongnang">Người vận động nặng (người lao động chân tay nhiều, di chuyển thường xuyên, vận động thường xuyên, tập luyện và chơi thể dục thể thao từ 6 – 7 lần/ tuần)</option>
-                                <option id="vandongratnang" value="vandongratnang">Người vận động rất nặng (người lao động phổ thông, vận động viên tập luyện thể dục thể thao 2 lần/ngày)</option>
-                            </select>
-                        </form>
-                        <input style="width: 586px;margin-top: 0px;margin-left: 0px;" class="btnNhap" type="submit" name="submit" onclick="TinhBMI()" value="TÍNH TOÁN" />
-                    </form>
-
-                    <div id="form2" action="#" method="post" name="nhapthongtin">
-                        <input style="margin-top: -10px;" class="txtNhap" type="text" name="ngaysinh" placeholder="TUỔI TÁC" />
-                        <input style="margin-top: 10px;" class="txtNhap" type="text" id="txtChieuCao" name="txtChieuCao" placeholder="CHIỀU CAO (CM)" value="@ViewData["Loi1"]" />
-
-                        <input style="margin-bottom: 20px;" class="txtNhap" type="text" id="txtCanNang" name="cannang" placeholder="CÂN NẶNG (KG)" value="@ViewData["Loi2"]"  />
-                    </div>
-
-                    <div id="form3" style="font-size:17px; width:300px" action="#" method="post" name="nhapthongtin">
-                        Chỉ số cơ thể BMI<input style="margin-top: 5px;" class="txtNhap" type="text" id="txtBMI" name="bmi" placeholder="CHỈ SỐ CƠ THỂ" /> <br />
-                    </div>
-                    <div style="text-align:center; font-size:17px; width:300px; margin-top:20px; margin-left:150px">
-                        Phân loại cơ thể <input style="margin-top: 5px;" class="txtNhap" type="text" name="phanloaicothe" id="txtPhanLoaiCoThe" placeholder="PHÂN LOẠI CƠ THỂ" />
-                    </div>
-
-                    <div id="form4" style="font-size:17px; width:300px">
-                        Lượng Calo trong một ngày cần tiêu thụ<input style="margin-top: 5px;" class="txtNhap" type="text" name="tdee" id="txtLuongCaloMotNgay" placeholder="LƯỢNG CALO MỘT NGÀY" />  <br />
+                                </div> 
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
+            </div >
         </div>
-    </div>
 
     <script>
         var BMI, R, gioitinh;
         function LayGioiTinh() {
             gioitinh = document.getElementById("chonGioiTinh").value;
         }
+
+        
+        var Date = document.getElementById("ngaysinh").value;
+        var DateTime = Convert.DateTime(Date);
+        document.getElementById("ngaysinh").value = Datetime.Year.ToString();
+
+
+
+
         function TinhBMI() {
             //1.  lấy giá trị trong thẻ input người dùng nhập
             var chieucao = document.getElementById("txtChieuCao").value;

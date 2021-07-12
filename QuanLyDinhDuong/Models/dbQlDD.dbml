@@ -76,6 +76,7 @@
       <Column Name="BEO" Type="System.Double" DbType="Float" CanBeNull="true" />
       <Column Name="XO" Type="System.Double" DbType="Float" CanBeNull="true" />
       <Column Name="CALO" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="ANHBIA" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
       <Column Name="MALOAITHUCPHAM" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Association Name="THUCPHAM_CTTD" Member="CTTDs" ThisKey="MATHUCPHAM" OtherKey="MATHUCPHAM" Type="CTTD" />
       <Association Name="LOAITHUCPHAM_THUCPHAM" Member="LOAITHUCPHAM" ThisKey="MALOAITHUCPHAM" OtherKey="MALOAITHUCPHAM" Type="LOAITHUCPHAM" IsForeignKey="true" DeleteRule="CASCADE" />

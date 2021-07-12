@@ -46,6 +46,12 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="PagedList, Version=1.17.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\PagedList.1.17.0.0\lib\net40\PagedList.dll</HintPath>
+    </Reference>
+    <Reference Include="PagedList.Mvc, Version=4.5.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\PagedList.Mvc.4.5.0.0\lib\net40\PagedList.Mvc.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Data.Linq" />
@@ -163,6 +169,7 @@
     <Content Include="Content\img\member5.jpg" />
     <Content Include="Content\img\member6.jpg" />
     <Content Include="Content\img\pattern.jpg" />
+    <Content Include="Content\img\people_tinhtoanchiso.png" />
     <Content Include="Content\img\service1.png" />
     <Content Include="Content\img\service2.png" />
     <Content Include="Content\img\service3.png" />
@@ -182,6 +189,7 @@
     <Content Include="Content\js\modernizr.js" />
     <Content Include="Content\js\respond.min.js" />
     <Content Include="Content\js\smoothscroll.js" />
+    <Content Include="Content\PagedList.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -195,11 +203,6 @@
     <Content Include="images\people_tinhtoanchiso.jpg" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
-    <Content Include="Models\dbQlDD.dbml">
-      <Generator>MSLinqToSQLGenerator</Generator>
-      <LastGenOutput>dbQlDD.designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </Content>
     <Content Include="Content\fonts\fontawesome-webfont.eot" />
     <Content Include="Content\fonts\fontawesome-webfont.ttf" />
     <Content Include="Content\fonts\fontawesome-webfont.woff" />
@@ -207,6 +210,11 @@
     <Content Include="Content\fonts\glyphicons-halflings-regular.eot" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="Models\dbQlDD.dbml">
+      <Generator>MSLinqToSQLGenerator</Generator>
+      <LastGenOutput>dbQlDD.designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </Content>
     <None Include="Models\dbQlDD.dbml.layout">
       <DependentUpon>dbQlDD.dbml</DependentUpon>
     </None>
@@ -241,6 +249,10 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\NguoiDung\Dangnhap.cshtml" />
     <Content Include="Views\NguoiDung\TrangCaNhan.cshtml" />
+    <Content Include="Views\Home\KetQuaTinhToanChiSo.cshtml" />
+    <Content Include="Views\ThucPham\TPTheoLoai.cshtml" />
+    <Content Include="Views\ThucPham\ChiTietThucPham.cshtml" />
+    <Content Include="Views\ThucPham\DanhSachThucDon.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
