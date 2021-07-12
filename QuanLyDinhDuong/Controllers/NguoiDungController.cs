@@ -23,6 +23,16 @@ namespace QuanLyDinhDuong.Controllers
         [HttpPost]
         public ActionResult Dangnhap(FormCollection collection, TAIKHOAN tk)
         {
+            ViewData["Loi1"] = "";
+            ViewData["Loi2"] = "";
+            ViewData["Loi3"] = "";
+            ViewData["Loi4"] = "";
+            ViewData["Loi5"] = "";
+            ViewData["Loi6"] = "";
+            ViewData["Loi7"] = "";
+            ViewData["Loi8"] = "";
+            ViewBag.ThongBao1 = "";
+            ViewBag.ThongBao2 = "";
             var taikhoan = collection["TaiKhoan"];
             var matkhau = collection["MatKhau"];
             var nhaplaimk = collection["NhapLaiMatKhau"];
@@ -39,7 +49,7 @@ namespace QuanLyDinhDuong.Controllers
                 TAIKHOAN taik = data.TAIKHOANs.SingleOrDefault(t => t.IDTAIKHOAN == taikhoan);
                 if (taik != null)
                 {
-                    ViewBag.ThongBao = "Tên tài khoản đã tồn tại";
+                    ViewBag.ThongBao2 = "Tên tài khoản đã tồn tại";
                 }
             }
             if (String.IsNullOrEmpty(matkhau))
@@ -66,7 +76,7 @@ namespace QuanLyDinhDuong.Controllers
             {
                 ViewData["Loi8"] = "Bạn chưa chọn ngày sinh";
             }
-            else
+            if (taikhoan != "" && matkhau != "" && nhaplaimk == matkhau && email != "" && sdt != "" && ngaysinh != "")
             {
                 tk.IDTAIKHOAN = taikhoan;
                 tk.MATKHAU = matkhau;
@@ -76,12 +86,29 @@ namespace QuanLyDinhDuong.Controllers
                 tk.NGAYSINH = DateTime.Parse(ngaysinh);
                 data.TAIKHOANs.InsertOnSubmit(tk);
                 data.SubmitChanges();
-                return View("Index");
+                return this.Dangnhap();
             }
-            //else if (ngaysinh)
-            //{
-
-            //}
+            var tkdn = collection["IDTAIKHOAN"];
+            var mkdn = collection["MATKHAU"];
+            if (String.IsNullOrEmpty(tkdn))
+            {
+                ViewData["Loi1"] = "Bạn chưa nhập tài khoản";
+            }
+            if (String.IsNullOrEmpty(mkdn))
+            {
+                ViewData["Loi2"] = "Bạn chưa nhập mật khẩu";
+            }
+            if (tkdn != "" && mkdn != "")
+            {
+                tk = data.TAIKHOANs.SingleOrDefault(n => n.IDTAIKHOAN == tkdn && n.MATKHAU == mkdn);
+                if (tk != null)
+                {
+                    Session["IDTAIKHOAN"] = tk;
+                    return View("Index");
+                }
+                else
+                    ViewBag.ThongBao1 = "Tên đăng nhập hoặc mật khẩu không đúng";
+            }
             return this.Dangnhap();
         }
 
