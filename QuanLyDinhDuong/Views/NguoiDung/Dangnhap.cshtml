@@ -237,20 +237,19 @@
                         <input id="tab-2" type="radio" name="tab" class="sign-up">
                         <label for="tab-2" class="tab">Đăng Ký</label>
                         <div class="login-space">
-                            <h4 style="color:red; text-align:center">@ViewBag.ThongBao</h4>
                             <div style="margin-top:20px;" class="login">
-
+                                <h4 style="color:red; text-align:center">@ViewBag.ThongBao1</h4>
                                 <div class="group">
                                     @*<label for="user" class="label">Tài khoản</label>*@
+                                    <h4 style="margin-top:5px; text-align:center; color:red">@ViewData["Loi1"]</h4>
                                     @Html.TextBoxFor(m => m.IDTAIKHOAN, new { @class = "input", @placeholder = "Nhập tên tài khoản" })
-                                    @ViewData["Loi1"]
                                     @*<input id="user" type="text" class="input" placeholder="Nhập tên tài khoản">*@
                                 </div>
                                 <div class="group">
                                     @*<label for="pass" class="label">Mật khẩu</label>*@
                                     @*<input id="pass" type="password" class="input" data-type="password" placeholder="Nhập mật khẩu">*@
+                                    <h4 style="margin-top:5px; text-align:center; color:red">@ViewData["Loi2"]</h4>
                                     @Html.PasswordFor(m => m.MATKHAU, new { @class = "input", @placeholder = "Nhập mật khẩu" })
-                                    @ViewData["Loi2"]
                                 </div>
                                 @*<div class="group"> <input id="check" type="checkbox" class="check" checked> <label for="check"><span class="icon"></span> Lưu đăng nhập</label> </div>*@
 
@@ -260,30 +259,34 @@
                                 <div class="foot"> <a style="color:#dddddd;" href="#">Quên mật khẩu?</a> </div>
                             </div>
                             <div style="margin-top:20px;" class="sign-up-form">
-                                <div class="group">    
-                                    <input id="TaiKhoan" name="TaiKhoan" type="text" class="input" placeholder="Nhập tên tài khoản của bạn" value="@ViewData["Loi3"]">
+                                <h4 style="color:red; text-align:center">@ViewBag.ThongBao2</h4>
+                                <div class="group">
+                                    <h4 style="margin-top:5px; text-align:center; color:red">@ViewData["Loi3"]</h4>
+                                    <input id="TaiKhoan" name="TaiKhoan" type="text" class="input" placeholder="Nhập tên tài khoản của bạn">
                                 </div>
                                 <div class="group">
-
-                                    <input id="MatKhau" name="MatKhau" type="password" class="input" data-type="password" placeholder="Nhập mật khẩu" value="@ViewData["Loi4"]">
+                                    <h4 style="margin-top: 5px; text-align: center; color:red">@ViewData["Loi4"]</h4>
+                                    <input id="MatKhau" name="MatKhau" type="password" class="input" data-type="password" placeholder="Nhập mật khẩu">
                                 </div>
                                 <div class="group">
-                                    
-                                    <input id="NhapLaiMatKhau" name="NhapLaiMatKhau" type="password" class="input" data-type="password" placeholder="Nhập lại mật khẩu" value="@ViewData["Loi5"]">
+                                    <h4 style="margin-top: 5px; text-align: center; color:red">@ViewData["Loi5"]</h4>
+                                    <input id="NhapLaiMatKhau" name="NhapLaiMatKhau" type="password" class="input" data-type="password" placeholder="Nhập lại mật khẩu">
                                 </div>
                                 <div class="group">
-                                    
-                                    <input id="email" name="email" type ="email" class="input" placeholder="Nhập địa chỉ email của bạn" value="@ViewData["Loi6"]">
+                                    <h4 style="margin-top:5px; text-align:center; color:red">@ViewData["Loi6"]</h4>
+                                    <input id="email" name="email" type="email" class="input" placeholder="Nhập địa chỉ email của bạn">
                                 </div>
                                 <div class="group">
-                                    <input id="sdt" name="sdt" type="text" class="input" placeholder="Nhập số điện thoại của bạn" value="@ViewData["Loi7"]">
+                                    <h4 style="margin-top: 5px; text-align: center; color:red">@ViewData["Loi7"]</h4>
+                                    <input id="sdt" name="sdt" type="text" class="input" placeholder="Nhập số điện thoại của bạn">
                                 </div>
                                 <div class="group">
-                                    <label style="font-size:20px" class="label">Nhập ngày sinh</label>
-                                    <input id="ngaysinh" name="ngaysinh" type="date" class="input" value="@ViewData["Loi8"]">
+                                    <label style="font-size:15px" class="label">Nhập ngày sinh</label>
+                                    <h4 style="margin-top:5px; text-align:center; color:red">@ViewData["Loi8"]</h4>
+                                    <input id="ngaysinh" name="ngaysinh" type="date" class="input">
                                 </div>
                                 <div class="group">
-                                    <label class="label" style="font-size:20px;margin-top:10px">Giới tính</label>
+                                    <label class="label" style="font-size:15px;margin-top:10px">Giới tính</label>
                                     <div class="form-check" style="text-align:center">
                                         <input class="form-check-input" type="radio" name="RadioGioiTinh" id="RadioNam" value="Nam">
                                         <label class="form-check-label" style="color:white" for="RadioNam">
@@ -295,8 +298,11 @@
                                         </label>
                                     </div>
                                 </div>
-
-                                <div class="group"> <input type="submit" style="margin-top:10px" class="button" value="Đăng ký"> </div>
+                                
+                                <div class="group"> 
+                                    <!--<input--> @*type="submit"*@ @*style="margin-top:10px" class="button" onclick="DangKy()" value="Đăng ký"*@<!-->-->
+                                    <button type="submit" style="margin-top:10px" class="button">Đăng ký</button>
+                                </div>
                                 <div class="hr"></div>
                                 <div class="foot"> <label style="color:#dddddd;" for="tab-1">Bạn đã có tài khoản?</label> </div>
                             </div>
@@ -307,4 +313,12 @@
         </div>
     </div>
 }
+
+<script>
+    function DangKy() {
+        //   let x = document.getElementById("TaiKhoan").value;
+        //if (x == "")
+        //    document.getElementById("loi3").innerHTML = "Bạn chưa nhập tên tài khoản";
+    }
+</script>
 
