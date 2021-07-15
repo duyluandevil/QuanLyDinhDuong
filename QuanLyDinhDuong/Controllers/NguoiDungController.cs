@@ -84,31 +84,31 @@ namespace QuanLyDinhDuong.Controllers
                 tk.SDT = sdt;
                 tk.GIOITINH = gioitinh;
                 tk.NGAYSINH = DateTime.Parse(ngaysinh);
+                tk.MACHUCVU = 1;
                 data.TAIKHOANs.InsertOnSubmit(tk);
                 data.SubmitChanges();
                 return this.Dangnhap();
             }
-            var tkdn = collection["IDTAIKHOAN"];
-            var mkdn = collection["MATKHAU"];
+            var tkdn = collection["TenDangNhap"];
+            var mkdn = collection["MatKhauDangNhap"];
             if (String.IsNullOrEmpty(tkdn))
             {
                 ViewData["Loi1"] = "Bạn chưa nhập tài khoản";
             }
-            if (String.IsNullOrEmpty(mkdn))
+            else if (String.IsNullOrEmpty(mkdn))
             {
                 ViewData["Loi2"] = "Bạn chưa nhập mật khẩu";
             }
-            if (tkdn != "" && mkdn != "")
+           else
             {
-                tk = data.TAIKHOANs.SingleOrDefault(n => n.IDTAIKHOAN == tkdn && n.MATKHAU == mkdn);
-                if (tk != null)
+                var taik = (from tks in data.TAIKHOANs where tks.IDTAIKHOAN == tkdn && tks.MATKHAU == mkdn select tks).SingleOrDefault();
+                if (taik != null)
                 {
-                    Session["IDTAIKHOAN"] = tk;
-                    return View("Index");
+                    return RedirectToAction("Index", "Home");
                 }
-                else
-                    ViewBag.ThongBao1 = "Tên đăng nhập hoặc mật khẩu không đúng";
-            }
+                else ViewBag.ThongBao1 = "Tên đăng nhập hoặc mật khẩu không đúng";
+
+            }    
             return this.Dangnhap();
         }
 
