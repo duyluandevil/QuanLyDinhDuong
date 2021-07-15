@@ -129,6 +129,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\NguoiDungController.cs" />
+    <Compile Include="Controllers\ThucDonController.cs" />
     <Compile Include="Controllers\ThucPhamController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -148,6 +149,7 @@
     <Content Include="Content\bootstrap.min.profile.js" />
     <Content Include="Content\bootstrap.min1.profile.js" />
     <Content Include="Content\css\bootstrap.min.css" />
+    <Content Include="Content\css\core-style.css" />
     <Content Include="Content\css\font-awesome.min.css" />
     <Content Include="Content\css\font1.css" />
     <Content Include="Content\css\font2.css" />
@@ -253,6 +255,9 @@
     <Content Include="Views\ThucPham\TPTheoLoai.cshtml" />
     <Content Include="Views\ThucPham\ChiTietThucPham.cshtml" />
     <Content Include="Views\ThucPham\DanhSachThucDon.cshtml" />
+    <Content Include="Views\ThucDon\ThucDon.cshtml" />
+    <Content Include="Views\ThucDon\ChiTietThucDon.cshtml" />
+    <Content Include="Views\ThucDon\ThemThucDon.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

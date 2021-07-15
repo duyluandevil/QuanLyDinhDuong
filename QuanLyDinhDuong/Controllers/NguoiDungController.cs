@@ -34,12 +34,19 @@ namespace QuanLyDinhDuong.Controllers
             ViewBag.ThongBao1 = "";
             ViewBag.ThongBao2 = "";
             var taikhoan = collection["TaiKhoan"];
+
             var matkhau = collection["MatKhau"];
+
             var nhaplaimk = collection["NhapLaiMatKhau"];
+
             var email = collection["email"];
+
             var sdt = collection["sdt"];
+
             var ngaysinh = String.Format("{0:MM/dd/yyyy}", collection["ngaysinh"]);
+
             var gioitinh = collection["RadioGioiTinh"];
+
             if (String.IsNullOrEmpty(taikhoan))
             {
                 ViewData["Loi3"] = "Bạn chưa nhập tên tài khoản";
@@ -117,6 +124,7 @@ namespace QuanLyDinhDuong.Controllers
         {
             return View();
         }
+
         // 82a71b7698b5168ad94da2e6bb4f364248f19cc3
     }
 }

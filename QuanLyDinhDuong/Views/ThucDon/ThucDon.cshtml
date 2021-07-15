@@ -1,0 +1,49 @@
+﻿
+@{
+    ViewBag.Title = "ThucDon";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<style>
+    .background{
+
+    }
+</style>
+
+<div class="header-backup"></div>
+<div>
+    <div class="background">
+        <a href="@Url.Action("ThemThucDon","ThucDon")">Thêm thực đơn...</a>
+        <input type="text" style="width:500px; margin-top:20px; margin-left:15px; margin-bottom:20px;" placeholder="Nhập buổi để tìm kiếm..." name="search">
+        <button type="submit"><i class="fa fa-search"></i></button>
+        @*<a href="@Url.Action("ThemThucDon","ThucDon")>Thêm thực đơn...</a>*@
+
+        <div>
+            @foreach (var item in Model)
+            {
+                <div style="float:left;" class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                    <div class="panel panel-default" style="width:300px;">
+                        <div class="panel panel-heading" style="width:300px;">Buổi thực đơn: @item.BUOI</div>
+                        <div class="panel-body">
+                            <p>
+                                <strong>Mã thực đơn:</strong> @item.MATHUCDON
+                            </p>
+                            <p>
+                                <strong>Ngày lập: </strong>@Convert.ToString(string.Format("{0:dd/MM/yyyy}", @item.NGAYLAP))
+                            </p>
+                        </div>
+                        <div class="panel-footer clearfix">
+                            <div class="pull-right">
+                                <a href="@Url.Action("ChiTietThucDon", "ThucDon", new { MaThucDon = @item.MATHUCDON })" class="btn btn-primary">Xem thêm...</a>
+                                <a href="@Url.Action("XoaThucDon", "ThucDon", new { @MaThucDon = @item.MATHUCDON })" class="btn btn-primary">Xóa thực đơn</a>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+

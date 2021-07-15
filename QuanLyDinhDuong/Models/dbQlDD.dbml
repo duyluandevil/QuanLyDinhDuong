@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?><Database Name="QLDD" Class="dbQlDDDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="WebSettings" ConnectionString="Data Source=luan;Initial Catalog=QLDD;Integrated Security=True" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="QLDDConnectionString1" Provider="System.Data.SqlClient" />
+  <Connection Mode="WebSettings" ConnectionString="Data Source=LUAN;Initial Catalog=QLDD;Integrated Security=True" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="QLDDConnectionString" Provider="System.Data.SqlClient" />
   <Table Name="dbo.BENHNHAN" Member="BENHNHANs">
     <Type Name="BENHNHAN">
       <Column Name="MABENHNHAN" Type="System.String" DbType="Char(5) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
@@ -25,14 +25,16 @@
   </Table>
   <Table Name="dbo.CTTD" Member="CTTDs">
     <Type Name="CTTD">
-      <Column Name="MATHUCDON" Type="System.String" DbType="Char(5) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="MATHUCDON" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="MATHUCPHAM" Type="System.String" DbType="Char(5) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="TENTHUCPHAM" Type="System.String" DbType="NVarChar(30)" CanBeNull="true" />
-      <Column Name="KHOILUONG" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="ANHBIA" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="SOLUONG" Type="System.Double" DbType="Float" CanBeNull="true" />
       <Column Name="DAM" Type="System.Double" DbType="Float" CanBeNull="true" />
       <Column Name="BEO" Type="System.Double" DbType="Float" CanBeNull="true" />
       <Column Name="XO" Type="System.Double" DbType="Float" CanBeNull="true" />
       <Column Name="CALO" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="TONGCALO" Type="System.Double" DbType="Float" CanBeNull="true" />
       <Association Name="THUCDON_CTTD" Member="THUCDON" ThisKey="MATHUCDON" OtherKey="MATHUCDON" Type="THUCDON" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
       <Association Name="THUCPHAM_CTTD" Member="THUCPHAM" ThisKey="MATHUCPHAM" OtherKey="MATHUCPHAM" Type="THUCPHAM" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
     </Type>
@@ -60,7 +62,7 @@
   </Table>
   <Table Name="dbo.THUCDON" Member="THUCDONs">
     <Type Name="THUCDON">
-      <Column Name="MATHUCDON" Type="System.String" DbType="Char(5) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="MATHUCDON" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="BUOI" Type="System.String" DbType="NVarChar(15)" CanBeNull="true" />
       <Column Name="NGAYLAP" Type="System.DateTime" DbType="Date" CanBeNull="true" />
       <Column Name="MABENHNHAN" Type="System.String" DbType="Char(5)" CanBeNull="true" />
