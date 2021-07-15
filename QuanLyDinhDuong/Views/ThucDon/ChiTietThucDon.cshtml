@@ -1,0 +1,322 @@
+﻿
+@{
+    ViewBag.Title = "ChiTietThucDon";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+
+    .cart-table .table td,
+    .cart-table .table th {
+        padding: 12px;
+        padding: 12px;
+        padding: 0.75rem;
+        text-align: left;
+        vertical-align: middle;
+        border: none;
+        font-size: 13px;
+    }
+
+    .cart-table .cart_product_img h6 {
+        font-size: 14px;
+        margin: 0;
+        font-weight: 400;
+    }
+
+    .cart-table .qty-minus,
+    .cart-table .qty-plus {
+        background-color: #f6f6f6;
+        cursor: pointer;
+        display: inline-block;
+        height: 30px;
+        width: 30px;
+    }
+
+        .cart-table .qty-minus i,
+        .cart-table .qty-plus i {
+            line-height: 30px;
+            font-size: 10px;
+        }
+
+    .cart-table .qty-text {
+        background-color: #f6f6f6;
+        border: medium none;
+        display: inline-block;
+        height: 30px;
+        -moz-appearance: textfield;
+        -webkit-appearance: textfield;
+        appearance: textfield;
+        text-align: center;
+        font-size: 12px;
+        width: 50px;
+    }
+
+    .cart-table .quantity {
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center;
+        display: -webkit-inline-box;
+        display: -ms-inline-flexbox;
+        display: inline-flex;
+        text-align: center;
+    }
+
+    .cart-table .price span,
+    .cart-table .total_price > span,
+    .cart-table .action > a {
+        font-size: 14px;
+    }
+
+    .cart_area .update-checkout a,
+    .cart_area .back-to-shop a {
+        background-color: transparent;
+        border-radius: 0;
+        display: inline-block;
+        height: 55px;
+        line-height: 51px;
+        min-width: 120px;
+        padding: 0 30px;
+        text-align: center;
+        font-size: 14px;
+        font-weight: 700;
+        border: 2px solid #3a3a3a;
+        text-transform: uppercase;
+    }
+
+        .cart_area .update-checkout a:first-child {
+            color: #7a7a7a;
+            border-color: #f4f2f8;
+        }
+
+        .cart_area .update-checkout a:last-child {
+            background-color: #f4f2f8;
+            color: #7a7a7a;
+            border-color: #f4f2f8;
+        }
+
+    .cart-page-heading {
+        margin-bottom: 50px;
+    }
+
+        .cart-page-heading h5 {
+            text-transform: uppercase;
+            font-size: 18px;
+        }
+
+        .cart-page-heading p {
+            color: #7a7a7a;
+            font-size: 14px;
+            margin-bottom: 0;
+        }
+
+    .coupon-code-area form {
+        position: relative;
+        z-index: 1;
+    }
+
+        .coupon-code-area form > input {
+            width: 100%;
+            height: 52px;
+            border: none;
+            background-color: #f4f2f8;
+            padding: 0 30px;
+            font-size: 12px;
+        }
+
+        .coupon-code-area form > button {
+            width: 120px;
+            height: 52px;
+            border: none;
+            text-transform: uppercase;
+            background-color: #ff084e;
+            padding: 0 30px;
+            font-size: 14px;
+            position: absolute;
+            top: 0;
+            color: #fff;
+            font-weight: 700;
+            right: 0;
+        }
+
+    .shipping-method-area .custom-control-label span {
+        font-size: 14px;
+    }
+
+    .cart-total-chart {
+        background-color: #f4f2f8;
+        padding: 30px;
+    }
+
+        .cart-total-chart li {
+            display: -moz-flex;
+            display: -ms-flex;
+            display: -o-flex;
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-box-align: center;
+            -ms-flex-align: center;
+            align-items: center;
+            -webkit-box-pack: justify;
+            -ms-flex-pack: justify;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+
+    .karl-checkout-btn {
+        width: 100%;
+        height: 60px;
+        background-color: #ff084e;
+        border-radius: 0;
+        color: #fff;
+        text-transform: uppercase;
+        font-weight: 700;
+        line-height: 60px;
+        padding: 0;
+    }
+
+
+        .karl-checkout-btn:hover,
+        .karl-checkout-btn:focus {
+            background-color: #3a3a3a;
+            color: #fff;
+            font-weight: 700;
+        }
+
+    /* -----------------------
+:: 19.0 Checkout Area CSS
+----------------------- */
+
+    .checkout_details_area form label {
+        font-size: 12px;
+        text-transform: uppercase;
+    }
+
+        .checkout_details_area form label span {
+            color: #ff084e;
+        }
+
+    .checkout_details_area form .form-control,
+    .checkout_details_area form .custom-select {
+        height: 52px;
+        border: none;
+        background-color: #f4f2f8;
+        border-radius: 0;
+    }
+
+    .order-details-confirmation {
+        width: 100%;
+        border: 2px solid #ebebeb;
+        padding: 40px;
+    }
+
+        .order-details-confirmation .order-details-form li {
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-box-align: center;
+            -ms-flex-align: center;
+            align-items: center;
+            -webkit-box-pack: justify;
+            -ms-flex-pack: justify;
+            justify-content: space-between;
+            margin-bottom: 20px;
+            font-size: 12px;
+            text-transform: uppercase;
+            padding: 30px 0;
+            border-bottom: 2px solid #ebebeb;
+        }
+
+        .order-details-confirmation .card-header h6 a {
+            display: block;
+            font-size: 12px;
+            text-transform: uppercase;
+        }
+
+            .order-details-confirmation .card-header h6 a i {
+                color: #9f9f9f;
+            }
+
+        .order-details-confirmation .card {
+            border: none;
+        }
+
+        .order-details-confirmation .card-header {
+            background-color: transparent;
+            border-bottom: none;
+        }
+
+        .order-details-confirmation .card-body p {
+            font-size: 12px;
+            line-height: 2;
+            color: #9f9f9f;
+        }
+</style>
+<div class="header-backup"></div>
+<div class="cart_area section_padding_100 clearfix">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="cart-table clearfix">
+                    <table class="table table-responsive">
+                        <thead>
+                            <tr>
+                                <th>Tên thực phẩm</th>
+                                <th>Lượng Đạm</th>
+                                <th>Lượng Béo</th>
+                                <th>Lượng Xơ</th>
+                                <th>Lượng Calo</th>
+                                <th>Số lượng</th>
+                                <th>Tổng Calo</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                            <tr>
+                                <td class="cart_product_img d-flex align-items-center">
+                                    <a href="#"><img src="@item.ANHBIA" style="width:150px; height:100px;" alt="Product"/></a>
+                                  
+                                    <h5>@item.TENTHUCPHAM</h5>
+                                </td>
+                                <td class="price"><span>@item.DAM</span></td>
+                                <td class="price"><span>@item.BEO</span></td>
+                                <td class="price"><span>@item.XO</span></td>
+                                <td class="price"><span id="calo">@item.CALO</span></td>
+                                <td class="qty">
+                                    <div class="quantity">
+                                        
+                                        <input type="number" class="qty-text" id="qty" step="1" min="1" max="99" name="quantity" value=@item.SOLUONG>
+                                        
+                                    </div>
+                                </td>
+
+                                <td class="total_price"><span id="totalCalo">@item.TONGCALO</span></td>
+                                <td><a href="@Url.Action("XoaThucPham","ThucDon", new { @MaThucPham = item.MATHUCPHAM })" class="btn"><i class="fa fa-close"></i></a></td>
+                            </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="cart-footer d-flex mt-30">
+                    <div class="back-to-shop w-50">
+                        <a href="@Url.Action("ThucPham", "ThucPham")">Danh sách thực phẩm</a>
+                    </div>
+                    <div class="update-checkout w-50 text-right">
+                        <a href="#">Cập nhật thực đơn</a>
+                        <a href="#">Xóa tất cả thực phẩm</a>
+                        
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    var totalCalo = document.getElementbyID
+</script>
+

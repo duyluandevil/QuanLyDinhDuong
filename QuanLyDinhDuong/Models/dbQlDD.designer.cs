@@ -54,7 +54,7 @@ namespace QuanLyDinhDuong.Models
     #endregion
 		
 		public dbQlDDDataContext() : 
-				base(global::System.Configuration.ConfigurationManager.ConnectionStrings["QLDDConnectionString1"].ConnectionString, mappingSource)
+				base(global::System.Configuration.ConfigurationManager.ConnectionStrings["QLDDConnectionString"].ConnectionString, mappingSource)
 		{
 			OnCreated();
 		}
@@ -607,13 +607,15 @@ namespace QuanLyDinhDuong.Models
 		
 		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
 		
-		private string _MATHUCDON;
+		private int _MATHUCDON;
 		
 		private string _MATHUCPHAM;
 		
 		private string _TENTHUCPHAM;
 		
-		private System.Nullable<double> _KHOILUONG;
+		private string _ANHBIA;
+		
+		private System.Nullable<double> _SOLUONG;
 		
 		private System.Nullable<double> _DAM;
 		
@@ -623,6 +625,8 @@ namespace QuanLyDinhDuong.Models
 		
 		private System.Nullable<double> _CALO;
 		
+		private System.Nullable<double> _TONGCALO;
+		
 		private EntityRef<THUCDON> _THUCDON;
 		
 		private EntityRef<THUCPHAM> _THUCPHAM;
@@ -631,14 +635,16 @@ namespace QuanLyDinhDuong.Models
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
     partial void OnCreated();
-    partial void OnMATHUCDONChanging(string value);
+    partial void OnMATHUCDONChanging(int value);
     partial void OnMATHUCDONChanged();
     partial void OnMATHUCPHAMChanging(string value);
     partial void OnMATHUCPHAMChanged();
     partial void OnTENTHUCPHAMChanging(string value);
     partial void OnTENTHUCPHAMChanged();
-    partial void OnKHOILUONGChanging(System.Nullable<double> value);
-    partial void OnKHOILUONGChanged();
+    partial void OnANHBIAChanging(string value);
+    partial void OnANHBIAChanged();
+    partial void OnSOLUONGChanging(System.Nullable<double> value);
+    partial void OnSOLUONGChanged();
     partial void OnDAMChanging(System.Nullable<double> value);
     partial void OnDAMChanged();
     partial void OnBEOChanging(System.Nullable<double> value);
@@ -647,6 +653,8 @@ namespace QuanLyDinhDuong.Models
     partial void OnXOChanged();
     partial void OnCALOChanging(System.Nullable<double> value);
     partial void OnCALOChanged();
+    partial void OnTONGCALOChanging(System.Nullable<double> value);
+    partial void OnTONGCALOChanged();
     #endregion
 		
 		public CTTD()
@@ -656,8 +664,8 @@ namespace QuanLyDinhDuong.Models
 			OnCreated();
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MATHUCDON", DbType="Char(5) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
-		public string MATHUCDON
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MATHUCDON", DbType="Int NOT NULL", IsPrimaryKey=true)]
+		public int MATHUCDON
 		{
 			get
 			{
@@ -724,22 +732,42 @@ namespace QuanLyDinhDuong.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_KHOILUONG", DbType="Float")]
-		public System.Nullable<double> KHOILUONG
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ANHBIA", DbType="VarChar(50)")]
+		public string ANHBIA
 		{
 			get
 			{
-				return this._KHOILUONG;
+				return this._ANHBIA;
 			}
 			set
 			{
-				if ((this._KHOILUONG != value))
+				if ((this._ANHBIA != value))
 				{
-					this.OnKHOILUONGChanging(value);
+					this.OnANHBIAChanging(value);
 					this.SendPropertyChanging();
-					this._KHOILUONG = value;
-					this.SendPropertyChanged("KHOILUONG");
-					this.OnKHOILUONGChanged();
+					this._ANHBIA = value;
+					this.SendPropertyChanged("ANHBIA");
+					this.OnANHBIAChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SOLUONG", DbType="Float")]
+		public System.Nullable<double> SOLUONG
+		{
+			get
+			{
+				return this._SOLUONG;
+			}
+			set
+			{
+				if ((this._SOLUONG != value))
+				{
+					this.OnSOLUONGChanging(value);
+					this.SendPropertyChanging();
+					this._SOLUONG = value;
+					this.SendPropertyChanged("SOLUONG");
+					this.OnSOLUONGChanged();
 				}
 			}
 		}
@@ -824,6 +852,26 @@ namespace QuanLyDinhDuong.Models
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TONGCALO", DbType="Float")]
+		public System.Nullable<double> TONGCALO
+		{
+			get
+			{
+				return this._TONGCALO;
+			}
+			set
+			{
+				if ((this._TONGCALO != value))
+				{
+					this.OnTONGCALOChanging(value);
+					this.SendPropertyChanging();
+					this._TONGCALO = value;
+					this.SendPropertyChanged("TONGCALO");
+					this.OnTONGCALOChanged();
+				}
+			}
+		}
+		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="THUCDON_CTTD", Storage="_THUCDON", ThisKey="MATHUCDON", OtherKey="MATHUCDON", IsForeignKey=true, DeleteOnNull=true, DeleteRule="CASCADE")]
 		public THUCDON THUCDON
 		{
@@ -851,7 +899,7 @@ namespace QuanLyDinhDuong.Models
 					}
 					else
 					{
-						this._MATHUCDON = default(string);
+						this._MATHUCDON = default(int);
 					}
 					this.SendPropertyChanged("THUCDON");
 				}
@@ -1332,7 +1380,7 @@ namespace QuanLyDinhDuong.Models
 		
 		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
 		
-		private string _MATHUCDON;
+		private int _MATHUCDON;
 		
 		private string _BUOI;
 		
@@ -1348,7 +1396,7 @@ namespace QuanLyDinhDuong.Models
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
     partial void OnCreated();
-    partial void OnMATHUCDONChanging(string value);
+    partial void OnMATHUCDONChanging(int value);
     partial void OnMATHUCDONChanged();
     partial void OnBUOIChanging(string value);
     partial void OnBUOIChanged();
@@ -1365,8 +1413,8 @@ namespace QuanLyDinhDuong.Models
 			OnCreated();
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MATHUCDON", DbType="Char(5) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
-		public string MATHUCDON
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MATHUCDON", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int MATHUCDON
 		{
 			get
 			{

@@ -53,6 +53,13 @@ namespace QuanLyDinhDuong.Controllers
             return View(tp);
         }
 
+        //[HttpPost]
+        //public ActionResult ChiTietThucPham(FormCollection f, CTTD cTTD)
+        //{
+            
+        //    return this.ChiTietThucPham();
+        //}
+
 
         private BENHNHAN getBenhNhan(string idTaiKhoan)
         {
