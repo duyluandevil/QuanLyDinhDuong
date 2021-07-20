@@ -25,9 +25,10 @@
         -moz-osx-font-smoothing: grayscale;
         font: 600 16px/18px 'Open Sans', sans-serif
     }
+
     .login-box {
         width: 100%;
-        height:900px;
+        height: 900px;
         margin: auto;
         max-width: 525px;
         min-height: 670px;
@@ -221,13 +222,12 @@
     ::placeholder {
         color: #b3b3b3
     }
-
-
 </style>
-    </style>
 
-
-    <div class="header-backup"></div>
+<div class="header-backup"></div>
+@using (Html.BeginForm())
+{
+    @Html.ValidationSummary()
     <div class="background">
         <div class="background1">
             <div class="row">
@@ -239,15 +239,12 @@
                             <div class="login-space">
                                 <div style="margin-top:20px;" class="login">
                                     <div class="group"> <label style="font-size:18px; color:white;" for="hoten" class="label">Họ và tên</label> <input id="hoten" type="text" class="input" placeholder="Họ tên" value="@Model.HOTEN" disabled> </div>
-                                    <div class="group"> <label style="font-size:18px; color:white;" for="tuoitac" class="label">Tuổi tác</label> <input id="tuoitac" type="text" class="input" placeholder="Tuổi tác" value="@Model.NGAYSINH" disabled> </div>
-                                    <div class="group"> <label style="font-size:18px; color:white;" for="pass" class="label">Giới tính</label> <input id="gioitinh" type="text" class="input" placeholder="Giới tính" value="@Model.GIOITINH" disabled> </div>
+                                    <div class="group"> <label style="font-size:18px; color:white;" for="tuoitac" class="label">Tuổi tác</label> <input id="tuoitac" type="text" class="input" placeholder="Tuổi tác" value="@ViewData["Loi1"]" disabled> </div>
+                                    <div class="group"> <label style="font-size:18px; color:white;" for="pass" class="label">Giới tính</label> <input id="gioitinh" name="gioitinh" type="text" class="input" placeholder="Giới tính" value="@Model.GIOITINH" disabled> </div>
                                     <div class="group"> <label style="font-size:18px; color:white;" for="pass" class="label">Chiều cao (CM)</label> <input id="chieucao" name="chieucao" type="number" step="0.01" class="input" placeholder="Nhập chiều cao" value="170"> </div>
                                     <div class="group"> <label style="font-size:18px; color:white;" for="pass" class="label">Cân nặng (KG)</label> <input id="cannang" name="cannang" type="number" step="0.01" class="input" placeholder="Nhập cân nặng" value="70"> </div>
-
                                     <div class="group">
                                         <label style="font-size:18px; color:white;" for="mucvandong">CHỌN MỨC VẬN ĐỘNG</label>
-
-
                                         <select class="input" name="mucvandong" id="mucvandong">
                                             <option style="color:black;" id="vandongit" value="vandongit">Người ít vận động</option>
                                             <option style="color:black;" id="vandongnhe" value="vandongnhe">Người vận động nhẹ Vvận động 1 – 3 lần/tuần)</option>
@@ -255,95 +252,95 @@
                                             <option style="color:black;" id="vandongnang" value="vandongnang">Người vận động nặng (người lao động chân tay nhiều, vận động 6 – 7 lần/ tuần)</option>
                                             <option style="color:black;" id="vandongratnang" value="vandongratnang">Người vận động rất nặng (người lao động phổ thông, vận động 2 lần/ngày)</option>
                                         </select>
-                                        <div style="margin-top:30px;" class="group"> <a href="@Url.Action("KetQuaTinhToanChiSo", "Home")"><input type="submit" style="color:#dddddd;" class="button" value="Tính tóan"> </div></a>
+                                        <div style="margin-top:30px;" class="group"> <a href="@Url.Action("KetQuaTinhToanChiSo", "Home")"><input type="submit" style="color:#dddddd;" class="button" value="Tính tóan"> </a></div>
                                     </div>
-
-                                </div> 
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            </div >
         </div>
+    </div>
+}
 
-    <script>
-        var BMI, R, gioitinh;
-        function LayGioiTinh() {
-            gioitinh = document.getElementById("chonGioiTinh").value;
-        }
-
-        
-        var Date = document.getElementById("ngaysinh").value;
-        var DateTime = Convert.DateTime(Date);
-        document.getElementById("ngaysinh").value = Datetime.Year.ToString();
+<script>
+    var BMI, R, gioitinh;
+    function LayGioiTinh() {
+        gioitinh = document.getElementById("chonGioiTinh").value;
+    }
 
 
+    var Date = document.getElementById("ngaysinh").value;
+    var DateTime = Convert.DateTime(Date);
+    document.getElementById("ngaysinh").value = Datetime.Year.ToString();
 
 
-        function TinhBMI() {
-            //1.  lấy giá trị trong thẻ input người dùng nhập
-            var chieucao = document.getElementById("txtChieuCao").value;
-            var cannang = document.getElementById("txtCanNang").value;
-            var mucdovandong = document.getElementById("chonMucDo").value;
 
-            LayGioiTinh();
-            if (mucdovandong.localeCompare("vandongit") == 0)
-                R = 1.2;
-            if (mucdovandong.localeCompare("vandongnhe") == 0)
-                R = 1.375;
-            if (mucdovandong.localeCompare("vandongvua") == 0)
-                R = 1.55;
-            if (mucdovandong.localeCompare("vandongnang") == 0)
-                R = 1.725;
-            if (mucdovandong.localeCompare("vandongratnang") == 0)
-                R = 1.9;
 
-            chieucao = parseFloat(chieucao) / 100; //2. chuyển kiểu dữ liệu về dạng số
-            cannang = parseFloat(cannang);
+    function TinhBMI() {
+        //1.  lấy giá trị trong thẻ input người dùng nhập
+        var chieucao = document.getElementById("txtChieuCao").value;
+        var cannang = document.getElementById("txtCanNang").value;
+        var mucdovandong = document.getElementById("chonMucDo").value;
 
-            //3. tính toán
-            BMI = cannang / (chieucao * chieucao);
-            if (gioitinh.localeCompare("nam"))
-                BMR = (13, 397 * cannang) + (4, 799 * chieucao) - (5, 677 * 20) + 88, 362
-            else
-                BMR = (9, 247 * cannang) + (3, 098 * chieucao) - (4, 330 * 20) + 447, 593
-            var TDEE = BMR * R;
-            //4. đưa giá trị tổng vào trong thẻ div kq.
+        LayGioiTinh();
+        if (mucdovandong.localeCompare("vandongit") == 0)
+            R = 1.2;
+        if (mucdovandong.localeCompare("vandongnhe") == 0)
+            R = 1.375;
+        if (mucdovandong.localeCompare("vandongvua") == 0)
+            R = 1.55;
+        if (mucdovandong.localeCompare("vandongnang") == 0)
+            R = 1.725;
+        if (mucdovandong.localeCompare("vandongratnang") == 0)
+            R = 1.9;
 
-            document.getElementById("txtBMI").value = BMI.toString();
-            document.getElementById("txtLuongCaloMotNgay").value = TDEE.toString();
-            //5. Gọi hàm tính tổng ở thuộc tính onClick trên nut bấm.
-            funcPhanLoai();
+        chieucao = parseFloat(chieucao) / 100; //2. chuyển kiểu dữ liệu về dạng số
+        cannang = parseFloat(cannang);
 
-        }
+        //3. tính toán
+        BMI = cannang / (chieucao * chieucao);
+        if (gioitinh.localeCompare("nam"))
+            BMR = (13, 397 * cannang) + (4, 799 * chieucao) - (5, 677 * 20) + 88, 362
+        else
+            BMR = (9, 247 * cannang) + (3, 098 * chieucao) - (4, 330 * 20) + 447, 593
+        var TDEE = BMR * R;
+        //4. đưa giá trị tổng vào trong thẻ div kq.
 
-        function funcPhanLoai() {
-            if (BMI < 16)
-                document.getElementById("txtPhanLoaiCoThe").value = "Rất Óm";
+        document.getElementById("txtBMI").value = BMI.toString();
+        document.getElementById("txtLuongCaloMotNgay").value = TDEE.toString();
+        //5. Gọi hàm tính tổng ở thuộc tính onClick trên nut bấm.
+        funcPhanLoai();
 
-            if (BMI >= 16 && BMI < 17)
-                document.getElementById("txtPhanLoaiCoThe").value = "Óm";
+    }
 
-            if (BMI >= 17 && BMI < 18.5)
-                document.getElementById("txtPhanLoaiCoThe").value = "Óm Vừa";
+    function funcPhanLoai() {
+        if (BMI < 16)
+            document.getElementById("txtPhanLoaiCoThe").value = "Rất Óm";
 
-            if (BMI >= 18.5 && BMI < 25)
-                document.getElementById("txtPhanLoaiCoThe").value = "Cân Đối";
+        if (BMI >= 16 && BMI < 17)
+            document.getElementById("txtPhanLoaiCoThe").value = "Óm";
 
-            if (BMI >= 25 && BMI < 30)
-                document.getElementById("txtPhanLoaiCoThe").value = "Thừa Cân";
+        if (BMI >= 17 && BMI < 18.5)
+            document.getElementById("txtPhanLoaiCoThe").value = "Óm Vừa";
 
-            if (BMI >= 30 && BMI < 35)
-                document.getElementById("txtPhanLoaiCoThe").value = "Thừa Cân Loại 1";
+        if (BMI >= 18.5 && BMI < 25)
+            document.getElementById("txtPhanLoaiCoThe").value = "Cân Đối";
 
-            if (BMI >= 35 && BMI < 40)
-                document.getElementById("txtPhanLoaiCoThe").value = "Thừa Cân Loại 2";
+        if (BMI >= 25 && BMI < 30)
+            document.getElementById("txtPhanLoaiCoThe").value = "Thừa Cân";
 
-            if (BMI >= 40)
-                document.getElementById("txtPhanLoaiCoThe").value = "Thừa Cân Loại 3";
-        }
-    </script>
+        if (BMI >= 30 && BMI < 35)
+            document.getElementById("txtPhanLoaiCoThe").value = "Thừa Cân Loại 1";
+
+        if (BMI >= 35 && BMI < 40)
+            document.getElementById("txtPhanLoaiCoThe").value = "Thừa Cân Loại 2";
+
+        if (BMI >= 40)
+            document.getElementById("txtPhanLoaiCoThe").value = "Thừa Cân Loại 3";
+    }
+</script>
 
 
 }
