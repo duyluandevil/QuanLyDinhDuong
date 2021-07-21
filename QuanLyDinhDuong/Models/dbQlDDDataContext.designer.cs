@@ -146,7 +146,7 @@ namespace QuanLyDinhDuong.Models
 		
 		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
 		
-		private string _MABENHNHAN;
+		private int _MABENHNHAN;
 		
 		private string _HOTEN;
 		
@@ -174,7 +174,7 @@ namespace QuanLyDinhDuong.Models
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
     partial void OnCreated();
-    partial void OnMABENHNHANChanging(string value);
+    partial void OnMABENHNHANChanging(int value);
     partial void OnMABENHNHANChanged();
     partial void OnHOTENChanging(string value);
     partial void OnHOTENChanged();
@@ -203,8 +203,8 @@ namespace QuanLyDinhDuong.Models
 			OnCreated();
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MABENHNHAN", DbType="Char(5) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
-		public string MABENHNHAN
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MABENHNHAN", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int MABENHNHAN
 		{
 			get
 			{
@@ -1386,7 +1386,7 @@ namespace QuanLyDinhDuong.Models
 		
 		private System.Nullable<System.DateTime> _NGAYLAP;
 		
-		private string _MABENHNHAN;
+		private System.Nullable<int> _MABENHNHAN;
 		
 		private EntitySet<CTTD> _CTTDs;
 		
@@ -1402,7 +1402,7 @@ namespace QuanLyDinhDuong.Models
     partial void OnBUOIChanged();
     partial void OnNGAYLAPChanging(System.Nullable<System.DateTime> value);
     partial void OnNGAYLAPChanged();
-    partial void OnMABENHNHANChanging(string value);
+    partial void OnMABENHNHANChanging(System.Nullable<int> value);
     partial void OnMABENHNHANChanged();
     #endregion
 		
@@ -1473,8 +1473,8 @@ namespace QuanLyDinhDuong.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MABENHNHAN", DbType="Char(5)")]
-		public string MABENHNHAN
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MABENHNHAN", DbType="Int")]
+		public System.Nullable<int> MABENHNHAN
 		{
 			get
 			{
@@ -1537,7 +1537,7 @@ namespace QuanLyDinhDuong.Models
 					}
 					else
 					{
-						this._MABENHNHAN = default(string);
+						this._MABENHNHAN = default(Nullable<int>);
 					}
 					this.SendPropertyChanged("BENHNHAN");
 				}

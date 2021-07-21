@@ -32,20 +32,21 @@ namespace QuanLyDinhDuong.Controllers
         {
             //taikhoan = laytaikhoan();
 
-            BENHNHAN bn = (from b in data.BENHNHANs where b.IDTAIKHOAN == "duyluan0104" select b).Single();
+            //BENHNHAN bn = (from b in data.BENHNHANs where b.IDTAIKHOAN == "duyluan0104" select b).Single();
 
             //String ho = bn.HOTEN;
             //String Year = bn.NGAYSINH.Value.Year.ToString();
 
 
-            return View(bn);
+            return View(/*bn*/);
         }
 
         [HttpPost]
         public ActionResult TinhToanChiSo(FormCollection collection,BENHNHAN bn)
         {
 
-            bn = (from b in data.BENHNHANs where b.IDTAIKHOAN == "duyluan0104" select b).Single();
+            bn = (BENHNHAN) Session["MABENHNHAN"];
+            //bn = (from b in data.BENHNHANs where b.IDTAIKHOAN == "duyluan0104" select b).Single();
 
             var ChieuCao = collection["chieucao"];
             var CanNang = collection["cannang"];
@@ -78,9 +79,9 @@ namespace QuanLyDinhDuong.Controllers
 
         public ActionResult KetQuaTinhToanChiSo()
         {
-            BENHNHAN bn = (from b in data.BENHNHANs where b.IDTAIKHOAN == "duyluan0104" select b).Single();
+            //BENHNHAN bn = (from b in data.BENHNHANs where b.IDTAIKHOAN == "duyluan0104" select b).Single();
 
-            return View(bn);
+            return View(/*bn*/);
         }
 
     }

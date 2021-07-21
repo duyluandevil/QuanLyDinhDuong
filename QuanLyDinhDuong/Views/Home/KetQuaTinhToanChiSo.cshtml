@@ -1,7 +1,12 @@
-﻿@*@model IEnumerable<QuanLyDinhDuong.Models.BENHNHAN>*@
+﻿@using QuanLyDinhDuong.Models
+@*@model IEnumerable<QuanLyDinhDuong.Models.BENHNHAN>*@
 @{
     ViewBag.Title = "KetQuaTinhToanChiSo";
     Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@{
+    BENHNHAN bn = (BENHNHAN)Session["MABENHNHAN"];
 }
 
 <style>
@@ -28,7 +33,6 @@
 
     .login-box {
         width: 100%;
-
         margin: auto;
         max-width: 525px;
         min-height: 670px;
@@ -223,8 +227,6 @@
         color: #b3b3b3
     }
 </style>
-    </style>
-
 
 <div class="header-backup"></div>
 <div class="background">
@@ -236,7 +238,7 @@
                         <input id="tab-1" type="radio" name="tab" class="sign-in" checked><label style="font-size:30px; color:white;" for="tab-1" class="tab">Kết quả cơ thể</label> <input id="tab-2" type="radio" name="tab" class="sign-up" style="display:none;"><label style="display:none;" for="tab-2" class="tab">đăng ký</label>
                         <div class="login-space">
                             <div style="margin-top:20px;" class="login">
-                                <div class="group"> <label style="font-size:18px; color:white;" for="bmi" class="label">BMI</label> <input id="bmi" type="text" class="input" placeholder="BMI" value="@Model.BMI" disabled> </div>
+                                <div class="group"> <label style="font-size:18px; color:white;" for="bmi" class="label">BMI</label> <input id="bmi" type="text" class="input" placeholder="BMI" value="@bn.BMI" disabled> </div>
                                 <div class="group"> <label style="font-size:18px; color:white;" for="calo" class="label">Lượng calo cần nạp một ngày</label> <input id="calo" type="text" class="input" placeholder="Lượng calo cần nạp một ngày" disabled> </div>
                                 <div class="group"> <label style="font-size:18px; color:white;" for="tongquancothe" class="label">Tổng quan về cơ thể</label> <input id="tdee" type="text" class="input" placeholder="Tổng quan về cơ thể" disabled> </div>
                                 <div style="margin-top:30px;" class="group"> <a href="@Url.Action("TinhToanChiSo", "Home")"><input type="submit" style="color:#dddddd;" class="button" value="Trở về trang tính toán"> </div></a>

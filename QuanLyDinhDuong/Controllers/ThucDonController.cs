@@ -15,7 +15,7 @@ namespace QuanLyDinhDuong.Controllers
         // GET: ThucDon
         public ActionResult ThucDon()
         {
-            var listThucDon = (from td in data.THUCDONs where td.MABENHNHAN == "BN001" select td).ToList();
+            var listThucDon = (from td in data.THUCDONs where td.MABENHNHAN == 1 select td).ToList();
             return View(listThucDon);
         }
 
@@ -86,7 +86,7 @@ namespace QuanLyDinhDuong.Controllers
                 //td = (from tdv in data.THUCDONs where td.MABENHNHAN == "BN001" select tdv).Single();
                 td.BUOI = buoi;
                 td.NGAYLAP = DateTime.Parse(ngaylap);
-                td.MABENHNHAN = "BN001";
+                td.MABENHNHAN = 1;
                 data.THUCDONs.InsertOnSubmit(td);
                 data.SubmitChanges();
                 return RedirectToAction("ThucDon","ThucDon");
