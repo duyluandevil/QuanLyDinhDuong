@@ -90,7 +90,6 @@ namespace QuanLyDinhDuong.Controllers
                 data.THUCDONs.InsertOnSubmit(td);
                 data.SubmitChanges();
                 return RedirectToAction("ThucDon","ThucDon");
-
             }
             return this.ThemThucDon();
         }

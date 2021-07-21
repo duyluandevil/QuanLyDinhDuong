@@ -44,21 +44,50 @@ namespace QuanLyDinhDuong.Controllers
             //var thucphammoi = layThucPham(10);
 
             var thucpham = from t in data.THUCPHAMs where t.MALOAITHUCPHAM == id select t;
+
             return View(thucpham.ToPagedList(pageNum, pageSize));
         }
 
+        public static string MaThucPham;
         public ActionResult ChiTietThucPham(string id)
         {
+            MaThucPham = id;
             var tp = (from t in data.THUCPHAMs where t.MATHUCPHAM == id select t).Single();
+
+            var bn = getBenhNhan("duyluan0104");
+            var TDList = (from t in data.THUCDONs where t.MABENHNHAN == bn.MABENHNHAN select t).ToList();
+            ViewBag.THUCDONs = TDList;
+
             return View(tp);
         }
 
-        //[HttpPost]
-        //public ActionResult ChiTietThucPham(FormCollection f, CTTD cTTD)
-        //{
-            
-        //    return this.ChiTietThucPham();
-        //}
+        [HttpPost]
+        public ActionResult ChiTietThucPham(FormCollection f, CTTD cttd)
+        {
+
+            var MaThucDon = f["ThucDon"];
+            //var td = (from tds in data.THUCDONs where tds.MATHUCDON.ToString() == MaThucDon select tds.BUOI).Single();
+
+            //var SoLuong = f["quantity"];
+
+            cttd.MATHUCPHAM = "TP008";
+            cttd.MATHUCDON = 1;
+            cttd.ANHBIA = "null";
+            cttd.CALO = 0;
+            cttd.DAM = 0;
+            cttd.BEO = 0;
+            cttd.XO = 0;
+            cttd.SOLUONG = 0;
+            cttd.TONGCALO = 0;
+            cttd.TENTHUCPHAM = "Trứng";
+
+
+
+            data.CTTDs.InsertOnSubmit(cttd);
+            data.SubmitChanges();
+
+            return RedirectToAction("DanhSachThucDon", "ThucDon");
+        }
 
 
         private BENHNHAN getBenhNhan(string idTaiKhoan)
@@ -73,7 +102,23 @@ namespace QuanLyDinhDuong.Controllers
             return PartialView(buoithucdon);
         }
 
+        public ActionResult ThemThucPhamVaoThucDon(CTTD cttd)
+        {
+            //var MaThucDon = f["ThucDon"];
+            //var td = (from tds in data.THUCDONs where tds.MATHUCDON.ToString() == MaThucDon select tds.BUOI).Single();
 
+            //var SoLuong = f["quantity"];
+
+            cttd.MATHUCPHAM = "TP009";
+            cttd.TENTHUCPHAM = "Trứng thối";
+            cttd.MATHUCDON = 1;
+
+
+            data.CTTDs.InsertOnSubmit(cttd);
+            data.SubmitChanges();
+
+            return RedirectToAction("DanhSachThucDon", "ThucDon");
+        }
 
     }
 }
