@@ -1,5 +1,12 @@
-﻿<?xml version="1.0" encoding="utf-8"?><Database Name="QLDD" Class="dbQlDDDataContextDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="WebSettings" ConnectionString="Data Source=HANOICOMPUTER\SQLEXPRESS;Initial Catalog=QLDD;Integrated Security=True" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="QLDDConnectionString2" Provider="System.Data.SqlClient" />
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="QLDD" Class="dbQlDDDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="WebSettings" ConnectionString="Data Source=LUAN;Initial Catalog=QLDD;Integrated Security=True" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="QLDDConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.CHUCVU" Member="CHUCVUs">
+    <Type Name="CHUCVU">
+      <Column Name="MACHUCVU" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="TENCHUCVU" Type="System.String" DbType="NVarChar(25)" CanBeNull="true" />
+      <Association Name="CHUCVU_TAIKHOAN" Member="TAIKHOANs" ThisKey="MACHUCVU" OtherKey="MACHUCVU" Type="TAIKHOAN" />
+    </Type>
+  </Table>
   <Table Name="dbo.BENHNHAN" Member="BENHNHANs">
     <Type Name="BENHNHAN">
       <Column Name="MABENHNHAN" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
@@ -14,13 +21,6 @@
       <Column Name="IDTAIKHOAN" Type="System.String" DbType="Char(20) NOT NULL" CanBeNull="false" />
       <Association Name="BENHNHAN_THUCDON" Member="THUCDONs" ThisKey="MABENHNHAN" OtherKey="MABENHNHAN" Type="THUCDON" />
       <Association Name="TAIKHOAN_BENHNHAN" Member="TAIKHOAN" ThisKey="IDTAIKHOAN" OtherKey="IDTAIKHOAN" Type="TAIKHOAN" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
-    </Type>
-  </Table>
-  <Table Name="dbo.CHUCVU" Member="CHUCVUs">
-    <Type Name="CHUCVU">
-      <Column Name="MACHUCVU" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="TENCHUCVU" Type="System.String" DbType="NVarChar(25)" CanBeNull="true" />
-      <Association Name="CHUCVU_TAIKHOAN" Member="TAIKHOANs" ThisKey="MACHUCVU" OtherKey="MACHUCVU" Type="TAIKHOAN" />
     </Type>
   </Table>
   <Table Name="dbo.CTTD" Member="CTTDs">

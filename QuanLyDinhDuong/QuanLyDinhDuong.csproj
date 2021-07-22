@@ -127,6 +127,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\NguoiDungController.cs" />
     <Compile Include="Controllers\ThucDonController.cs" />
@@ -142,6 +143,31 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\Admin\bootstrap.css" />
+    <Content Include="Content\Admin\font.css" />
+    <Content Include="Content\Admin\js\core\bootstrap-material-design.min.js" />
+    <Content Include="Content\Admin\js\core\jquery.min.js" />
+    <Content Include="Content\Admin\js\core\popper.min.js" />
+    <Content Include="Content\Admin\js\material-dashboard.js" />
+    <Content Include="Content\Admin\js\material-dashboard.min.js" />
+    <Content Include="Content\Admin\js\plugins\arrive.min.js" />
+    <Content Include="Content\Admin\js\plugins\bootstrap-datetimepicker.min.js" />
+    <Content Include="Content\Admin\js\plugins\bootstrap-notify.js" />
+    <Content Include="Content\Admin\js\plugins\bootstrap-selectpicker.js" />
+    <Content Include="Content\Admin\js\plugins\bootstrap-tagsinput.js" />
+    <Content Include="Content\Admin\js\plugins\chartist.min.js" />
+    <Content Include="Content\Admin\js\plugins\fullcalendar.min.js" />
+    <Content Include="Content\Admin\js\plugins\jasny-bootstrap.min.js" />
+    <Content Include="Content\Admin\js\plugins\jquery-jvectormap.js" />
+    <Content Include="Content\Admin\js\plugins\jquery.bootstrap-wizard.js" />
+    <Content Include="Content\Admin\js\plugins\jquery.dataTables.min.js" />
+    <Content Include="Content\Admin\js\plugins\jquery.tagsinput.js" />
+    <Content Include="Content\Admin\js\plugins\jquery.validate.min.js" />
+    <Content Include="Content\Admin\js\plugins\moment.min.js" />
+    <Content Include="Content\Admin\js\plugins\nouislider.min.js" />
+    <Content Include="Content\Admin\js\plugins\perfect-scrollbar.jquery.min.js" />
+    <Content Include="Content\Admin\js\plugins\sweetalert2.js" />
+    <Content Include="Content\Admin\material-dashboard.css" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -212,7 +238,8 @@
     <Content Include="Content\fonts\glyphicons-halflings-regular.eot" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.woff" />
-    <Content Include="Models\dbQlDDDataContext.dbml">
+    <Content Include="Content\Admin\js\material-dashboard.js.map" />
+    <Content Include="Models\dbQlDD.dbml">
       <Generator>MSLinqToSQLGenerator</Generator>
       <LastGenOutput>dbQlDDDataContext.designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
@@ -258,7 +285,12 @@
     <Content Include="Views\ThucDon\ThucDon.cshtml" />
     <Content Include="Views\ThucDon\ChiTietThucDon.cshtml" />
     <Content Include="Views\ThucDon\ThemThucDon.cshtml" />
-    <Content Include="Views\NguoiDung\ChinhSuaThongTin.cshtml" />
+    <Content Include="Views\Shared\_Layout_Admin.cshtml" />
+    <Content Include="Views\Admin\Admin.cshtml" />
+    <Content Include="Views\Admin\TrangCaNhan.cshtml" />
+    <Content Include="Views\Admin\ThucDon.cshtml" />
+    <Content Include="Views\Admin\TaiKhoan.cshtml" />
+    <Content Include="Views\Admin\BenhNhan.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

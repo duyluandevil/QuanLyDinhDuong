@@ -25,7 +25,7 @@ namespace QuanLyDinhDuong.Controllers
             
             return lstTaiKhoan;
         }
-        List<TAIKHOAN> taikhoan;
+        
 
         public static int TuoiBenhNhan;
         public ActionResult TinhToanChiSo()
