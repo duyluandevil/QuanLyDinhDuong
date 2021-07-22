@@ -66,12 +66,15 @@ namespace QuanLyDinhDuong.Controllers
         {
 
             var MaThucDon = f["ThucDon"];
-            //var td = (from tds in data.THUCDONs where tds.MATHUCDON.ToString() == MaThucDon select tds.BUOI).Single();
+            var td = (from tds in data.THUCDONs where tds.MATHUCDON.ToString() == MaThucDon select tds).Single();
+
+            //cttd = (from tds in data.CTTDs where tds.MATHUCDON.ToString() == MaThucDon select tds).Single();
 
             //var SoLuong = f["quantity"];
+            
 
             cttd.MATHUCPHAM = "TP008";
-            cttd.MATHUCDON = 1;
+            cttd.MATHUCDON = td.MATHUCDON;
             cttd.ANHBIA = "null";
             cttd.CALO = 0;
             cttd.DAM = 0;
@@ -82,7 +85,7 @@ namespace QuanLyDinhDuong.Controllers
             cttd.TENTHUCPHAM = "Trứng";
 
 
-
+            
             data.CTTDs.InsertOnSubmit(cttd);
             data.SubmitChanges();
 

@@ -30,12 +30,12 @@ namespace QuanLyDinhDuong.Models
 		
     #region Extensibility Method Definitions
     partial void OnCreated();
-    partial void InsertBENHNHAN(BENHNHAN instance);
-    partial void UpdateBENHNHAN(BENHNHAN instance);
-    partial void DeleteBENHNHAN(BENHNHAN instance);
     partial void InsertCHUCVU(CHUCVU instance);
     partial void UpdateCHUCVU(CHUCVU instance);
     partial void DeleteCHUCVU(CHUCVU instance);
+    partial void InsertBENHNHAN(BENHNHAN instance);
+    partial void UpdateBENHNHAN(BENHNHAN instance);
+    partial void DeleteBENHNHAN(BENHNHAN instance);
     partial void InsertCTTD(CTTD instance);
     partial void UpdateCTTD(CTTD instance);
     partial void DeleteCTTD(CTTD instance);
@@ -83,19 +83,19 @@ namespace QuanLyDinhDuong.Models
 			OnCreated();
 		}
 		
-		public System.Data.Linq.Table<BENHNHAN> BENHNHANs
-		{
-			get
-			{
-				return this.GetTable<BENHNHAN>();
-			}
-		}
-		
 		public System.Data.Linq.Table<CHUCVU> CHUCVUs
 		{
 			get
 			{
 				return this.GetTable<CHUCVU>();
+			}
+		}
+		
+		public System.Data.Linq.Table<BENHNHAN> BENHNHANs
+		{
+			get
+			{
+				return this.GetTable<BENHNHAN>();
 			}
 		}
 		
@@ -140,13 +140,127 @@ namespace QuanLyDinhDuong.Models
 		}
 	}
 	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.CHUCVU")]
+	public partial class CHUCVU : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _MACHUCVU;
+		
+		private string _TENCHUCVU;
+		
+		private EntitySet<TAIKHOAN> _TAIKHOANs;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnMACHUCVUChanging(int value);
+    partial void OnMACHUCVUChanged();
+    partial void OnTENCHUCVUChanging(string value);
+    partial void OnTENCHUCVUChanged();
+    #endregion
+		
+		public CHUCVU()
+		{
+			this._TAIKHOANs = new EntitySet<TAIKHOAN>(new Action<TAIKHOAN>(this.attach_TAIKHOANs), new Action<TAIKHOAN>(this.detach_TAIKHOANs));
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MACHUCVU", DbType="Int NOT NULL", IsPrimaryKey=true)]
+		public int MACHUCVU
+		{
+			get
+			{
+				return this._MACHUCVU;
+			}
+			set
+			{
+				if ((this._MACHUCVU != value))
+				{
+					this.OnMACHUCVUChanging(value);
+					this.SendPropertyChanging();
+					this._MACHUCVU = value;
+					this.SendPropertyChanged("MACHUCVU");
+					this.OnMACHUCVUChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TENCHUCVU", DbType="NVarChar(25)")]
+		public string TENCHUCVU
+		{
+			get
+			{
+				return this._TENCHUCVU;
+			}
+			set
+			{
+				if ((this._TENCHUCVU != value))
+				{
+					this.OnTENCHUCVUChanging(value);
+					this.SendPropertyChanging();
+					this._TENCHUCVU = value;
+					this.SendPropertyChanged("TENCHUCVU");
+					this.OnTENCHUCVUChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="CHUCVU_TAIKHOAN", Storage="_TAIKHOANs", ThisKey="MACHUCVU", OtherKey="MACHUCVU")]
+		public EntitySet<TAIKHOAN> TAIKHOANs
+		{
+			get
+			{
+				return this._TAIKHOANs;
+			}
+			set
+			{
+				this._TAIKHOANs.Assign(value);
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_TAIKHOANs(TAIKHOAN entity)
+		{
+			this.SendPropertyChanging();
+			entity.CHUCVU = this;
+		}
+		
+		private void detach_TAIKHOANs(TAIKHOAN entity)
+		{
+			this.SendPropertyChanging();
+			entity.CHUCVU = null;
+		}
+	}
+	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.BENHNHAN")]
 	public partial class BENHNHAN : INotifyPropertyChanging, INotifyPropertyChanged
 	{
 		
 		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
 		
-		private string _MABENHNHAN;
+		private int _MABENHNHAN;
 		
 		private string _HOTEN;
 		
@@ -174,7 +288,7 @@ namespace QuanLyDinhDuong.Models
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
     partial void OnCreated();
-    partial void OnMABENHNHANChanging(string value);
+    partial void OnMABENHNHANChanging(int value);
     partial void OnMABENHNHANChanged();
     partial void OnHOTENChanging(string value);
     partial void OnHOTENChanged();
@@ -203,8 +317,8 @@ namespace QuanLyDinhDuong.Models
 			OnCreated();
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MABENHNHAN", DbType="Char(5) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
-		public string MABENHNHAN
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MABENHNHAN", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int MABENHNHAN
 		{
 			get
 			{
@@ -484,120 +598,6 @@ namespace QuanLyDinhDuong.Models
 		{
 			this.SendPropertyChanging();
 			entity.BENHNHAN = null;
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.CHUCVU")]
-	public partial class CHUCVU : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _MACHUCVU;
-		
-		private string _TENCHUCVU;
-		
-		private EntitySet<TAIKHOAN> _TAIKHOANs;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnMACHUCVUChanging(int value);
-    partial void OnMACHUCVUChanged();
-    partial void OnTENCHUCVUChanging(string value);
-    partial void OnTENCHUCVUChanged();
-    #endregion
-		
-		public CHUCVU()
-		{
-			this._TAIKHOANs = new EntitySet<TAIKHOAN>(new Action<TAIKHOAN>(this.attach_TAIKHOANs), new Action<TAIKHOAN>(this.detach_TAIKHOANs));
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MACHUCVU", DbType="Int NOT NULL", IsPrimaryKey=true)]
-		public int MACHUCVU
-		{
-			get
-			{
-				return this._MACHUCVU;
-			}
-			set
-			{
-				if ((this._MACHUCVU != value))
-				{
-					this.OnMACHUCVUChanging(value);
-					this.SendPropertyChanging();
-					this._MACHUCVU = value;
-					this.SendPropertyChanged("MACHUCVU");
-					this.OnMACHUCVUChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TENCHUCVU", DbType="NVarChar(25)")]
-		public string TENCHUCVU
-		{
-			get
-			{
-				return this._TENCHUCVU;
-			}
-			set
-			{
-				if ((this._TENCHUCVU != value))
-				{
-					this.OnTENCHUCVUChanging(value);
-					this.SendPropertyChanging();
-					this._TENCHUCVU = value;
-					this.SendPropertyChanged("TENCHUCVU");
-					this.OnTENCHUCVUChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="CHUCVU_TAIKHOAN", Storage="_TAIKHOANs", ThisKey="MACHUCVU", OtherKey="MACHUCVU")]
-		public EntitySet<TAIKHOAN> TAIKHOANs
-		{
-			get
-			{
-				return this._TAIKHOANs;
-			}
-			set
-			{
-				this._TAIKHOANs.Assign(value);
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-		
-		private void attach_TAIKHOANs(TAIKHOAN entity)
-		{
-			this.SendPropertyChanging();
-			entity.CHUCVU = this;
-		}
-		
-		private void detach_TAIKHOANs(TAIKHOAN entity)
-		{
-			this.SendPropertyChanging();
-			entity.CHUCVU = null;
 		}
 	}
 	
@@ -1386,7 +1386,7 @@ namespace QuanLyDinhDuong.Models
 		
 		private System.Nullable<System.DateTime> _NGAYLAP;
 		
-		private string _MABENHNHAN;
+		private System.Nullable<int> _MABENHNHAN;
 		
 		private EntitySet<CTTD> _CTTDs;
 		
@@ -1402,7 +1402,7 @@ namespace QuanLyDinhDuong.Models
     partial void OnBUOIChanged();
     partial void OnNGAYLAPChanging(System.Nullable<System.DateTime> value);
     partial void OnNGAYLAPChanged();
-    partial void OnMABENHNHANChanging(string value);
+    partial void OnMABENHNHANChanging(System.Nullable<int> value);
     partial void OnMABENHNHANChanged();
     #endregion
 		
@@ -1473,8 +1473,8 @@ namespace QuanLyDinhDuong.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MABENHNHAN", DbType="Char(5)")]
-		public string MABENHNHAN
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MABENHNHAN", DbType="Int")]
+		public System.Nullable<int> MABENHNHAN
 		{
 			get
 			{
@@ -1537,7 +1537,7 @@ namespace QuanLyDinhDuong.Models
 					}
 					else
 					{
-						this._MABENHNHAN = default(string);
+						this._MABENHNHAN = default(Nullable<int>);
 					}
 					this.SendPropertyChanged("BENHNHAN");
 				}
