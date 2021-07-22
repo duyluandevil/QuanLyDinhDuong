@@ -1,13 +1,19 @@
-﻿
+﻿@using QuanLyDinhDuong.Models
 @{
     ViewBag.Title = "TrangCaNhan";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+
+@{ 
+    BENHNHAN bn = (BENHNHAN)Session["MABENHNHAN"];
+    TAIKHOAN tk = (TAIKHOAN) Session["IDTAIKHOAN"];
+}
+
 <script src="~/Content/bootstrap.min1.profile.js"></script>
 <script src="~/Content/bootstrap.min.profile.js"></script>
 <script src="~/Content/jquery.min.profile.js"></script>
 
-<div class="container emp-profile">
+<!--<div class="container emp-profile">
     <form method="post">
         <div class="row">
             <div class="col-md-4">
@@ -42,10 +48,10 @@
                 <input type="submit" class="profile-edit-btn" name="btnAddMore" value="Edit Profile" />
             </div>
         </div>
-        <div class="row">
-            <div class="col-md-4">
-                <div class="profile-work">
-                    @*<p>WORK LINK</p>
+        <div class="row">-->
+<!--<div class="col-md-4">
+    <div class="profile-work">-->
+<!--<p>WORK LINK</p>
                     <a href="">Website Link</a><br />
                     <a href="">Bootsnipp Profile</a><br />
                     <a href="">Bootply Profile</a>
@@ -54,7 +60,7 @@
                     <a href="">Web Developer</a><br />
                     <a href="">WordPress</a><br />
                     <a href="">WooCommerce</a><br />
-                    <a href="">PHP, .Net</a><br />*@
+                    <a href="">PHP, .Net</a><br />
                 </div>
             </div>
             <div class="col-md-8">
@@ -134,7 +140,7 @@
                                 <p>1765</p>
                             </div>
                         </div>
-                        
+
                     </div>
                 </div>
             </div>
@@ -263,7 +269,297 @@
         font-weight: 600;
         color: #0062cc;
     }
+</style>-->
+
+
+
+<style>
+    /*body {
+        margin: 0;
+        color: #6a6f8c;
+        background: #c8c8c8;
+        font: 600 16px/18px 'Open Sans', sans-serif
+    }*/
+    .background {
+        background-image: url('../../Content/img/people_tinhtoanchiso.png');
+        /*background-image: url('../../Content/img/bg_login.png');*/
+        background-size: cover;
+        /*background: #76b852;*/ /* fallback for old browsers */
+        /*background: -webkit-linear-gradient(right, #76b852, #8DC26F);
+        background: -moz-linear-gradient(right, #76b852, #8DC26F);
+        background: -o-linear-gradient(right, #76b852, #8DC26F);
+        background: linear-gradient(to left, #76b852, #8DC26F);*/
+        /*font-family: Arial, sans-serif;*/
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        font: 600 16px/18px 'Open Sans', sans-serif
+    }
+
+    .login-box {
+        width: 100%;
+        height: 900px;
+        margin: auto;
+        max-width: 525px;
+        min-height: 670px;
+        position: relative;
+        /*background: url(https://images.unsplash.com/photo-1507208773393-40d9fc670acf?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1268&q=80) no-repeat center;*/
+        box-shadow: 0 12px 15px 0 rgba(0, 0, 0, .24), 0 17px 50px 0 rgba(0, 0, 0, .19);
+    }
+
+    .login-snip {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        padding: 90px 70px 50px 70px;
+        /*background: rgba(0, 77, 77, .9);*/
+    }
+
+        .login-snip .login,
+        .login-snip .sign-up-form {
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            position: absolute;
+            transform: rotateY(180deg);
+            backface-visibility: hidden;
+            transition: all .4s linear
+        }
+
+        .login-snip .sign-in,
+        .login-snip .sign-up,
+        .login-space .group .check {
+            display: none
+        }
+
+        .login-snip .tab,
+        .login-space .group .label,
+        .login-space .group .button {
+            text-transform: uppercase
+        }
+
+        .login-snip .tab {
+            font-size: 22px;
+            margin-right: 15px;
+            padding-bottom: 5px;
+            margin: 0 15px 10px 0;
+            display: inline-block;
+            border-bottom: 2px solid transparent
+        }
+
+        .login-snip .sign-in:checked + .tab,
+        .login-snip .sign-up:checked + .tab {
+            color: #fff;
+            border-color: #1161ee
+        }
+
+    .login-space {
+        min-height: 345px;
+        position: relative;
+        perspective: 1000px;
+        transform-style: preserve-3d
+    }
+
+        .login-space .group {
+            margin-bottom: 15px
+        }
+
+            .login-space .group .label,
+            .login-space .group .input,
+            .login-space .group .button {
+                width: 100%;
+                color: #fff;
+                display: block
+            }
+
+            .login-space .group .input,
+            .login-space .group .button {
+                border: none;
+                padding: 15px 20px;
+                border-radius: 25px;
+                background: rgba(255, 255, 255, .1)
+            }
+
+            .login-space .group input[data-type="password"] {
+                text-security: circle;
+                -webkit-text-security: circle
+            }
+
+            .login-space .group .label {
+                color: #aaa;
+                font-size: 12px
+            }
+
+            .login-space .group .button {
+                background: #1161ee
+            }
+
+            .login-space .group label .icon {
+                width: 15px;
+                height: 15px;
+                border-radius: 2px;
+                position: relative;
+                display: inline-block;
+                background: rgba(255, 255, 255, .1)
+            }
+
+                .login-space .group label .icon:before,
+                .login-space .group label .icon:after {
+                    content: '';
+                    width: 10px;
+                    height: 2px;
+                    background: #fff;
+                    position: absolute;
+                    transition: all .2s ease-in-out 0s
+                }
+
+                .login-space .group label .icon:before {
+                    left: 3px;
+                    width: 5px;
+                    bottom: 6px;
+                    transform: scale(0) rotate(0)
+                }
+
+                .login-space .group label .icon:after {
+                    top: 6px;
+                    right: 0;
+                    transform: scale(0) rotate(0)
+                }
+
+            .login-space .group .check:checked + label {
+                color: #fff
+            }
+
+                .login-space .group .check:checked + label .icon {
+                    background: #1161ee
+                }
+
+                    .login-space .group .check:checked + label .icon:before {
+                        transform: scale(1) rotate(45deg)
+                    }
+
+                    .login-space .group .check:checked + label .icon:after {
+                        transform: scale(1) rotate(-45deg)
+                    }
+
+    .login-snip .sign-in:checked + .tab + .sign-up + .tab + .login-space .login {
+        transform: rotate(0)
+    }
+
+    .login-snip .sign-up:checked + .tab + .login-space .sign-up-form {
+        transform: rotate(0)
+    }
+
+    *,
+    :after,
+    :before {
+        box-sizing: border-box
+    }
+
+    .clearfix:after,
+    .clearfix:before {
+        content: '';
+        display: table
+    }
+
+    .clearfix:after {
+        clear: both;
+        display: block
+    }
+
+    a {
+        color: inherit;
+        text-decoration: none
+    }
+
+    .hr {
+        height: 2px;
+        margin: 60px 0 50px 0;
+        background: rgba(255, 255, 255, .2)
+    }
+
+    .foot {
+        text-align: center
+    }
+
+    .card {
+        padding: 2% 0 2%;
+        margin: auto;
+        width: 600px;
+    }
+
+    ::placeholder {
+        color: #b3b3b3
+    }
 </style>
 
 
+
+<div class="header-backup"></div>
+<div class="background">
+    <div class="background1">
+        <div class="row">
+            @*<div class="col-md-6 mx-auto p-0">*@
+            <div class="card">
+                <div class="login-box">
+                    <div class="login-snip" style="text-align: center">
+                        <input id="tab-1" type="radio" name="tab" class="sign-in" checked>
+                        <label for="tab-1" class="tab">Thông Tin Liên Hệ</label>
+                        <input id="tab-2" type="radio" name="tab" class="sign-up">
+                        <label for="tab-2" class="tab">Thông tin cơ thể</label>
+                        <div class="login-space">
+                            <div style="margin-top:20px;" class="login">
+                                <div class="group">
+                                    <label style="font-size:18px; color:white;" for="hoten" class="label">Họ và tên</label>
+                                    <input id="hoten" type="text" class="input" style="text-align: center" placeholder="Họ tên" value="@bn.HOTEN" disabled>
+                                </div>
+                                <div class="group">
+                                    <label style="font-size:18px; color:white;" for="tuoitac" class="label">Tuổi tác</label>
+                                    <input id="tuoitac" type="text" class="input" style="text-align: center" placeholder="Ngày sinh" value="@bn.NGAYSINH.Value.ToString("dd/MM/yyyy")" disabled>
+                                </div>
+                                <div class="group">
+                                    <label style="font-size:18px; color:white;" for="pass" class="label">Giới tính</label>
+                                    <input id="gioitinh" type="text" class="input" style="text-align: center" placeholder="Giới tính" value="@bn.GIOITINH" disabled>
+                                </div>
+                                <div class="group">
+                                    <label style="font-size:18px; color:white;" for="hoten" class="label">Số điện thoại</label>
+                                    <input id="sdt" type="text" class="input" style="text-align: center" placeholder="Số điện thoại" value="@tk.SDT" disabled>
+                                </div>
+                                <div class="group">
+                                    <label style="font-size:18px; color:white;" for="tuoitac" class="label">Email</label>
+                                    <input id="email" type="text" class="input" style="text-align: center" placeholder="Email" value="@tk.EMAIL" disabled>
+                                </div>
+                                <div style="margin-top:30px;" class="group">
+                                    <a href="@Url.Action("ChinhSuaThongTin", "NguoiDung")">
+                                        @*<input style="color:#dddddd;" class="button" value="Chỉnh sửa thông tin">*@
+                                        <button style="margin-top:10px" class="button">Chỉnh sửa thông tin</button>
+                                    </a>
+                                    
+                                </div>
+                            </div>
+                            <div style="margin-top:20px;" class="sign-up-form">
+                                <div class="group">
+                                    <label style="font-size:18px; color:white;" for="pass" class="label">Chiều cao (CM)</label>
+                                    <input id="chieucao" name="chieucao" class="input" style="text-align: center" placeholder="Nhập chiều cao" value="@bn.CHIEUCAO" disabled>
+                                </div>
+                                <div class="group">
+                                    <label style="font-size:18px; color:white;" for="pass" class="label">Cân nặng (KG)</label>
+                                    <input id="cannang" name="cannang" class="input" style="text-align: center" placeholder="Nhập cân nặng" value="@bn.CANNANG" disabled>
+                                </div>
+                                <div class="group">
+                                    <label style="font-size:18px; color:white;" for="pass" class="label">BMI</label>
+                                    <input id="bmi" name="bmi" class="input" style="text-align: center" placeholder="" value="@bn.BMI" disabled>
+                                </div>
+                                <div class="group">
+                                    <label style="font-size:18px; color:white;" for="pass" class="label">Lượng calo cần nạp trong 1 ngày (Kcal)</label>
+                                    <input id="calo" name="calo" class="input" style="text-align: center" placeholder="" value="@bn.CALO" disabled>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 

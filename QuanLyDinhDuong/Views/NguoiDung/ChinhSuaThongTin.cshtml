@@ -1,9 +1,12 @@
-﻿
+﻿@using QuanLyDinhDuong.Models
 @{
-    ViewBag.Title = "ThemThucDon";
+    ViewBag.Title = "ChinhSuaThongTin";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
+@{
+    BENHNHAN bn = (BENHNHAN)Session["MABENHNHAN"];
+    TAIKHOAN tk = (TAIKHOAN)Session["IDTAIKHOAN"];
+}
 <style>
     /*body {
         margin: 0;
@@ -12,9 +15,8 @@
         font: 600 16px/18px 'Open Sans', sans-serif
     }*/
     .background {
-        /*background-image: url('../../Content/img/people_tinhtoanchiso.png');*/
+        background-image: url('../../Content/img/people_tinhtoanchiso.png');
         /*background-image: url('../../Content/img/bg_login.png');*/
-        background-color: lightslategrey;
         background-size: cover;
         /*background: #76b852;*/ /* fallback for old browsers */
         /*background: -webkit-linear-gradient(right, #76b852, #8DC26F);
@@ -29,7 +31,7 @@
 
     .login-box {
         width: 100%;
-        height: 900px;
+        height: 1000px;
         margin: auto;
         max-width: 525px;
         min-height: 670px;
@@ -217,15 +219,13 @@
     .card {
         padding: 2% 0 2%;
         margin: auto;
-        width: 500px;
+        width: 600px;
     }
 
     ::placeholder {
         color: #b3b3b3
     }
 </style>
-    </style>
-
 
 <div class="header-backup"></div>
 <div class="background">
@@ -234,39 +234,48 @@
             @*<div class="col-md-6 mx-auto p-0">*@
             <div class="card">
                 <div class="login-box">
-                    <div class="login-snip" style="text-align:center;">
-                        <input id="tab-1" type="radio" name="tab" class="sign-in" checked><label style="font-size:30px; color:white;" for="tab-1" class="tab">Tạo thực đơn<p style="font-size:15px;margin-top:20px;">Nhập thông tin thực đơn bao gồm ngày và buổi</p></label> <input id="tab-2" type="radio" name="tab" class="sign-up" style="display:none;"><label style="display:none;" for="tab-2" class="tab">đăng ký</label>
+                    <div class="login-snip" style="text-align: center">
+                        <input id="tab-1" type="radio" name="tab" class="sign-in" checked>
+                        <label style="font-size:30px; color:white;" for="tab-1" class="tab">Chỉnh Sửa Thông Tin</label>
+                        <input id="tab-2" type="radio" name="tab" class="sign-up" style="display:none;">
+                        <label style="display:none;" for="tab-2" class="tab"></label>
                         <div class="login-space">
-                            @using (Html.BeginForm())
-                            {
-                                @Html.ValidationSummary(true)
                             <div style="margin-top:20px;" class="login">
-                                <div class="group"> <label style="font-size:18px; color:white;" for="buoi" class="label">Buổi</label> <input id="buoi" name="buoi" type="text" class="input" placeholder="Nhập buổi của thực đơn" value="@ViewData["Loi1"]"> </div>
-                                <div class="group"> <label style="font-size:18px; color:white;" for="ngaylap" class="label">Ngày lập</label> <input id="ngaylap" name="ngaylap" type="date" class="input" placeholder="" ></div>
-
-                                <script>
-                                    var date = new Date();
-
-                                    var day = date.getDate();
-                                    var month = date.getMonth() + 1;
-                                    var year = date.getFullYear();
-
-                                    if (month < 10) month = "0" + month;
-                                    if (day < 10) day = "0" + day;
-
-                                    var today = year + "-" + month + "-" + day;
-
-
-                                    document.getElementById('ngaylap').value = today;
-                                </script>
-
                                 <div class="group">
-
-                                    <div style="margin-top:30px;" class="group"> <input type="submit" style="color:#dddddd;" class="button" value="Tạo thực đơn"></div>
+                                    <label style="font-size:18px; color:white;" for="hoten" class="label">Họ và tên</label>
+                                    <input id="hoten" type="text" class="input" style="text-align: center" placeholder="Họ tên" value="@bn.HOTEN">
                                 </div>
-
+                                <div class="group">
+                                    <label style="font-size:18px; color:white;" for="tuoitac" class="label">Tuổi tác</label>
+                                    <input id="tuoitac" type="text" class="input" style="text-align: center" placeholder="Ngày sinh" value="@bn.NGAYSINH.Value.ToString("dd/MM/yyyy")">
+                                </div>
+                                <div class="group">
+                                    <label style="font-size:18px; color:white;" for="pass" class="label">Giới tính</label>
+                                    <input id="gioitinh" type="text" class="input" style="text-align: center" placeholder="Giới tính" value="@bn.GIOITINH">
+                                </div>
+                                <div class="group">
+                                    <label style="font-size:18px; color:white;" for="hoten" class="label">Số điện thoại</label>
+                                    <input id="sdt" type="text" class="input" style="text-align: center" placeholder="Số điện thoại" value="@tk.SDT">
+                                </div>
+                                <div class="group">
+                                    <label style="font-size:18px; color:white;" for="tuoitac" class="label">Email</label>
+                                    <input id="email" type="text" class="input" style="text-align: center" placeholder="Email" value="@tk.EMAIL">
+                                </div>
+                                <div class="group">
+                                    <label style="font-size:18px; color:white;" for="pass" class="label">Chiều cao (CM)</label>
+                                    <input id="chieucao" name="chieucao" class="input" style="text-align: center" placeholder="Nhập chiều cao" value="@bn.CHIEUCAO">
+                                </div>
+                                <div class="group">
+                                    <label style="font-size:18px; color:white;" for="pass" class="label">Cân nặng (KG)</label>
+                                    <input id="cannang" name="cannang" class="input" style="text-align: center" placeholder="Nhập cân nặng" value="@bn.CANNANG">
+                                </div>
+                                <div style="margin-top:30px;" class="group">
+                                        <button type="submit" @*style="margin-top:10px"*@ class="button">Lưu</button>
+                                    <a href="@Url.Action("TrangCaNhan", "NguoiDung")">
+                                        <button style="margin-top:10px" class="button">Hủy</button>
+                                    </a>
+                                </div>
                             </div>
-                            }
                         </div>
                     </div>
                 </div>
@@ -274,5 +283,3 @@
         </div>
     </div>
 </div>
-
-}

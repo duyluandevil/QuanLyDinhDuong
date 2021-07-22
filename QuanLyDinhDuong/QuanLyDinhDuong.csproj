@@ -135,10 +135,10 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\dbQlDD.designer.cs">
+    <Compile Include="Models\dbQlDDDataContext.designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>dbQlDD.dbml</DependentUpon>
+      <DependentUpon>dbQlDDDataContext.dbml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -241,11 +241,11 @@
     <Content Include="Content\Admin\js\material-dashboard.js.map" />
     <Content Include="Models\dbQlDD.dbml">
       <Generator>MSLinqToSQLGenerator</Generator>
-      <LastGenOutput>dbQlDD.designer.cs</LastGenOutput>
+      <LastGenOutput>dbQlDDDataContext.designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </Content>
-    <None Include="Models\dbQlDD.dbml.layout">
-      <DependentUpon>dbQlDD.dbml</DependentUpon>
+    <None Include="Models\dbQlDDDataContext.dbml.layout">
+      <DependentUpon>dbQlDDDataContext.dbml</DependentUpon>
     </None>
     <None Include="Properties\PublishProfiles\Default Settings.pubxml" />
     <None Include="Properties\PublishProfiles\Default Settings1.pubxml" />
