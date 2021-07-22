@@ -1,0 +1,168 @@
+﻿
+@{
+    ViewBag.Title = "ThucPham";
+    Layout = "~/Views/Shared/_Layout_Admin.cshtml";
+}
+
+<style>
+    .b {
+        width: 70%;
+        float: right;
+        margin-right: 100px;
+    }
+</style>
+
+
+<div class="content">
+    <div class="container-fluid">
+        <div class="b">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-header card-header-primary">
+                            <h4 class="card-title ">Loại thực phẩm</h4>
+
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table">
+                                    <thead class=" text-primary">
+                                    <th>
+                                        Mã loại thực phẩm
+                                    </th>
+                                    <th>
+                                        Tên loại thực phẩm
+                                    </th>
+                                    <th>
+                                        Chức năng
+                                    </th>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var item in ViewBag.LOAITHUCPHAMs)
+                                        {
+                                            <tr>
+                                                <td>
+                                                    @item.MALOAITHUCPHAM
+                                                </td>
+                                                <td>
+                                                    @item.TENLOAITHUCPHAM
+                                                </td>
+                                                <td class="text-primary">
+                                                    <a href="#" class="fa fa-remove" style="margin-left:15px; margin-right:20px;"></a>
+                                                    <a href="#" class="fa fa-edit"></a>
+                                                </td>
+                                            </tr>
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+@using (Html.BeginForm())
+{
+    @Html.ValidationSummary()
+
+    <div class="content">
+        <div class="container-fluid">
+            <div class="b">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card">
+                            <div class="card-header card-header-primary">
+                                <h4 class="card-title ">Danh sách thực phẩm</h4>
+                                @*<p class="card-category"> Here is a subtitle for this table</p>*@
+                                <select name="loaithucpham">
+                                    <option value="-1">Loại Thực Phẩm</option>
+                                    <option value="0">Động Vật</option>
+                                    <option value="1">Thực Vật</option>
+                                </select>
+                                <button type="submit">Chọn</button>
+                            </div>
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                    <table class="table">
+                                        <thead class=" text-primary">
+                                        <th>
+                                            Mã thực phẩm
+                                        </th>
+                                        <th>
+                                            Tên thực phẩm
+                                        </th>
+                                        <th>
+                                            Đạm
+                                        </th>
+                                        <th>
+                                            Béo
+                                        </th>
+                                        <th>
+                                            Xơ
+                                        </th>
+                                        <th>
+                                            Calo
+                                        </th>
+                                        <th>
+                                            Ảnh
+                                        </th>
+                                        <th>
+                                            Mã loại thực phẩm
+                                        </th>
+                                        <th>
+                                            Chức năng
+                                        </th>
+                                        </thead>
+                                        <tbody>
+                                            @foreach (var item in Model)
+                                            {
+                                                <tr>
+                                                    <td>
+                                                        @item.MATHUCPHAM
+                                                    </td>
+                                                    <td>
+                                                        @item.TENTHUCPHAM
+                                                    </td>
+                                                    <td>
+                                                        @item.DAM
+                                                    </td>
+                                                    <td>
+                                                        @item.BEO
+                                                    </td>
+                                                    <td>
+                                                        @item.XO
+                                                    </td>
+                                                    <td>
+                                                        @item.CALO
+                                                    </td>
+                                                    <td>
+                                                        <img src="@item.ANHBIA" style="width:70px; height:40px" />
+                                                    </td>
+
+                                                    <td>
+                                                        @item.MALOAITHUCPHAM
+                                                    </td>
+                                                    <td class="text-primary">
+                                                        <a href="@Url.Action("XoaThucPham","Admin", new { @MaTP = @item.MATHUCPHAM})" class="fa fa-remove" style="margin-left:15px; margin-right:20px;"></a>
+                                                        <a href="#" class="fa fa-edit"></a>
+                                                    </td>
+                                                </tr>
+                                            }
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+

@@ -36,15 +36,46 @@ namespace QuanLyDinhDuong.Controllers
             
             return View(bn);
         }
-
         public ActionResult ThucPham()
         {
-            return View();
+            var tP = (from tPs in data.THUCPHAMs select tPs).ToList();
+
+            var TpList = (from t in data.LOAITHUCPHAMs select t).ToList();
+            ViewBag.LOAITHUCPHAMs = TpList;
+            return View(tP);
         }
+        [HttpPost]
+        public ActionResult ThucPham(FormCollection collection)
+        {
+            var TpList = (from t in data.LOAITHUCPHAMs select t).ToList();
+            ViewBag.LOAITHUCPHAMs = TpList;
+
+            List<THUCPHAM> tP = (from tPs in data.THUCPHAMs select tPs).ToList();
+            int l = Int32.Parse(collection["loaithucpham"]);
+            if (l != -1)
+            {
+                tP = (from tPs in data.THUCPHAMs where tPs.MALOAITHUCPHAM == l select tPs).ToList();
+            }
+            
+            return View(tP);
+        }
+
+        //Xóa thực phẩm 
+
+        public ActionResult XoaThucPham(string MaTP)
+        {
+            var tp = (from tps in data.THUCPHAMs where tps.MATHUCPHAM == MaTP select tps).Single();
+
+            data.THUCPHAMs.DeleteOnSubmit(tp);
+            data.SubmitChanges();
+
+            return RedirectToAction("ThucPham", "Admin");
+        }    
+    
 
         public ActionResult ThucDon()
         {
-            var td = (from tds in data.TAIKHOANs where tds.IDTAIKHOAN == "duyluan0104" select tds).ToList();
+            var td = (from tds in data.THUCDONs select tds).ToList();
             return View(td);
             
         }

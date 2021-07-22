@@ -1,0 +1,87 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="QLDD" Class="dbQlDDDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="WebSettings" ConnectionString="Data Source=LUAN;Initial Catalog=QLDD;Integrated Security=True" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="QLDDConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.BENHNHAN" Member="BENHNHANs">
+    <Type Name="BENHNHAN">
+      <Column Name="MABENHNHAN" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="HOTEN" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="GIOITINH" Type="System.String" DbType="NVarChar(3)" CanBeNull="true" />
+      <Column Name="NGAYSINH" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="CHIEUCAO" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="CANNANG" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="CALO" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="NUOC" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="BMI" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="IDTAIKHOAN" Type="System.String" DbType="Char(20) NOT NULL" CanBeNull="false" />
+      <Association Name="BENHNHAN_THUCDON" Member="THUCDONs" ThisKey="MABENHNHAN" OtherKey="MABENHNHAN" Type="THUCDON" />
+      <Association Name="TAIKHOAN_BENHNHAN" Member="TAIKHOAN" ThisKey="IDTAIKHOAN" OtherKey="IDTAIKHOAN" Type="TAIKHOAN" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.CHUCVU" Member="CHUCVUs">
+    <Type Name="CHUCVU">
+      <Column Name="MACHUCVU" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="TENCHUCVU" Type="System.String" DbType="NVarChar(25)" CanBeNull="true" />
+      <Association Name="CHUCVU_TAIKHOAN" Member="TAIKHOANs" ThisKey="MACHUCVU" OtherKey="MACHUCVU" Type="TAIKHOAN" />
+    </Type>
+  </Table>
+  <Table Name="dbo.CTTD" Member="CTTDs">
+    <Type Name="CTTD">
+      <Column Name="MATHUCDON" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="MATHUCPHAM" Type="System.String" DbType="Char(5) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="TENTHUCPHAM" Type="System.String" DbType="NVarChar(30)" CanBeNull="true" />
+      <Column Name="ANHBIA" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="SOLUONG" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="DAM" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="BEO" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="XO" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="CALO" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="TONGCALO" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Association Name="THUCDON_CTTD" Member="THUCDON" ThisKey="MATHUCDON" OtherKey="MATHUCDON" Type="THUCDON" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+      <Association Name="THUCPHAM_CTTD" Member="THUCPHAM" ThisKey="MATHUCPHAM" OtherKey="MATHUCPHAM" Type="THUCPHAM" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.LOAITHUCPHAM" Member="LOAITHUCPHAMs">
+    <Type Name="LOAITHUCPHAM">
+      <Column Name="MALOAITHUCPHAM" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="TENLOAITHUCPHAM" Type="System.String" DbType="NVarChar(30)" CanBeNull="true" />
+      <Association Name="LOAITHUCPHAM_THUCPHAM" Member="THUCPHAMs" ThisKey="MALOAITHUCPHAM" OtherKey="MALOAITHUCPHAM" Type="THUCPHAM" />
+    </Type>
+  </Table>
+  <Table Name="dbo.TAIKHOAN" Member="TAIKHOANs">
+    <Type Name="TAIKHOAN">
+      <Column Name="IDTAIKHOAN" Type="System.String" DbType="Char(20) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="MATKHAU" Type="System.String" DbType="Char(20) NOT NULL" CanBeNull="false" />
+      <Column Name="HOTEN" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="SDT" Type="System.String" DbType="Char(10)" CanBeNull="true" />
+      <Column Name="GIOITINH" Type="System.String" DbType="NVarChar(3)" CanBeNull="true" />
+      <Column Name="NGAYSINH" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="EMAIL" Type="System.String" DbType="Char(40)" CanBeNull="true" />
+      <Column Name="MACHUCVU" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="TAIKHOAN_BENHNHAN" Member="BENHNHANs" ThisKey="IDTAIKHOAN" OtherKey="IDTAIKHOAN" Type="BENHNHAN" />
+      <Association Name="CHUCVU_TAIKHOAN" Member="CHUCVU" ThisKey="MACHUCVU" OtherKey="MACHUCVU" Type="CHUCVU" IsForeignKey="true" DeleteRule="CASCADE" />
+    </Type>
+  </Table>
+  <Table Name="dbo.THUCDON" Member="THUCDONs">
+    <Type Name="THUCDON">
+      <Column Name="MATHUCDON" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="BUOI" Type="System.String" DbType="NVarChar(15)" CanBeNull="true" />
+      <Column Name="NGAYLAP" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="MABENHNHAN" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="THUCDON_CTTD" Member="CTTDs" ThisKey="MATHUCDON" OtherKey="MATHUCDON" Type="CTTD" />
+      <Association Name="BENHNHAN_THUCDON" Member="BENHNHAN" ThisKey="MABENHNHAN" OtherKey="MABENHNHAN" Type="BENHNHAN" IsForeignKey="true" DeleteRule="CASCADE" />
+    </Type>
+  </Table>
+  <Table Name="dbo.THUCPHAM" Member="THUCPHAMs">
+    <Type Name="THUCPHAM">
+      <Column Name="MATHUCPHAM" Type="System.String" DbType="Char(5) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="TENTHUCPHAM" Type="System.String" DbType="NVarChar(30)" CanBeNull="true" />
+      <Column Name="DAM" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="BEO" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="XO" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="CALO" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="ANHBIA" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="MALOAITHUCPHAM" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="THUCPHAM_CTTD" Member="CTTDs" ThisKey="MATHUCPHAM" OtherKey="MATHUCPHAM" Type="CTTD" />
+      <Association Name="LOAITHUCPHAM_THUCPHAM" Member="LOAITHUCPHAM" ThisKey="MALOAITHUCPHAM" OtherKey="MALOAITHUCPHAM" Type="LOAITHUCPHAM" IsForeignKey="true" DeleteRule="CASCADE" />
+    </Type>
+  </Table>
+</Database>
