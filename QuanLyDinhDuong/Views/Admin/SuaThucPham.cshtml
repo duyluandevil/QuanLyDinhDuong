@@ -1,0 +1,131 @@
+﻿
+
+@{
+    ViewBag.Title = "SuaThucPham";
+    Layout = "~/Views/Shared/_Layout_Admin.cshtml";
+}
+
+<style>
+    .b {
+        width: 70%;
+        float: right;
+        margin-right: 100px;
+    }
+
+    .TenThucDon {
+        width: 300px;
+    }
+
+    .Chonfile {
+        background-color: indigo;
+        color: white;
+        padding: 0.5rem;
+        font-family: sans-serif;
+        border-radius: 0.3rem;
+        cursor: pointer;
+        margin-top: 1rem;
+    }
+</style>
+@*@using (Html.BeginForm("SuaThucPham","Admin", FormMethod.Post, new { @enctype = "multipart/form-data"}))*@
+@using (Html.BeginForm())
+{
+    @*@Html.AntiForgeryToken()*@
+
+    @Html.ValidationSummary()
+    <div class="content">
+        <div class="container-fluid">
+            <div class="b">
+                <div class="row">
+                    <div class="row">
+                        <a href="@Url.Action("ThucPham","Admin")">Trở về danh sách thực phẩm</a>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="card">
+                            <div class="card-header card-header-primary">
+                                <h4 class="card-title ">Sửa thông tin thực phẩm</h4>
+                                <p class="card-category"></p>
+                            </div>
+                            <div class="card-body">
+
+
+                                <div class="row">
+                                    <div class="col-xl-3">
+                                        <div class="form-group">
+                                            <label class="bmd-label-floating">Mã thực phẩm</label>
+                                            <input type="text" name="MATHUCPHAM" class="form-control" value="@Model.MATHUCPHAM" disabled>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-xl-9">
+                                        <div class="form-group">
+                                            <label class="bmd-label-floating">Tên thực phẩm</label>
+                                            <input type="text" name="TENTHUCPHAM" class="form-control" value="@Model.TENTHUCPHAM">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xl-3">
+                                        <div class="form-group">
+                                            <label class="bmd-label-floating">Đạm</label>
+                                            <input type="number" step="0.01" name="DAM" class="form-control" value="@Model.DAM.ToString( "#.##" )">
+                                        </div>
+                                    </div>
+
+                                    <div class="col-xl-3">
+                                        <div class="form-group">
+                                            <label class="bmd-label-floating">Béo</label>
+                                            <input type="number" step="0.01" name="BEO" class="form-control" value="@Model.BEO.ToString( "#.##" )">
+                                        </div>
+                                    </div>
+
+                                    <div class="col-xl-3">
+                                        <div class="form-group">
+                                            <label class="bmd-label-floating">Xơ</label>
+                                            <input type="number" step="0.01" name="XO" class="form-control" value="@Model.XO.ToString( "#.##" )">
+                                        </div>
+                                    </div>
+
+                                    <div class="col-xl-3">
+                                        <div class="form-group">
+                                            <label class="bmd-label-floating">Calo</label>
+                                            <input type="number" step="0.01" name="CALO" class="form-control" value="@Model.CALO.ToString("0.00")">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xl-12">
+                                        @*<div>
+                                            @Html.TextBox("file", "", new { type = "file" }) <br />
+                                            <input type="submit" value="Upload" />
+                                            @ViewBag.Message
+                                        </div>*@
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-xl-12">
+                                        <div class="form-group">
+                                            <label class="bmd-label-floating">Mã loại thực phẩm</label>
+                                            <select class="form-control" name="ChonMaLoai">
+
+                                                @foreach (var item in ViewBag.LOAITHUCPHAMs)
+                                                {
+                                                    <option value="@item.MALOAITHUCPHAM">@item.TENLOAITHUCPHAM</option>
+                                                }
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <button type="submit" class="btn btn-primary pull-right">Cập nhật thông tin</button>
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
