@@ -15,7 +15,7 @@ namespace QuanLyDinhDuong.Controllers
         // GET: ThucDon
         public ActionResult ThucDon()
         {
-            var listThucDon = (from td in data.THUCDONs where td.MABENHNHAN == 1 select td).ToList();
+            var listThucDon = (from td in data.THUCDONs where td.MABENHNHAN == 3 select td).ToList();
             return View(listThucDon);
         }
 

@@ -37,6 +37,113 @@ namespace QuanLyDinhDuong.Controllers
             
             return View(bn);
         }
+
+        public static int Mabn;
+        //Thêm bệnh nhân
+        public ActionResult ThemBenhNhan()
+        {
+            var TkList = (from t in data.TAIKHOANs select t).ToList();
+            ViewBag.TAIKHOAN = TkList;
+
+            var BnLast = (from tps in data.BENHNHANs select tps).ToList();
+            ViewData["MaBenhNhan"] = int.Parse(BnLast.LastOrDefault().MABENHNHAN.ToString()) + 1;
+            Mabn = int.Parse(BnLast.LastOrDefault().MABENHNHAN.ToString()) + 1;
+
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult ThemBenhNhan(FormCollection f, BENHNHAN bn)
+        {
+            var TpList = (from t in data.LOAITHUCPHAMs select t).ToList();
+            ViewBag.LOAITHUCPHAMs = TpList;
+
+
+
+            var MABENHNHAN = Mabn;
+            var TENTHUCPHAM = f["TENBENHNHAN"];
+            var GIOITINH = f["ChonGioiTinh"];
+            var NGAYSINH = String.Format("{0:MM/dd/yyyy}", f["NGAYSINH"]);
+            var CHIEUCAO = f["CHIEUCAO"];
+            var CANNANG = f["CANNANG"];
+            var CALO = f["CALO"];
+            
+            var BMI = f["BMI"];
+            var IDTAIKHOAN = f["ChonIDTaiKhoan"];
+
+            bn.MABENHNHAN = MABENHNHAN;
+            bn.HOTEN = TENTHUCPHAM;
+            bn.GIOITINH = GIOITINH;
+            bn.NGAYSINH = DateTime.Parse(NGAYSINH);
+            bn.CHIEUCAO = float.Parse(CHIEUCAO);
+            bn.CALO = float.Parse(CALO);
+            bn.NUOC = 0;
+            bn.BMI = float.Parse(BMI);
+            bn.IDTAIKHOAN = IDTAIKHOAN;
+
+            data.BENHNHANs.InsertOnSubmit(bn);
+            data.SubmitChanges();
+
+            return RedirectToAction("BenhNhan", "Admin");
+        }
+
+        public static int mabn;
+        //Sửa bệnh nhân
+        public ActionResult SuaBenhNhan(int MaBN)
+        {
+            mabn = MaBN;
+            var TkList = (from t in data.BENHNHANs  select t).ToList();
+            ViewBag.TAIKHOAN = TkList;
+
+            var bn = (from bns in data.BENHNHANs where bns.MABENHNHAN == MaBN select bns).Single();
+            
+
+            return View(bn);
+        }
+
+        [HttpPost]
+        public ActionResult SuaBenhNhan(FormCollection f, BENHNHAN bn)
+        {
+            //var MABENHNHAN = mabn;
+            var TENTHUCPHAM = f["TENBENHNHAN"];
+            var GIOITINH = f["ChonGioiTinh"];
+            var NGAYSINH = String.Format("{0:MM/dd/yyyy}", f["NGAYSINH"]);
+            var CHIEUCAO = f["CHIEUCAO"];
+            var CANNANG = f["CANNANG"];
+            var CALO = f["CALO"];
+
+            var BMI = f["BMI"];
+            var IDTAIKHOAN = f["ChonIDTaiKhoan"];
+
+            bn = (from bns in data.BENHNHANs where bns.MABENHNHAN == mabn select bns).Single();
+
+            
+            bn.HOTEN = TENTHUCPHAM;
+            bn.GIOITINH = GIOITINH;
+            bn.NGAYSINH = DateTime.Parse(NGAYSINH);
+            bn.CHIEUCAO = float.Parse(CHIEUCAO);
+            bn.CALO = float.Parse(CALO);
+            bn.NUOC = 0;
+            bn.BMI = float.Parse(BMI);
+            bn.IDTAIKHOAN = IDTAIKHOAN;
+
+            
+            data.SubmitChanges();
+
+            return RedirectToAction("BenhNhan", "Admin");
+        }
+
+        //Xóa bệnh nhân
+        public ActionResult XoaBenhNhan(int MaBN)
+        {
+            var bn = (from bns in data.BENHNHANs where bns.MABENHNHAN == MaBN select bns).Single();
+
+            data.BENHNHANs.DeleteOnSubmit(bn);
+            data.SubmitChanges();
+
+            return RedirectToAction("BenhNhan", "Admin");
+        }
+
         public ActionResult ThucPham()
         {
             var tP = (from tPs in data.THUCPHAMs select tPs).ToList();
@@ -62,10 +169,67 @@ namespace QuanLyDinhDuong.Controllers
         }
 
         //Thêm loại thực phẩm
-
+        public static int MLTP;
         public ActionResult ThemLoaiThucPham()
         {
+            var tpLast = (from tps in data.LOAITHUCPHAMs select tps).ToList();
+            ViewData["MaThucDon"] = int.Parse(tpLast.LastOrDefault().MALOAITHUCPHAM.ToString()) + 1;
+            MLTP = int.Parse(tpLast.LastOrDefault().MALOAITHUCPHAM.ToString()) + 1;
             return View();
+        }
+
+        [HttpPost]
+        public ActionResult ThemLoaiThucPham(FormCollection f, LOAITHUCPHAM ltp)
+        {
+            var MaLoaiThucPham = MLTP;
+            var TenLoaiThucPham = f["TENLOAITHUCPHAM"];
+
+            ltp.MALOAITHUCPHAM = MaLoaiThucPham;
+            ltp.TENLOAITHUCPHAM = TenLoaiThucPham;
+
+            data.LOAITHUCPHAMs.InsertOnSubmit(ltp);
+            data.SubmitChanges();
+
+            return RedirectToAction("ThucPham", "Admin");
+        }
+
+        //Xóa loại thực phẩm
+        public ActionResult XoaLoaiThucPham(int MaLTP)
+        {
+            var tp = (from tps in data.LOAITHUCPHAMs where tps.MALOAITHUCPHAM == MaLTP select tps).Single();
+
+            data.LOAITHUCPHAMs.DeleteOnSubmit(tp);
+            data.SubmitChanges();
+
+            return RedirectToAction("ThucPham", "Admin");
+        }
+
+        //Sửa loại thực phẩm
+        public static int Maltp;
+
+        [HttpGet]
+        public ActionResult SuaLoaiThucPham(int MaLTP)
+        {
+            Maltp = MaLTP;
+            var tp = (from tps in data.LOAITHUCPHAMs where tps.MALOAITHUCPHAM == MaLTP select tps).SingleOrDefault();
+
+            return View(tp);
+        }
+
+        [HttpPost]
+        public ActionResult SuaLoaiThucPham(FormCollection f, LOAITHUCPHAM ltp)
+        {
+            //var mathucpham = f["MATHUCPHAM"];
+            var TENLOAITHUCPHAM = f["TENLOAITHUCPHAM"];
+
+
+            ltp = (from tps in data.LOAITHUCPHAMs where tps.MALOAITHUCPHAM == Maltp select tps).Single();
+
+            ltp.TENLOAITHUCPHAM = TENLOAITHUCPHAM;
+
+            data.SubmitChanges();
+
+            return RedirectToAction("ThucPham", "Admin");
         }
 
         //Thêm thực phẩm 
@@ -161,6 +325,100 @@ namespace QuanLyDinhDuong.Controllers
             var td = (from tds in data.THUCDONs select tds).ToList();
             return View(td);
             
+        }
+
+        public static int Matd;
+        //Thêm thực đơn
+        public ActionResult ThemThucDon(string MaTD)
+        {
+
+            var TdLast = (from tps in data.THUCDONs select tps).ToList();
+            ViewData["MaThucDon"] = int.Parse(TdLast.LastOrDefault().MATHUCDON.ToString()) + 1;
+            Matd = int.Parse(TdLast.LastOrDefault().MATHUCDON.ToString()) + 1;
+
+            var BnList = (from t in data.BENHNHANs select t).ToList();
+            ViewBag.BENHNHANs = BnList;
+
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult ThemThucDon(FormCollection f, THUCDON td)
+        {
+            var BnList = (from t in data.BENHNHANs select t).ToList();
+            ViewBag.BENHNHANs = BnList;
+
+            //var MATHUCDON = f["MATHUCDON"];
+            var BUOI = f["BUOI"];
+            var NGAYLAP = String.Format("{0:MM/dd/yyyy}", f["NGAYLAP"]);
+            var MABENHNHAN = f["ChonMaBenhNhan"];
+
+            //td.MATHUCDON = int.Parse(MATHUCDON);
+
+            td.BUOI = BUOI;
+            td.NGAYLAP = DateTime.Parse(NGAYLAP);
+            td.MABENHNHAN = int.Parse(MABENHNHAN.ToString());
+
+
+            data.THUCDONs.InsertOnSubmit(td);
+            data.SubmitChanges();
+
+            return RedirectToAction("ThucDon", "Admin");
+        }
+
+        //Sửa thực đơn
+        //Chỉnh sửa thực phẩm
+        public static int Matds;
+
+        [HttpGet]
+        public ActionResult SuaThucDon(int MaTD)
+        {
+            Matds = MaTD;
+            var td = (from tps in data.THUCDONs where tps.MATHUCDON == MaTD select tps).SingleOrDefault();
+
+            var BnList = (from t in data.BENHNHANs select t).ToList();
+            ViewBag.BENHNHANs = BnList;
+
+            return View(td);
+        }
+
+        [HttpPost]
+        public ActionResult SuaThucDon(FormCollection f, THUCDON td)
+        {
+            var BUOI = f["BUOI"];
+            var NGAYLAP = String.Format("{0:MM/dd/yyyy}", f["NGAYLAP"]);
+            var MABENHNHAN = f["ChonMaBenhNhan"];
+
+            td = (from tds in data.THUCDONs where tds.MATHUCDON == Matds select tds).Single();
+
+            td.BUOI = BUOI;
+            td.NGAYLAP = DateTime.Parse(NGAYLAP);
+            td.MABENHNHAN = int.Parse(MABENHNHAN.ToString());
+
+            data.SubmitChanges();
+
+            return RedirectToAction("ThucDon", "Admin");
+        }
+
+        //Xóa thực đơn
+        public ActionResult XoaThucDon(int MaTD)
+        {
+            var td = (from tds in data.THUCDONs where tds.MATHUCDON == MaTD select tds).Single();
+
+            data.THUCDONs.DeleteOnSubmit(td);
+            data.SubmitChanges();
+
+            return RedirectToAction("ThucDon", "Admin");
+        }
+
+        public ActionResult ChiTietThucDon(int MaTD)
+        {
+            var td = (from tds in data.THUCDONs select tds).ToList();
+
+            var CttdList = (from t in data.CTTDs where t.MATHUCDON == MaTD select t).ToList();
+            ViewBag.CTTDs = CttdList;
+
+            return View(td);
         }
     }
 }

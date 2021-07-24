@@ -295,6 +295,12 @@
     <Content Include="Views\Admin\SuaThucPham.cshtml" />
     <Content Include="Views\Admin\ThemThucPham.cshtml" />
     <Content Include="Views\Admin\ThemLoaiThucPham.cshtml" />
+    <Content Include="Views\Admin\SuaLoaiThucPham.cshtml" />
+    <Content Include="Views\Admin\ThemBenhNhan.cshtml" />
+    <Content Include="Views\Admin\SuaBenhNhan.cshtml" />
+    <Content Include="Views\Admin\ThemThucDon.cshtml" />
+    <Content Include="Views\Admin\SuaThucDon.cshtml" />
+    <Content Include="Views\Admin\ChiTietThucDon.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

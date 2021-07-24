@@ -1,0 +1,184 @@
+﻿
+@{
+    ViewBag.Title = "ChiTietThucDon";
+    Layout = "~/Views/Shared/_Layout_Admin.cshtml";
+}
+
+<style>
+    .b {
+        width: 70%;
+        float: right;
+        margin-right: 100px;
+    }
+</style>
+<div class="content">
+    <div class="container-fluid">
+        <div class="b">
+            <div class="row">
+                <div class="row">
+                    <a href="@Url.Action("ThemThucDon","Admin")">Thêm thực đơn</a>
+                </div>
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-header card-header-primary">
+                            <h4 class="card-title ">Thực đơn</h4>
+                            <p class="card-category"></p>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table">
+                                    <thead class=" text-primary">
+                                    <th>
+                                        Mã thực đơn
+                                    </th>
+                                    <th>
+                                        Buổi
+                                    </th>
+                                    <th>
+                                        Ngày lập
+                                    </th>
+                                    <th>
+                                        Mã bệnh nhân
+                                    </th>
+                                    <th>
+                                        Chức năng
+                                    </th>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var item in Model)
+                                        {
+                                            <tr>
+                                                <td>
+                                                    @item.MATHUCDON
+                                                </td>
+                                                <td>
+                                                    @item.BUOI
+                                                </td>
+                                                <td>
+                                                    @item.NGAYLAP.ToString("yyyy/MM/dd")
+                                                </td>
+                                                <td>
+                                                    @item.MABENHNHAN
+                                                </td>
+                                                <td class="text-primary">
+                                                    <a href="@Url.Action("XoaThucDon","Admin", new { @MaTD = item.MATHUCDON})" class="fa fa-remove" style=" margin-right:20px;"></a>
+                                                    <a href="@Url.Action("SuaThucDon","Admin", new { @MaTD = item.MATHUCDON})" class="fa fa-edit" style="margin-right:20px;"></a>
+                                                    <a href="@Url.Action("ChiTietThucDon","Admin", new { @MaTD = item.MATHUCDON})" class="fa fa-bullseye"> Chi tiết thực đơn</a>
+                                                </td>
+                                            </tr>
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="content">
+    <div class="container-fluid">
+        <div class="b">
+            <div class="row">
+                <div class="row">
+                    <a href="@Url.Action("ThemChiTietThucDon","Admin")">Thêm chi tiết thực đơn</a>
+                </div>
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-header card-header-primary">
+                            <h4 class="card-title ">Chi tiết thực đơn</h4>
+                            <p class="card-category"></p>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table">
+                                    <thead class=" text-primary">
+                                    <th>
+                                        Mã thực đơn
+                                    </th>
+                                    <th>
+                                        Mã thực phẩm
+                                    </th>
+                                    <th>
+                                        Tên thực phẩm
+                                    </th>
+                                    <th>
+                                        Ảnh bìa
+                                    </th>
+                                    <th>
+                                        Số lượng
+                                    </th>
+                                    <th>
+                                        Đạm
+                                    </th>
+                                    <th>
+                                        Béo
+                                    </th>
+                                    <th>
+                                        Xơ
+                                    </th>
+                                    <th>
+                                        Calo
+                                    </th>
+                                    <th>
+                                        Tổng Calo
+                                    </th>
+                                    <th>
+                                        Chức năng
+                                    </th>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var item in ViewBag.CTTDs)
+                                        {
+                                        <tr>
+                                            <td>
+                                                @item.MATHUCDON
+                                            </td>
+                                            <td>
+                                                @item.MATHUCPHAM
+                                            </td>
+                                            <td>
+                                                @item.TENTHUCPHAM
+                                            </td>
+                                            <td>
+                                                <img src="@item.ANHBIA" style="width:50px; height:30px;" />
+                                            </td>
+                                            <td>
+                                                @item.SOLUONG
+                                            </td>
+                                            <td>
+                                                @item.DAM
+                                            </td>
+                                            <td>
+                                                @item.BEO
+                                            </td>
+                                            <td>
+                                                @item.XO
+                                            </td>
+                                            <td>
+                                                @item.CALO
+                                            </td>
+                                            <td>
+                                                @item.TONGCALO
+                                            </td>
+                                            <td class="text-primary">
+                                                <a href="@Url.Action("XoaThucDon","Admin", new { @MaTD = item.MATHUCDON})" class="fa fa-remove" style=" margin-right:20px;"></a>
+                                                <a href="@Url.Action("SuaThucDon","Admin", new { @MaTD = item.MATHUCDON})" class="fa fa-edit" style="margin-right:20px;"></a>
+                                            </td>
+                                        </tr>
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+

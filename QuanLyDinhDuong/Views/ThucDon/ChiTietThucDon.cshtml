@@ -253,6 +253,9 @@
         }
 </style>
 
+@using (Html.BeginForm())
+{
+    @Html.ValidationSummary()
 <div class="header-backup"></div>
 <div class="cart_area section_padding_100 clearfix">
     <div class="container">
@@ -293,7 +296,7 @@
                                 </td>
 
                                 <td class="total_price"><span id="totalCalo">@item.TONGCALO</span></td>
-                                <td><a href="@Url.Action("XoaThucPham","ThucDon", new { @MaThucPham = item.MATHUCPHAM })" class="btn"><i class="fa fa-close"></i></a></td>
+                                <td><a href="@Url.Action("XoaThucPham", "ThucDon", new { @MaThucPham = item.MATHUCPHAM })" class="btn"><i class="fa fa-close"></i></a></td>
                             </tr>
                             }
                         </tbody>
@@ -320,4 +323,5 @@
 <script>
     var totalCalo = document.getElementbyID
 </script>
+}
 
