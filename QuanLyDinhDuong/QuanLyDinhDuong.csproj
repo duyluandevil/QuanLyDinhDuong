@@ -135,10 +135,10 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\dbQlDDDataContext.designer.cs">
+    <Compile Include="Models\dbQlDD.designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>dbQlDDDataContext.dbml</DependentUpon>
+      <DependentUpon>dbQlDD.dbml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -241,11 +241,11 @@
     <Content Include="Content\Admin\js\material-dashboard.js.map" />
     <Content Include="Models\dbQlDD.dbml">
       <Generator>MSLinqToSQLGenerator</Generator>
-      <LastGenOutput>dbQlDDDataContext.designer.cs</LastGenOutput>
+      <LastGenOutput>dbQlDD.designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </Content>
-    <None Include="Models\dbQlDDDataContext.dbml.layout">
-      <DependentUpon>dbQlDDDataContext.dbml</DependentUpon>
+    <None Include="Models\dbQlDD.dbml.layout">
+      <DependentUpon>dbQlDD.dbml</DependentUpon>
     </None>
     <None Include="Properties\PublishProfiles\Default Settings.pubxml" />
     <None Include="Properties\PublishProfiles\Default Settings1.pubxml" />
@@ -291,6 +291,10 @@
     <Content Include="Views\Admin\ThucDon.cshtml" />
     <Content Include="Views\Admin\TaiKhoan.cshtml" />
     <Content Include="Views\Admin\BenhNhan.cshtml" />
+    <Content Include="Views\Admin\ThucPham.cshtml" />
+    <Content Include="Views\Admin\SuaThucPham.cshtml" />
+    <Content Include="Views\Admin\ThemThucPham.cshtml" />
+    <Content Include="Views\Admin\ThemLoaiThucPham.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

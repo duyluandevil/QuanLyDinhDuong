@@ -4,62 +4,77 @@
     Layout = "~/Views/Shared/_Layout_Admin.cshtml";
 }
 
-<div class="content">
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-md-12">
-                <div class="card">
-                    <div class="card-header card-header-primary">
-                        <h4 class="card-title ">Simple Table</h4>
-                        <p class="card-category"> Here is a subtitle for this table</p>
-                    </div>
-                    <div class="card-body">
-                        <div class="table-responsive">
-                            <table class="table">
-                                <thead class=" text-primary">
-                                <th>
-                                    ID
-                                </th>
-                                <th>
-                                    Họ và tên
-                                </th>
-                                <th>
-                                    Số điện thoại
-                                </th>
-                                <th>
-                                    Giới tính
-                                </th>
-                                <th>
-                                    Mã chức vụ
-                                </th>
-                                </thead>
-                                <tbody>
-                                    @foreach (var item in Model)
-                                    {
-                                    <tr>
-                                        <td>
-                                            @item.IDTAIKHOAN
-                                        </td>
-                                        <td>
-                                            @item.HOTEN
-                                        </td>
-                                        <td>
-                                            @item.SDT
-                                        </td>
-                                        <td>
-                                            @item.GIOITINH
-                                        </td>
-                                        <td class="text-primary">
-                                            @item.MACHUCVU
-                                        </td>
-                                    </tr>
-                                    }
-                                </tbody>
-                            </table>
+<style>
+    .b {
+        width: 70%;
+        float: right;
+        margin-right: 100px;
+    }
+</style>
+    <div class="content">
+        <div class="container-fluid">
+            <div class="b">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-header card-header-primary">
+                            <h4 class="card-title ">Simple Table</h4>
+                            <p class="card-category"> Here is a subtitle for this table</p>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table">
+                                    <thead class=" text-primary">
+                                    <th>
+                                        ID
+                                    </th>
+                                    <th>
+                                        Họ và tên
+                                    </th>
+                                    <th>
+                                        Số điện thoại
+                                    </th>
+                                    <th>
+                                        Giới tính
+                                    </th>
+                                    <th>
+                                        Mã chức vụ
+                                    </th>
+                                    <th>
+                                        Chức năng
+                                    </th>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var item in Model)
+                                        {
+                                        <tr>
+                                            <td>
+                                                @item.IDTAIKHOAN
+                                            </td>
+                                            <td>
+                                                @item.HOTEN
+                                            </td>
+                                            <td>
+                                                @item.SDT
+                                            </td>
+                                            <td>
+                                                @item.GIOITINH
+                                            </td>
+                                            <td class="text-primary">
+                                                @item.MACHUCVU
+                                            </td>
+                                            <td class="text-primary">
+                                                <a href="#" class="fa fa-remove" style="margin-left:15px; margin-right:20px;"></a>
+                                                <a href="#" class="fa fa-edit"></a>
+                                            </td>
+                                        </tr>
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
 
 
             @*<div class="col-md-12">
@@ -200,4 +215,5 @@
         </div>
     </div>
 </div>
+
 
