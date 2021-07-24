@@ -140,12 +140,6 @@ namespace QuanLyDinhDuong.Controllers
         {
             return View();
         }
-        [HttpPost]
-        public ActionResult TrangCaNhan(FormCollection collection, BENHNHAN bn)
-        {
-
-            return View();
-        }
         [HttpGet]
         public ActionResult ChinhSuaThongTin()
         {

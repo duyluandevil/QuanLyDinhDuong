@@ -30,8 +30,12 @@ namespace QuanLyDinhDuong.Controllers
         public static int TuoiBenhNhan;
         public ActionResult TinhToanChiSo()
         {
+            if (Session["IDTAIKHOAN"] == null)
+            {
+                return RedirectToAction("Dangnhap", "NguoiDung");
+            }
             //taikhoan = laytaikhoan();
-
+            BENHNHAN bn = (BENHNHAN)Session["MABENHNHAN"];
             //BENHNHAN bn = (from b in data.BENHNHANs where b.IDTAIKHOAN == "duyluan0104" select b).Single();
             BENHNHAN bn = (BENHNHAN)Session["MABENHNHAN"];
 
@@ -40,12 +44,12 @@ namespace QuanLyDinhDuong.Controllers
             var NamSinhHienTai = DateTime.Now.Year;
             TuoiBenhNhan = NamSinhHienTai - NamSinhBenhNhan;
 
-            ViewData["Loi1"] = TuoiBenhNhan;
+            ViewData["Tuoi"] = TuoiBenhNhan;
             //String ho = bn.HOTEN;
             //String Year = bn.NGAYSINH.Value.Year.ToString();
 
 
-            return View(/*bn*/);
+            return View();
         }
 
         public static float BMI;
@@ -92,29 +96,29 @@ namespace QuanLyDinhDuong.Controllers
 
             var Calo = BMR * R;
 
-            if (BMI < 16)
-                @ViewData["ThongTinCoThe"] = "Rất Óm";
+            //if (BMI < 16)
+            //    @ViewData["ThongTinCoThe"] = "Rất Óm";
 
-            if (BMI >= 16 && BMI < 17)
-                @ViewData["ThongTinCoThe"] = "Óm";
+            //if (BMI >= 16 && BMI < 17)
+            //    @ViewData["ThongTinCoThe"] = "Óm";
 
-            if (BMI >= 17 && BMI < 18.5)
-                @ViewData["ThongTinCoThe"] = "Óm Vừa";
+            //if (BMI >= 17 && BMI < 18.5)
+            //    @ViewData["ThongTinCoThe"] = "Óm Vừa";
 
-            if (BMI >= 18.5 && BMI < 25)
-                @ViewData["ThongTinCoThe"] = "Cân Đối";
+            //if (BMI >= 18.5 && BMI < 25)
+            //    @ViewData["ThongTinCoThe"] = "Cân Đối";
 
-            if (BMI >= 25 && BMI < 30)
-                @ViewData["ThongTinCoThe"] = "Thừa Cân";
+            //if (BMI >= 25 && BMI < 30)
+            //    @ViewData["ThongTinCoThe"] = "Thừa Cân";
 
-            if (BMI >= 30 && BMI < 35)
-                @ViewData["ThongTinCoThe"] = "Thừa Cân Loại 1";
+            //if (BMI >= 30 && BMI < 35)
+            //    @ViewData["ThongTinCoThe"] = "Thừa Cân Loại 1";
 
-            if (BMI >= 35 && BMI < 40)
-                @ViewData["ThongTinCoThe"] = "Thừa Cân Loại 2";
+            //if (BMI >= 35 && BMI < 40)
+            //    @ViewData["ThongTinCoThe"] = "Thừa Cân Loại 2";
 
-            if (BMI >= 40)
-                @ViewData["ThongTinCoThe"] = "Thừa Cân Loại 3";
+            //if (BMI >= 40)
+            //    @ViewData["ThongTinCoThe"] = "Thừa Cân Loại 3";
 
             bn.CHIEUCAO = cc;
             bn.CANNANG = cn;
@@ -129,9 +133,32 @@ namespace QuanLyDinhDuong.Controllers
 
         public ActionResult KetQuaTinhToanChiSo()
         {
+            BENHNHAN bn = (BENHNHAN)Session["MABENHNHAN"];
             //BENHNHAN bn = (from b in data.BENHNHANs where b.IDTAIKHOAN == "duyluan0104" select b).Single();
+            if (BMI < 16)
+                ViewData["ThongTinCoThe"] = "Rất Ốm";
 
-            return View(/*bn*/);
+            if (BMI >= 16 && BMI < 17)
+                ViewData["ThongTinCoThe"] = "Ốm";
+
+            if (BMI >= 17 && BMI < 18.5)
+                ViewData["ThongTinCoThe"] = "Ốm Vừa";
+
+            if (BMI >= 18.5 && BMI < 25)
+                ViewData["ThongTinCoThe"] = "Cân Đối";
+
+            if (BMI >= 25 && BMI < 30)
+                ViewData["ThongTinCoThe"] = "Thừa Cân";
+
+            if (BMI >= 30 && BMI < 35)
+                ViewData["ThongTinCoThe"] = "Thừa Cân Loại 1";
+
+            if (BMI >= 35 && BMI < 40)
+                ViewData["ThongTinCoThe"] = "Thừa Cân Loại 2";
+
+            if (BMI >= 40)
+                ViewData["ThongTinCoThe"] = "Thừa Cân Loại 3";
+            return View(bn);
         }
 
     }
