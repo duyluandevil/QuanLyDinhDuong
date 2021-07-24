@@ -15,6 +15,10 @@ namespace QuanLyDinhDuong.Controllers
         // GET: ThucDon
         public ActionResult ThucDon()
         {
+            if (Session["IDTAIKHOAN"] == null)
+            {
+                return RedirectToAction("Dangnhap", "NguoiDung");
+            }
             var listThucDon = (from td in data.THUCDONs where td.MABENHNHAN == 1 select td).ToList();
             return View(listThucDon);
         }

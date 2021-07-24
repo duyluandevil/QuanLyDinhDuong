@@ -30,6 +30,10 @@ namespace QuanLyDinhDuong.Controllers
         public static int TuoiBenhNhan;
         public ActionResult TinhToanChiSo()
         {
+            if (Session["IDTAIKHOAN"] == null)
+            {
+                return RedirectToAction("Dangnhap", "NguoiDung");
+            }
             //taikhoan = laytaikhoan();
             BENHNHAN bn = (BENHNHAN)Session["MABENHNHAN"];
             //BENHNHAN bn = (from b in data.BENHNHANs where b.IDTAIKHOAN == "duyluan0104" select b).Single();
@@ -127,7 +131,6 @@ namespace QuanLyDinhDuong.Controllers
 
         public ActionResult KetQuaTinhToanChiSo()
         {
-
             BENHNHAN bn = (BENHNHAN)Session["MABENHNHAN"];
             //BENHNHAN bn = (from b in data.BENHNHANs where b.IDTAIKHOAN == "duyluan0104" select b).Single();
             if (BMI < 16)
