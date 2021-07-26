@@ -15,11 +15,12 @@ namespace QuanLyDinhDuong.Controllers
         // GET: ThucDon
         public ActionResult ThucDon()
         {
-            if (Session["IDTAIKHOAN"] == null)
+            if (Session["MABENHNHAN"] == null)
             {
                 return RedirectToAction("Dangnhap", "NguoiDung");
             }
-            var listThucDon = (from td in data.THUCDONs where td.MABENHNHAN == 1 select td).ToList();
+            BENHNHAN bn = (BENHNHAN)Session["MABENHNHAN"];
+            var listThucDon = (from td in data.THUCDONs where td.MABENHNHAN == bn.MABENHNHAN select td).ToList();
             return View(listThucDon);
         }
 

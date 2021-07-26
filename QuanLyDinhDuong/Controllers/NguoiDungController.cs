@@ -11,10 +11,6 @@ namespace QuanLyDinhDuong.Controllers
     {
         // GET: NguoiDung
         dbQlDDDataContext data = new dbQlDDDataContext();
-        public ActionResult Index()
-        {
-            return View();
-        }
         [HttpGet]
         public ActionResult Dangnhap()
         {
@@ -53,7 +49,7 @@ namespace QuanLyDinhDuong.Controllers
                         var benhnhan = (from b in data.BENHNHANs where b.IDTAIKHOAN == tkdn select b).SingleOrDefault();
                         Session["IDTAIKHOAN"] = taikh;
                         Session["MABENHNHAN"] = benhnhan;
-                        return RedirectToAction("TrangCaNhan", "NguoiDung");
+                        return RedirectToAction("Index2", "Home");
                     }
                     else ViewData["Loi1"] = "Tên đăng nhập hoặc mật khẩu không đúng";
                 }
@@ -138,12 +134,58 @@ namespace QuanLyDinhDuong.Controllers
         [HttpGet]
         public ActionResult TrangCaNhan()
         {
+            if (Session["MABENHNHAN"] == null)
+            {
+                return RedirectToAction("Dangnhap", "NguoiDung");
+            }
             return View();
+        }
+        [HttpPost]
+        public ActionResult TrangCaNhan(FormCollection collection)
+        {
+            Session["IDTAIKHOAN"] = null;
+            Session["MABENHNHAN"] = null;
+            return RedirectToAction("Index", "Home");
         }
         [HttpGet]
         public ActionResult ChinhSuaThongTin()
         {
+            if (Session["MABENHNHAN"] == null)
+            {
+                return RedirectToAction("Dangnhap", "NguoiDung");
+            }
             return View();
+        }
+        [HttpPost]
+        public ActionResult ChinhSuaThongTin(FormCollection collection)
+        {
+            var ten = collection["hoten"];
+            var email = collection["email"];
+            var sdt = collection["sdt"];
+            var ngaysinh = String.Format("{0:MM/dd/yyyy}", collection["ngaysinh"]);
+            var gioitinh = collection["RadioGioiTinh"];
+            var chieucao = collection["chieucao"];
+            var cannang = collection["cannang"];
+
+            TAIKHOAN tk = (TAIKHOAN)Session["IDTAIKHOAN"];
+            var taikh = (from tks in data.TAIKHOANs where tks.IDTAIKHOAN == tk.IDTAIKHOAN select tks).SingleOrDefault();
+            var benhnhan = (from b in data.BENHNHANs where b.IDTAIKHOAN == tk.IDTAIKHOAN select b).SingleOrDefault();
+            taikh.HOTEN = ten;
+            taikh.EMAIL = email;
+            taikh.SDT = sdt;
+            taikh.NGAYSINH = DateTime.Parse(ngaysinh);
+            taikh.GIOITINH = gioitinh;
+            data.SubmitChanges();
+
+            benhnhan.HOTEN = ten;
+            benhnhan.NGAYSINH = DateTime.Parse(ngaysinh);
+            benhnhan.GIOITINH = gioitinh;
+            benhnhan.CHIEUCAO = float.Parse(chieucao);
+            benhnhan.CANNANG = float.Parse(cannang);
+            data.SubmitChanges();
+            Session["IDTAIKHOAN"] = taikh;
+            Session["MABENHNHAN"] = benhnhan;
+            return RedirectToAction("TrangCaNhan", "NguoiDung");
         }
         // 82a71b7698b5168ad94da2e6bb4f364248f19cc3
     }

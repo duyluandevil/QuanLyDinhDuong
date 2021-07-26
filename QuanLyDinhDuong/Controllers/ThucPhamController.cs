@@ -71,8 +71,8 @@ namespace QuanLyDinhDuong.Controllers
             //cttd = (from tds in data.CTTDs where tds.MATHUCDON.ToString() == MaThucDon select tds).Single();
 
             //var SoLuong = f["quantity"];
-            
 
+            cttd = new CTTD();
             cttd.MATHUCPHAM = "TP008";
             cttd.MATHUCDON = td.MATHUCDON;
             cttd.ANHBIA = "null";

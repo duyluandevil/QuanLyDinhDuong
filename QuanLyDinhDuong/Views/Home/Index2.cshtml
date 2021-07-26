@@ -1,5 +1,5 @@
 ﻿@{
-    ViewBag.Title = "Home Page";
+    ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -16,8 +16,8 @@
                         <div class="carousel-caption">
                             <h1 style="font-size:120px">dinh dưỡng</h1>
                             <p>là một phần thiết yếu của cơ thể bạn</p>
-                            <a href="@Url.Action("Dangnhap","NguoiDung")">
-                                <button>Đăng Nhập</button>
+                            <a href="@Url.Action("TrangCaNhan","NguoiDung")">
+                                <button style="width: 300px">Trang cá nhân</button>
                             </a>
                         </div>
                     </div>
@@ -26,8 +26,8 @@
                         <div class="carousel-caption">
                             <h1 style="font-size:120px">dinh dưỡng</h1>
                             <p>là một phần thiết yếu của cơ thể bạn</p>
-                            <a href="@Url.Action("Dangnhap","NguoiDung")">
-                                <button>Đăng Nhập</button>
+                            <a href="@Url.Action("TrangCaNhan","NguoiDung")">
+                                <button style="width: 300px">Trang cá nhân</button>
                             </a>
                         </div>
                     </div>
@@ -36,8 +36,8 @@
                         <div class="carousel-caption">
                             <h1 style="font-size:120px">dinh dưỡng</h1>
                             <p>là một phần thiết yếu của cơ thể bạn</p>
-                            <a href="@Url.Action("Dangnhap","NguoiDung")">
-                                <button>Đăng Nhập</button>
+                            <a href="@Url.Action("TrangCaNhan","NguoiDung")">
+                                <button style="width: 300px">Trang cá nhân</button>
                             </a>
                         </div>
                     </div>
@@ -46,8 +46,8 @@
                         <div class="carousel-caption">
                             <h1 style="font-size:120px">dinh dưỡng</h1>
                             <p>là một phần thiết yếu của cơ thể bạn</p>
-                            <a href="@Url.Action("Dangnhap","NguoiDung")">
-                                <button>Đăng Nhập</button>
+                            <a href="@Url.Action("TrangCaNhan","NguoiDung")">
+                                <button style="width: 300px">Trang cá nhân</button>
                             </a>
                         </div>
                     </div>
@@ -183,72 +183,72 @@
                 <h2>Đội ngũ</h2>
                 @*<h4>Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled</h4>*@
                 <h4>Sinh viên thực hiện</h4>
-            <div class="col-md-6 single-member col-sm-4">
-                <div class="person">
-                    <img class="img-responsive" src="~/Content/img/member1.jpg" alt="member-1">
+                <div class="col-md-6 single-member col-sm-4">
+                    <div class="person">
+                        <img class="img-responsive" src="~/Content/img/member1.jpg" alt="member-1">
+                    </div>
+                    <div class="person-detail">
+                        <div class="arrow-bottom"></div>
+                        @*<h3>Dr. M. Weiner, M.D.</h3>
+                            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, </p>*@
+                        <h3>Dr. Phạm Duy Luân.</h3>
+                        <p></p>
+                    </div>
                 </div>
-                <div class="person-detail">
-                    <div class="arrow-bottom"></div>
-                    @*<h3>Dr. M. Weiner, M.D.</h3>
-        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, </p>*@
-                    <h3>Dr. Phạm Duy Luân.</h3>
-                    <p></p>
+                <div class="col-md-6 single-member col-sm-4">
+                    <div class="person">
+                        <img class="img-responsive" src="~/Content/img/member2.jpg" alt="member-2">
+                    </div>
+                    <div class="person-detail">
+                        <div class="arrow-bottom"></div>
+                        @*<h3>Dr. Danielle, M.D.</h3>
+                            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, </p>*@
+                        <h3>Dr. Vương Hoàng Như Quỳnh</h3>
+                        <p></p>
+                    </div>
                 </div>
+                @*<div class="col-md-2 single-member col-sm-4">
+                        <div class="person">
+                            <img class="img-responsive" src="~/Content/img/member3.jpg" alt="member-3">
+                        </div>
+                        <div class="person-detail">
+                            <div class="arrow-bottom"></div>
+                            <h3>Dr. Caitlin, M.D.</h3>
+                            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, </p>
+                        </div>
+                    </div>
+                    <div class="col-md-2 single-member col-sm-4">
+                        <div class="person-detail">
+                            <div class="arrow-top"></div>
+                            <h3>Dr. Joseph, M.D.</h3>
+                            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, </p>
+                        </div>
+                        <div class="person">
+                            <img class="img-responsive" src="~/Content/img/member4.jpg" alt="member-4">
+                        </div>
+                    </div>
+                    <div class="col-md-2 single-member col-sm-4">
+                        <div class="person">
+                            <img class="img-responsive" src="~/Content/img/member5.jpg" alt="member-5">
+                        </div>
+                        <div class="person-detail">
+                            <div class="arrow-bottom"></div>
+                            <h3>Dr. Michael, M.D.</h3>
+                            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, </p>
+                        </div>
+                    </div>
+                    <div class="col-md-2 single-member col-sm-4">
+                        <div class="person-detail">
+                            <div class="arrow-top"></div>
+                            <h3>Dr. Hasina, M.D.</h3>
+                            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, </p>
+                        </div>
+                        <div class="person">
+                            <img class="img-responsive" src="~/Content/img/member6.jpg" alt="member-5">
+                        </div>
+                    </div>*@
             </div>
-            <div class="col-md-6 single-member col-sm-4">
-                <div class="person">
-                    <img class="img-responsive" src="~/Content/img/member2.jpg" alt="member-2">
-                </div>
-                <div class="person-detail">
-                    <div class="arrow-bottom"></div>
-                    @*<h3>Dr. Danielle, M.D.</h3>
-        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, </p>*@
-                    <h3>Dr. Vương Hoàng Như Quỳnh</h3>
-                    <p></p>
-                </div>
-            </div>
-            @*<div class="col-md-2 single-member col-sm-4">
-                <div class="person">
-                    <img class="img-responsive" src="~/Content/img/member3.jpg" alt="member-3">
-                </div>
-                <div class="person-detail">
-                    <div class="arrow-bottom"></div>
-                    <h3>Dr. Caitlin, M.D.</h3>
-                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, </p>
-                </div>
-            </div>
-            <div class="col-md-2 single-member col-sm-4">
-                <div class="person-detail">
-                    <div class="arrow-top"></div>
-                    <h3>Dr. Joseph, M.D.</h3>
-                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, </p>
-                </div>
-                <div class="person">
-                    <img class="img-responsive" src="~/Content/img/member4.jpg" alt="member-4">
-                </div>
-            </div>
-            <div class="col-md-2 single-member col-sm-4">
-                <div class="person">
-                    <img class="img-responsive" src="~/Content/img/member5.jpg" alt="member-5">
-                </div>
-                <div class="person-detail">
-                    <div class="arrow-bottom"></div>
-                    <h3>Dr. Michael, M.D.</h3>
-                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, </p>
-                </div>
-            </div>
-            <div class="col-md-2 single-member col-sm-4">
-                <div class="person-detail">
-                    <div class="arrow-top"></div>
-                    <h3>Dr. Hasina, M.D.</h3>
-                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, </p>
-                </div>
-                <div class="person">
-                    <img class="img-responsive" src="~/Content/img/member6.jpg" alt="member-5">
-                </div>
-            </div>*@
         </div>
-    </div>
     </div>
 </section><!-- end of team section -->
 <!-- map section -->

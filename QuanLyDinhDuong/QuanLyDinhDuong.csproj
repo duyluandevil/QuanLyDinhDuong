@@ -295,6 +295,10 @@
     <Content Include="Views\Admin\SuaThucPham.cshtml" />
     <Content Include="Views\Admin\ThemThucPham.cshtml" />
     <Content Include="Views\Admin\ThemLoaiThucPham.cshtml" />
+    <Content Include="Views\Admin\DangNhapAdmin.cshtml" />
+    <Content Include="Views\Shared\_LayoutNguoiDung.cshtml" />
+    <Content Include="Views\Home\Index2.cshtml" />
+    <Content Include="Views\NguoiDung\ChinhSuaThongTin.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

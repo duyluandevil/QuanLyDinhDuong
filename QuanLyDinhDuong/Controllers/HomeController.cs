@@ -15,9 +15,20 @@ namespace QuanLyDinhDuong.Controllers
 
         public ActionResult Index()
         {
+            if (Session["MABENHNHAN"] != null)
+            {
+                return RedirectToAction("Index2", "Home");
+            }
             return View();
         }
- 
+        public ActionResult Index2()
+        {
+            if (Session["MABENHNHAN"] == null)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+            return View();
+        }
 
         private List<TAIKHOAN> laytaikhoan()
         {
@@ -30,15 +41,12 @@ namespace QuanLyDinhDuong.Controllers
         public static int TuoiBenhNhan;
         public ActionResult TinhToanChiSo()
         {
-            if (Session["IDTAIKHOAN"] == null)
+            if (Session["MABENHNHAN"] == null)
             {
                 return RedirectToAction("Dangnhap", "NguoiDung");
             }
             //taikhoan = laytaikhoan();
             BENHNHAN bn = (BENHNHAN)Session["MABENHNHAN"];
-            //BENHNHAN bn = (from b in data.BENHNHANs where b.IDTAIKHOAN == "duyluan0104" select b).Single();
-            BENHNHAN bn = (BENHNHAN)Session["MABENHNHAN"];
-
 
             var NamSinhBenhNhan = bn.NGAYSINH.Value.Year;
             var NamSinhHienTai = DateTime.Now.Year;
