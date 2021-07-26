@@ -1,0 +1,136 @@
+﻿
+@{
+    ViewBag.Title = "ThemBenhNhan";
+    Layout = "~/Views/Shared/_Layout_Admin.cshtml";
+}
+
+<style>
+    .b {
+        width: 70%;
+        float: right;
+        margin-right: 100px;
+    }
+
+    .TenThucDon {
+        width: 300px;
+    }
+
+    .Chonfile {
+        background-color: indigo;
+        color: white;
+        padding: 0.5rem;
+        font-family: sans-serif;
+        border-radius: 0.3rem;
+        cursor: pointer;
+        margin-top: 1rem;
+    }
+</style>
+@*@using (Html.BeginForm("SuaThucPham","Admin", FormMethod.Post, new { @enctype = "multipart/form-data"}))*@
+@using (Html.BeginForm())
+{
+    @*@Html.AntiForgeryToken()*@
+
+    @Html.ValidationSummary()
+    <div class="content">
+        <div class="container-fluid">
+            <div class="b">
+                <div class="row">
+                    <div class="row">
+                        <a href="@Url.Action("BenhNhan","Admin")">Trở về danh sách bệnh nhân</a>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="card">
+                            <div class="card-header card-header-primary">
+                                <h4 class="card-title ">Thêm bệnh nhân</h4>
+                                <p class="card-category"></p>
+                            </div>
+                            <div class="card-body">
+
+
+                                <div class="row">
+                                    <div class="col-xl-3">
+                                        <div class="form-group">
+                                            <label class="bmd-label-floating">Mã bệnh nhân</label>
+                                            <input type="text" name="MABENHNHAN" class="form-control" value="" disabled>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-xl-9">
+                                        <div class="form-group">
+                                            <label class="bmd-label-floating">Tên bệnh nhân</label>
+                                            <input type="text" name="TENBENHNHAN" class="form-control">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xl-3">
+                                        <div class="form-group">
+                                            <label class="bmd-label-floating">Ngày sinh</label>
+                                            <input type="date" name="NGAYSINH" class="form-control">
+                                        </div>
+                                    </div>
+
+                                    <div class="col-xl-9">
+                                        <div class="form-group">
+                                            <label class="bmd-label-floating">Giới tính</label>
+                                            <select class="form-control" name="ChonGioiTinh">
+                                                <option value="Nam">Nam</option>
+                                                <option value="Nu">Nữ</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xl-3">
+                                        <div class="form-group">
+                                            <label class="bmd-label-floating">Chiều cao</label>
+                                            <input type="number" step="0.01" name="CHIEUCAO" class="form-control">
+                                        </div>
+                                    </div>
+
+                                    <div class="col-xl-3">
+                                        <div class="form-group">
+                                            <label class="bmd-label-floating">Cân nặng</label>
+                                            <input type="number" step="0.01" name="CANNANG" class="form-control">
+                                        </div>
+                                    </div>
+
+                                    <div class="col-xl-3">
+                                        <div class="form-group">
+                                            <label class="bmd-label-floating">Calo</label>
+                                            <input type="number" step="0.01" name="CALO" class="form-control">
+                                        </div>
+                                    </div>
+
+                                    <div class="col-xl-3">
+                                        <div class="form-group">
+                                            <label class="bmd-label-floating">BMI</label>
+                                            <input type="number" step="0.01" name="BMI" class="form-control">
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <div class="row">
+                                    <div class="col-xl-12">
+                                        <div class="form-group">
+                                            <label class="bmd-label-floating">Tài khoản</label>
+                                            <select class="form-control" name="ChonIDTaiKhoan">
+                                                @foreach (var item in ViewBag.TAIKHOAN)
+                                                {
+                                                    <option value="@item.IDTAIKHOAN">@item.IDTAIKHOAN</option>
+                                                }
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <button type="submit" class="btn btn-primary pull-right">Thêm bệnh nhân mới</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+

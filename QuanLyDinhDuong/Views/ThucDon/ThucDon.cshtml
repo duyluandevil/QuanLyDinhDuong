@@ -14,8 +14,14 @@
 <div class="header-backup"></div>
 <div>
     <div class="background">
-        <a href="@Url.Action("ThemThucDon","ThucDon")">Thêm thực đơn...</a>
-        <input type="text" style="width:500px; margin-top:20px; margin-left:15px; margin-bottom:20px;" placeholder="Nhập buổi để tìm kiếm..." name="search">
+        <div class="row">
+            <div class="col-sm-12">
+                <a href="@Url.Action("ThemThucDon","ThucDon")" style="margin-left:20px;">Thêm thực đơn...</a>
+            </div>
+
+        </div>
+
+        <input type="text" style="width:500px; margin-top:20px; margin-left:20px; margin-bottom:20px;" placeholder="Nhập buổi để tìm kiếm..." name="search">
         <button type="submit"><i class="fa fa-search"></i></button>
         @*<a href="@Url.Action("ThemThucDon","ThucDon")>Thêm thực đơn...</a>*@
 
@@ -37,7 +43,6 @@
                             <div class="pull-right">
                                 <a href="@Url.Action("ChiTietThucDon", "ThucDon", new { MaThucDon = @item.MATHUCDON })" class="btn btn-primary">Xem thêm...</a>
                                 <a href="@Url.Action("XoaThucDon", "ThucDon", new { @MaThucDon = @item.MATHUCDON })" class="btn btn-primary">Xóa thực đơn</a>
-
                             </div>
                         </div>
                     </div>

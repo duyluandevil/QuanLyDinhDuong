@@ -15,11 +15,14 @@
     <div class="container-fluid">
         <div class="b">
             <div class="row">
+                <a href="@Url.Action("ThemBenhNhan","Admin")">Thêm bệnh nhân mới</a>
+            </div>
+            <div class="row">
                 <div class="col-md-12">
                     <div class="card">
                         <div class="card-header card-header-primary">
-                            <h4 class="card-title ">Simple Table</h4>
-                            <p class="card-category"> Here is a subtitle for this table</p>
+                            <h4 class="card-title ">Bệnh nhân</h4>
+                            <p class="card-category"></p>
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
@@ -47,34 +50,34 @@
                                     <tbody>
                                         @foreach (var item in Model)
                                         {
-                                        <tr>
-                                            <td>
-                                                @item.MABENHNHAN
-                                            </td>
-                                            <td>
-                                                @item.HOTEN
-                                            </td>
-                                            <td>
-                                                @item.NGAYSINH.ToString("yyyy/MM/dd")
-                                            </td>
-                                            <td>
-                                                @item.GIOITINH
-                                            </td>
-                                            <td class="text-primary">
-                                                @item.IDTAIKHOAN
-                                            </td>
-                                            <td class="text-primary">
-                                                <a href="#" class="fa fa-remove" style="margin-left:15px; margin-right:20px;"></a>
-                                                <a href="#" class="fa fa-edit"></a>
-                                            </td>
-                                        </tr>
+                                            <tr>
+                                                <td>
+                                                    @item.MABENHNHAN
+                                                </td>
+                                                <td>
+                                                    @item.HOTEN
+                                                </td>
+                                                <td>
+                                                    @item.NGAYSINH.ToString("yyyy/MM/dd")
+                                                </td>
+                                                <td>
+                                                    @item.GIOITINH
+                                                </td>
+                                                <td class="text-primary">
+                                                    @item.IDTAIKHOAN
+                                                </td>
+                                                <td class="text-primary">
+                                                    <a href="@Url.Action("XoaBenhNhan","Admin", new { @MaBN = @item.MABENHNHAN})" class="fa fa-remove" style="margin-left:15px; margin-right:20px;"></a>
+                                                    <a href="@Url.Action("SuaBenhNhan","Admin", new { @MaBN = @item.MABENHNHAN})" class="fa fa-edit"></a>
+                                                </td>
+                                            </tr>
                                         }
                                     </tbody>
                                 </table>
                             </div>
                         </div>
                     </div>
-                </div>             
+                </div>
             </div>
         </div>
         

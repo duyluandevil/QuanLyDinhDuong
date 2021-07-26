@@ -74,7 +74,7 @@ namespace QuanLyDinhDuong.Controllers
 
             cttd = new CTTD();
             cttd.MATHUCPHAM = "TP008";
-            cttd.MATHUCDON = td.MATHUCDON;
+            cttd.MATHUCDON = 7;
             cttd.ANHBIA = "null";
             cttd.CALO = 0;
             cttd.DAM = 0;

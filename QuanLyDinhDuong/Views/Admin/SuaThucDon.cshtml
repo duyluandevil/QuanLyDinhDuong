@@ -1,0 +1,94 @@
+﻿
+@{
+    ViewBag.Title = "SuaThucDon";
+    Layout = "~/Views/Shared/_Layout_Admin.cshtml";
+}
+
+<style>
+    .b {
+        width: 70%;
+        float: right;
+        margin-right: 100px;
+    }
+
+    .TenThucDon {
+        width: 300px;
+    }
+
+    .Chonfile {
+        background-color: indigo;
+        color: white;
+        padding: 0.5rem;
+        font-family: sans-serif;
+        border-radius: 0.3rem;
+        cursor: pointer;
+        margin-top: 1rem;
+    }
+</style>
+@*@using (Html.BeginForm("SuaThucPham","Admin", FormMethod.Post, new { @enctype = "multipart/form-data"}))*@
+@using (Html.BeginForm())
+{
+    @*@Html.AntiForgeryToken()*@
+
+    @Html.ValidationSummary()
+    <div class="content">
+        <div class="container-fluid">
+            <div class="b">
+                <div class="row">
+                    <div class="row">
+                        <a href="@Url.Action("ThucDon","Admin")">Trở về danh sách thực phẩm</a>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="card">
+                            <div class="card-header card-header-primary">
+                                <h4 class="card-title ">Sửa thực đơn</h4>
+                                <p class="card-category"></p>
+                            </div>
+                            <div class="card-body">
+
+
+                                <div class="row">
+                                    <div class="col-xl-3">
+                                        <div class="form-group">
+                                            <label class="bmd-label-floating">Mã thực đơn</label>
+                                            <input type="text" name="MATHUCDON" class="form-control" value="@Model.MATHUCDON" disabled>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-xl-9">
+                                        <div class="form-group">
+                                            <label class="bmd-label-floating">Buổi</label>
+                                            <input type="text" name="BUOI" class="form-control" value="@Model.BUOI">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xl-6">
+                                        <div class="form-group">
+                                            <label class="bmd-label-floating">Ngày lập</label>
+                                            <input type="date" name="NGAYLAP" class="form-control" value="@Model.NGAYLAP">
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-6">
+                                        <div class="form-group">
+                                            <label class="bmd-label-floating">Mã bệnh nhân</label>
+                                            <select class="form-control" name="ChonMaBenhNhan">
+                                                @foreach (var item in ViewBag.BENHNHANs)
+                                                {
+                                                    <option value="@item.MABENHNHAN">@item.MABENHNHAN</option>
+                                                }
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <button type="submit" class="btn btn-primary pull-right">Cập nhật thông tin</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+

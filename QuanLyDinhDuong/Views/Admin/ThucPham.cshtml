@@ -51,8 +51,8 @@
                                                     @item.TENLOAITHUCPHAM
                                                 </td>
                                                 <td class="text-primary">
-                                                    <a href="#" class="fa fa-remove" style="margin-left:15px; margin-right:20px;"></a>
-                                                    <a href="#" class="fa fa-edit"></a>
+                                                    <a href="@Url.Action("XoaLoaiThucPham", "Admin", new { @MaLTP = @item.MALOAITHUCPHAM})" class="fa fa-remove" style="margin-left:15px; margin-right:20px;"></a>
+                                                    <a href="@Url.Action("SuaLoaiThucPham", "Admin", new { @MaLTP = @item.MALOAITHUCPHAM})" class="fa fa-edit"></a>
                                                 </td>
                                             </tr>
                                         }
