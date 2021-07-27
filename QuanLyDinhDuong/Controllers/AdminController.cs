@@ -31,6 +31,91 @@ namespace QuanLyDinhDuong.Controllers
             return View(tk);
         }
 
+        [HttpGet]
+        public ActionResult ThemTaiKhoan(string IDTK)
+        {
+            var TpList = (from t in data.CHUCVUs select t).ToList();
+            ViewBag.CHUCVUs = TpList;
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult ThemTaiKhoan(FormCollection f, TAIKHOAN tp)
+        {
+            var TpList = (from t in data.CHUCVUs select t).ToList();
+            ViewBag.CHUCVUs = TpList;
+
+            var idtaikhoan = f["IDTAIKHOAN"];
+            var hoten = f["HOTEN"];
+            var gioitinh = f["GIOITINH"];
+            var ngaysinh = String.Format("{0:MM/dd/yyyy}", f["NGAYSINH"]);
+            var matkhau = f["MATKHAU"];
+            var sdt = f["SDT"];
+            var email = f["EMAIL"];
+            var MACHUCVU = f["ChonChucVu"];
+
+            tp.IDTAIKHOAN = idtaikhoan;
+            tp.HOTEN = hoten;
+            tp.GIOITINH = gioitinh;
+            tp.NGAYSINH = DateTime.Parse(ngaysinh);
+            tp.MATKHAU = matkhau;
+            tp.SDT = sdt;
+            tp.EMAIL = email;
+            tp.MACHUCVU = int.Parse(MACHUCVU);
+
+            data.TAIKHOANs.InsertOnSubmit(tp);
+            data.SubmitChanges();
+
+            return RedirectToAction("TaiKhoan", "Admin");
+        }
+        //Chỉnh sửa tai khoan
+        public static string Matk;
+
+        [HttpGet]
+        public ActionResult SuaTaiKhoan(string MaTK)
+        {
+            Matk = MaTK;
+            var tk = (from tks in data.TAIKHOANs where tks.IDTAIKHOAN == MaTK select tks).SingleOrDefault();
+
+            var TpList = (from t in data.CHUCVUs select t).ToList();
+            ViewBag.CHUCVUs = TpList;
+            return View(tk);
+        }
+        [HttpPost]
+        public ActionResult SuaTaiKhoan(FormCollection f, TAIKHOAN tk)
+        {
+            var hoten = f["HOTEN"];
+            var gioitinh = f["GIOITINH"];
+            var ngaysinh = String.Format("{0:MM/dd/yyyy}", f["NGAYSINH"]);
+            var matkhau = f["MATKHAU"];
+            var sdt = f["SDT"];
+            var email = f["EMAIL"];
+            var MACHUCVU = f["ChonChucVu"];
+
+            tk = (from tks in data.TAIKHOANs where tks.IDTAIKHOAN == Matk select tks).Single();
+
+            tk.HOTEN = hoten;
+            tk.GIOITINH = gioitinh;
+            tk.NGAYSINH = DateTime.Parse(ngaysinh);
+            tk.MATKHAU = matkhau;
+            tk.SDT = sdt;
+            tk.EMAIL = email;
+            tk.MACHUCVU = int.Parse(MACHUCVU);
+
+            data.SubmitChanges();
+
+            return RedirectToAction("TaiKhoan", "Admin");
+        }
+        //Xóa tài khoản
+        public ActionResult XoaTaiKhoan(string MaTK)
+        {
+            var tk = (from tks in data.TAIKHOANs where tks.IDTAIKHOAN == MaTK select tks).Single();
+
+            data.TAIKHOANs.DeleteOnSubmit(tk);
+            data.SubmitChanges();
+
+            return RedirectToAction("TaiKhoan", "Admin");
+        }
         public ActionResult BenhNhan()
         {
             var bn = (from bns in data.BENHNHANs select bns).ToList();
@@ -320,12 +405,15 @@ namespace QuanLyDinhDuong.Controllers
             return RedirectToAction("ThucPham", "Admin");
         }
 
+        [HttpGet]
         public ActionResult ThucDon()
         {
             var td = (from tds in data.THUCDONs select tds).ToList();
+
             return View(td);
             
         }
+        
 
         public static int Matd;
         //Thêm thực đơn
@@ -419,6 +507,47 @@ namespace QuanLyDinhDuong.Controllers
             ViewBag.CTTDs = CttdList;
 
             return View(td);
+        }
+
+        public ActionResult ThemChiTietThucDon()
+        {
+
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult ThemChiTietThucDon(FormCollection f, CTTD cttd)
+        {
+            var MATHUCDON = f["MATHUCDON"];
+            var MATHUCPHAM = f["MATHUCPHAM"];
+
+            var TP = (from tps in data.THUCPHAMs where tps.MATHUCPHAM == MATHUCPHAM select tps).Single();
+
+            var TENTHUCPHAM = TP.TENTHUCPHAM;
+
+            var ANHBIA = TP.ANHBIA;
+            var DAM = TP.DAM;
+            var BEO = TP.BEO;
+            var XO = TP.XO;
+            var CALO = TP.CALO;
+            var SOLUONG = f["SOLUONG"];
+            var TONGCALO = int.Parse(SOLUONG.ToString()) * CALO;
+
+            cttd.MATHUCDON = int.Parse(MATHUCDON.ToString());
+            cttd.MATHUCPHAM = MATHUCPHAM;
+            cttd.TENTHUCPHAM = TENTHUCPHAM;
+            cttd.ANHBIA = ANHBIA;
+            cttd.DAM = float.Parse(DAM.ToString());
+            cttd.BEO = float.Parse(BEO.ToString());
+            cttd.XO = float.Parse(XO.ToString());
+            cttd.CALO = float.Parse(CALO.ToString());
+            cttd.SOLUONG = float.Parse(SOLUONG.ToString());
+            cttd.TONGCALO = float.Parse(TONGCALO.ToString());
+
+            data.CTTDs.InsertOnSubmit(cttd);
+            data.SubmitChanges();
+
+            return RedirectToAction("ThucDon", "Admin");
         }
     }
 }

@@ -145,6 +145,7 @@
   <ItemGroup>
     <Content Include="Content\Admin\bootstrap.css" />
     <Content Include="Content\Admin\font.css" />
+    <Content Include="Content\Admin\js\angular.js" />
     <Content Include="Content\Admin\js\core\bootstrap-material-design.min.js" />
     <Content Include="Content\Admin\js\core\jquery.min.js" />
     <Content Include="Content\Admin\js\core\popper.min.js" />
@@ -280,7 +281,6 @@
     <Content Include="Views\NguoiDung\TrangCaNhan.cshtml" />
     <Content Include="Views\Home\KetQuaTinhToanChiSo.cshtml" />
     <Content Include="Views\ThucPham\TPTheoLoai.cshtml" />
-    <Content Include="Views\ThucPham\ChiTietThucPham.cshtml" />
     <Content Include="Views\ThucPham\DanhSachThucDon.cshtml" />
     <Content Include="Views\ThucDon\ThucDon.cshtml" />
     <Content Include="Views\ThucDon\ChiTietThucDon.cshtml" />
@@ -301,6 +301,10 @@
     <Content Include="Views\Admin\ThemThucDon.cshtml" />
     <Content Include="Views\Admin\SuaThucDon.cshtml" />
     <Content Include="Views\Admin\ChiTietThucDon.cshtml" />
+    <Content Include="Views\Admin\ThemChiTietThucDon.cshtml" />
+    <Content Include="Views\Admin\SuaTaiKhoan.cshtml" />
+    <Content Include="Views\Admin\ThemTaiKhoan.cshtml" />
+    <Content Include="Views\ThucPham\ChiTietThucPham.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

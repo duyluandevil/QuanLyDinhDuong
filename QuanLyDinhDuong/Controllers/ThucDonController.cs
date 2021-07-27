@@ -15,7 +15,14 @@ namespace QuanLyDinhDuong.Controllers
         // GET: ThucDon
         public ActionResult ThucDon()
         {
-            var listThucDon = (from td in data.THUCDONs where td.MABENHNHAN == 3 select td).ToList();
+            if (Session["IDTAIKHOAN"] == null)
+            {
+                return RedirectToAction("Dangnhap", "NguoiDung");
+            }
+
+            BENHNHAN bn = (BENHNHAN)Session["MABENHNHAN"];
+
+            var listThucDon = (from td in data.THUCDONs where td.MABENHNHAN == bn.MABENHNHAN select td).ToList();
             return View(listThucDon);
         }
 
@@ -71,6 +78,7 @@ namespace QuanLyDinhDuong.Controllers
         [HttpPost]
         public ActionResult ThemThucDon(FormCollection f, THUCDON td)
         {
+            BENHNHAN bn = (BENHNHAN)Session["MABENHNHAN"];
             var buoi = f["buoi"];
             var ngaylap = String.Format("{0:MM/dd/yyyy}", f["ngaylap"]);
 
@@ -86,7 +94,7 @@ namespace QuanLyDinhDuong.Controllers
                 //td = (from tdv in data.THUCDONs where td.MABENHNHAN == "BN001" select tdv).Single();
                 td.BUOI = buoi;
                 td.NGAYLAP = DateTime.Parse(ngaylap);
-                td.MABENHNHAN = 1;
+                td.MABENHNHAN = bn.MABENHNHAN;
                 data.THUCDONs.InsertOnSubmit(td);
                 data.SubmitChanges();
                 return RedirectToAction("ThucDon","ThucDon");

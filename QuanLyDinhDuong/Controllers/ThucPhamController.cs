@@ -49,6 +49,7 @@ namespace QuanLyDinhDuong.Controllers
         }
 
         public static string MaThucPham;
+        
         public ActionResult ChiTietThucPham(string id)
         {
             MaThucPham = id;
@@ -64,32 +65,86 @@ namespace QuanLyDinhDuong.Controllers
         [HttpPost]
         public ActionResult ChiTietThucPham(FormCollection f, CTTD cttd)
         {
-
+            cttd = new CTTD();
             var MaThucDon = f["ThucDon"];
-            var td = (from tds in data.THUCDONs where tds.MATHUCDON.ToString() == MaThucDon select tds).Single();
+            var SoLuong = f["SOLUONG"];
+            var mtp = MaThucPham;
 
-            //cttd = (from tds in data.CTTDs where tds.MATHUCDON.ToString() == MaThucDon select tds).Single();
+            cttd.MATHUCDON = int.Parse(MaThucDon.ToString());
+            cttd.MATHUCPHAM = mtp;
 
-            //var SoLuong = f["quantity"];
+            var cttdDB = (from cttds in data.CTTDs where cttds.MATHUCPHAM == MaThucPham && cttds.MATHUCDON == int.Parse(MaThucDon.ToString()) select cttds).SingleOrDefault();
             
+            if (cttdDB != null)
+            {
+                if (String.IsNullOrEmpty(SoLuong))
+                {
+                    cttdDB.SOLUONG = cttdDB.SOLUONG + 1;
+                    data.SubmitChanges();
+                }
+                else
+                {
+                    cttdDB.SOLUONG = cttdDB.SOLUONG + int.Parse(SoLuong.ToString());
+                    data.SubmitChanges();
+                }
 
-            cttd.MATHUCPHAM = "TP008";
-            cttd.MATHUCDON = 7;
-            cttd.ANHBIA = "null";
-            cttd.CALO = 0;
-            cttd.DAM = 0;
-            cttd.BEO = 0;
-            cttd.XO = 0;
-            cttd.SOLUONG = 0;
-            cttd.TONGCALO = 0;
-            cttd.TENTHUCPHAM = "Trứng";
+                return RedirectToAction("ThucPham", "ThucPham");
+            }
+            else
+            {
+                if(String.IsNullOrEmpty(SoLuong))
+                {
+                    var tp = (from tps in data.THUCPHAMs where tps.MATHUCPHAM == mtp select tps).Single();
 
+                    cttd.TENTHUCPHAM = tp.TENTHUCPHAM;
+                    cttd.ANHBIA = tp.ANHBIA;
+                    cttd.SOLUONG = 1;
+                    cttd.DAM = tp.DAM;
+                    cttd.BEO = tp.BEO;
+                    cttd.XO = tp.XO;
+                    cttd.CALO = tp.CALO;
+                    cttd.TONGCALO = 1 * tp.CALO;
 
+                    data.CTTDs.InsertOnSubmit(cttd);
+                    data.SubmitChanges();
+
+                    return RedirectToAction("ThucPham", "ThucPham");
+                }
+                else
+                {
+                    var tp = (from tps in data.THUCPHAMs where tps.MATHUCPHAM == mtp select tps).Single();
+
+                    cttd.TENTHUCPHAM = tp.TENTHUCPHAM;
+                    cttd.ANHBIA = tp.ANHBIA;
+                    cttd.SOLUONG = int.Parse(SoLuong);
+                    cttd.DAM = tp.DAM;
+                    cttd.BEO = tp.BEO;
+                    cttd.XO = tp.XO;
+                    cttd.CALO = tp.CALO;
+                    cttd.TONGCALO = float.Parse(SoLuong.ToString()) * tp.CALO;
+
+                    data.CTTDs.InsertOnSubmit(cttd);
+                    data.SubmitChanges();
+
+                    return RedirectToAction("ThucPham", "ThucPham");
+                }
+            }
+
+            //var tp = (from tps in data.THUCPHAMs where tps.MATHUCPHAM == mtp select tps).Single();
+
+            //cttd.TENTHUCPHAM = tp.TENTHUCPHAM;
+            //cttd.ANHBIA = tp.ANHBIA;
+            //cttd.SOLUONG = float.Parse(SoLuong.ToString());
+            //cttd.DAM = tp.DAM;
+            //cttd.BEO = tp.BEO;
+            //cttd.XO = tp.XO;
+            //cttd.CALO = tp.CALO;
+            //cttd.TONGCALO = float.Parse(SoLuong.ToString()) * tp.CALO;
             
-            data.CTTDs.InsertOnSubmit(cttd);
-            data.SubmitChanges();
+            //data.CTTDs.InsertOnSubmit(cttd);
+            //data.SubmitChanges();
 
-            return RedirectToAction("DanhSachThucDon", "ThucDon");
+            //return RedirectToAction("ThucPham", "ThucPham");
         }
 
 

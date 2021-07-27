@@ -37,7 +37,7 @@ namespace QuanLyDinhDuong.Controllers
             //taikhoan = laytaikhoan();
             BENHNHAN bn = (BENHNHAN)Session["MABENHNHAN"];
             //BENHNHAN bn = (from b in data.BENHNHANs where b.IDTAIKHOAN == "duyluan0104" select b).Single();
-            BENHNHAN bn = (BENHNHAN)Session["MABENHNHAN"];
+            
 
 
             var NamSinhBenhNhan = bn.NGAYSINH.Value.Year;

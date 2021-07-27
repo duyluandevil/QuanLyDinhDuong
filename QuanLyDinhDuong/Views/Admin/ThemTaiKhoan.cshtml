@@ -1,0 +1,106 @@
+﻿
+@{
+    ViewBag.Title = "ThemTaiKhoan";
+    Layout = "~/Views/Shared/_Layout_Admin.cshtml";
+}
+
+<style>
+    .b {
+        width: 70%;
+        float: right;
+        margin-right: 100px;
+    }
+</style>
+@*@using (Html.BeginForm("SuaThucPham","Admin", FormMethod.Post, new { @enctype = "multipart/form-data"}))*@
+@using (Html.BeginForm())
+{@*@Html.AntiForgeryToken()*@
+
+                @Html.ValidationSummary()
+                                <div class="content">
+                                    <div class="container-fluid">
+                                        <div class="b">
+                                            <div class="row">
+                                                <div class="row">
+                                                    <a href="@Url.Action("TaiKhoan","Admin")">Trở về danh sách tài khoản</a>
+                                                </div>
+                                                <div class="col-md-12">
+                                                    <div class="card">
+                                                        <div class="card-header card-header-primary">
+                                                            <h4 class="card-title ">Thêm tài khoản</h4>
+                                                            <p class="card-category"></p>
+                                                        </div>
+                                                        <div class="card-body">
+
+
+                                                            <div class="row">
+                                                                <div class="col-xl-3">
+                                                                    <div class="form-group">
+                                                                        <label class="bmd-label-floating">ID</label>
+                                                                        <input type="text" name="IDTAIKHOAN" class="form-control">
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="col-xl-3">
+                                                                    <div class="form-group">
+                                                                        <label class="bmd-label-floating">Họ và Tên</label>
+                                                                        <input type="text" name="HOTEN" class="form-control">
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="col-xl-3">
+                                                                    <div class="form-group">
+                                                                        <label class="bmd-label-floating">Giới tính</label>
+                                                                        <input type="text" name="GIOITINH" class="form-control">
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="col-xl-3">
+                                                                    <div class="form-group">
+                                                                        <label class="bmd-label-floating">Ngày sinh</label>
+                                                                        <input type="date" name="NGAYSINH" class="form-control">
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="row">
+                                                                <div class="col-xl-3">
+                                                                    <div class="form-group">
+                                                                        <label class="bmd-label-floating">Mật khẩu</label>
+                                                                        <input type="password" name="MATKHAU" class="form-control">
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="col-xl-3">
+                                                                    <div class="form-group">
+                                                                        <label class="bmd-label-floating">Số điện thoại</label>
+                                                                        <input type="text" name="SDT" class="form-control">
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="col-xl-6">
+                                                                    <div class="form-group">
+                                                                        <label class="bmd-label-floating">Email</label>
+                                                                        <input type="text" name="EMAIL" class="form-control">
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="row">
+                                                                <div class="col-xl-12">
+                                                                    <div class="form-group">
+                                                                        <label class="bmd-label-floating">Mã chức vụ</label>
+                                                                        <select class="form-control" name="ChonChucVu">
+                                                                            @foreach (var item in ViewBag.CHUCVUs)
+                                                                            {
+                                                            <option value="@item.MACHUCVU">@item.TENCHUCVU</option>}
+                                                                        </select>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <button type="submit" class="btn btn-primary pull-right">Thêm tài khoản mới</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>}

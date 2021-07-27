@@ -150,19 +150,19 @@
                                                 @item.SOLUONG
                                             </td>
                                             <td>
-                                                @item.DAM
+                                                @item.DAM.ToString("0.00")
                                             </td>
                                             <td>
-                                                @item.BEO
+                                                @item.BEO.ToString("0.00")
                                             </td>
                                             <td>
-                                                @item.XO
+                                                @item.XO.ToString("0.00")
                                             </td>
                                             <td>
                                                 @item.CALO
                                             </td>
                                             <td>
-                                                @item.TONGCALO
+                                                @item.TONGCALO.ToString("0.00")
                                             </td>
                                             <td class="text-primary">
                                                 <a href="@Url.Action("XoaThucDon","Admin", new { @MaTD = item.MATHUCDON})" class="fa fa-remove" style=" margin-right:20px;"></a>
