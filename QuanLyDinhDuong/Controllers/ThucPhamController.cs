@@ -60,14 +60,15 @@ namespace QuanLyDinhDuong.Controllers
         
         public ActionResult ChiTietThucPham(string id)
         {
-            TAIKHOAN tk = (TAIKHOAN)Session["IDTAIKHOAN"];
-            BENHNHAN bn1 = (BENHNHAN)Session["MABENHNHAN"];
+            if (Session["MABENHNHAN"] == null)
+            {
+                return RedirectToAction("Dangnhap", "NguoiDung");
+            }
+            BENHNHAN bn = (BENHNHAN)Session["MABENHNHAN"];
 
             MaThucPham = id;
             var tp = (from t in data.THUCPHAMs where t.MATHUCPHAM == id select t).Single();
-
-            var bn = bn1;
-            var TDList = (from t in data.THUCDONs where t.MABENHNHAN == bn1.MABENHNHAN select t).ToList();
+            var TDList = (from t in data.THUCDONs where t.MABENHNHAN == bn.MABENHNHAN select t).ToList();
             ViewBag.THUCDONs = TDList;
 
             return View(tp);
@@ -158,36 +159,11 @@ namespace QuanLyDinhDuong.Controllers
             //return RedirectToAction("ThucPham", "ThucPham");
         }
 
-
-        private BENHNHAN getBenhNhan(string idTaiKhoan)
-        {
-            var benhnhan = (from bn in data.BENHNHANs where idTaiKhoan == bn.IDTAIKHOAN select bn).Single();
-            return benhnhan;
-        }
         public ActionResult DanhSachThucDon()
         {
-            var bn = getBenhNhan("duyluan0104");
+            BENHNHAN bn = (BENHNHAN)Session["MABENHNHAN"];
             var buoithucdon = (from t in data.THUCDONs where t.MABENHNHAN == bn.MABENHNHAN  select t).ToList();
             return PartialView(buoithucdon);
         }
-
-        public ActionResult ThemThucPhamVaoThucDon(CTTD cttd)
-        {
-            //var MaThucDon = f["ThucDon"];
-            //var td = (from tds in data.THUCDONs where tds.MATHUCDON.ToString() == MaThucDon select tds.BUOI).Single();
-
-            //var SoLuong = f["quantity"];
-
-            cttd.MATHUCPHAM = "TP009";
-            cttd.TENTHUCPHAM = "Trứng thối";
-            cttd.MATHUCDON = 1;
-
-
-            data.CTTDs.InsertOnSubmit(cttd);
-            data.SubmitChanges();
-
-            return RedirectToAction("DanhSachThucDon", "ThucDon");
-        }
-
     }
 }

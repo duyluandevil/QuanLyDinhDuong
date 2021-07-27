@@ -1,4 +1,4 @@
-﻿
+﻿@*@model QuanLyDinhDuong.Models.THUCPHAM*@
 
 @{
     ViewBag.Title = "SuaThucPham";
@@ -27,7 +27,7 @@
     }
 </style>
 @*@using (Html.BeginForm("SuaThucPham","Admin", FormMethod.Post, new { @enctype = "multipart/form-data"}))*@
-@using (Html.BeginForm())
+@using (Html.BeginForm("SuaThucPham", "Admin", FormMethod.Post, new { @enctype = "multipart/form-data" }))
 {
     @*@Html.AntiForgeryToken()*@
 
@@ -64,6 +64,18 @@
                                     </div>
                                 </div>
                                 <div class="row">
+                                    <div class="col-xl-12">
+                                        <div class="form-group">
+                                            <div>
+                                                <label for="myfile">Ảnh bìa:</label>
+                                                <input type="file" id="myfile" name="fileupload" @*value="@Model.ANHBIA"*@>
+                                                <img src="@Url.Content("~"+Model.ANHBIA)" width="120px" /> (Ảnh hiện tại)
+                                                @ViewBag.Thongbao
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
                                     <div class="col-xl-3">
                                         <div class="form-group">
                                             <label class="bmd-label-floating">Đạm</label>
@@ -95,10 +107,10 @@
                                 <div class="row">
                                     <div class="col-xl-12">
                                         @*<div>
-                                            @Html.TextBox("file", "", new { type = "file" }) <br />
-                                            <input type="submit" value="Upload" />
-                                            @ViewBag.Message
-                                        </div>*@
+                                                @Html.TextBox("file", "", new { type = "file" }) <br />
+                                                <input type="submit" value="Upload" />
+                                                @ViewBag.Message
+                                            </div>*@
                                     </div>
                                 </div>
 

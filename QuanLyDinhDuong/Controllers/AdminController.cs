@@ -381,7 +381,8 @@ namespace QuanLyDinhDuong.Controllers
         }
 
         [HttpPost]
-        public ActionResult ThemThucPham(FormCollection f, THUCPHAM tp)
+        [ValidateInput(false)]
+        public ActionResult ThemThucPham(FormCollection f, THUCPHAM tp, HttpPostedFileBase fileupload)
         {
             var TpList = (from t in data.LOAITHUCPHAMs select t).ToList();
             ViewBag.LOAITHUCPHAMs = TpList;
@@ -394,18 +395,44 @@ namespace QuanLyDinhDuong.Controllers
             var CALO = f["CALO"];
             var MALOAITHUCPHAM = f["ChonMaLoai"];
 
-            tp.MATHUCPHAM = mathucpham;
-            tp.TENTHUCPHAM = TENTHUCPHAM;
-            tp.DAM = float.Parse(DAM);
-            tp.BEO = float.Parse(BEO);
-            tp.XO = float.Parse(XO);
-            tp.CALO = float.Parse(CALO);
-            tp.MALOAITHUCPHAM = int.Parse(MALOAITHUCPHAM);
-
-            data.THUCPHAMs.InsertOnSubmit(tp);
-            data.SubmitChanges();
-
-            return RedirectToAction("ThucPham", "Admin");
+            if (fileupload == null)
+            {
+                ViewBag.Thongbao = "Vui lòng chọn lại đường dẫn";
+                return View();
+            }
+            //Thêm vào CSDL
+            else
+            {
+                if (ModelState.IsValid)
+                {
+                    //Lưu tên file, lưu ý bổ sung thư viện using System.IO;
+                    var fileName = Path.GetFileName(fileupload.FileName);
+                    //Lưu đường dẫn của file
+                    var path = Path.Combine(Server.MapPath("~/Content/img"), fileName);
+                    //Kiểm tra hình ảnh tồn tại chưa?
+                    
+                    if (System.IO.File.Exists(path))
+                        ViewBag.Thongbao = "Hình ảnh đã tồn tại";
+                    else
+                    {
+                        //Lưu hình ảnh vào đường dẫn 
+                        fileupload.SaveAs(path);
+                    }
+                    tp.ANHBIA = "/Content/img/" + fileName;
+                    tp.MATHUCPHAM = mathucpham;
+                    tp.TENTHUCPHAM = TENTHUCPHAM;
+                    tp.DAM = float.Parse(DAM);
+                    tp.BEO = float.Parse(BEO);
+                    tp.XO = float.Parse(XO);
+                    tp.CALO = float.Parse(CALO);
+                    tp.MALOAITHUCPHAM = int.Parse(MALOAITHUCPHAM);
+                    //Lưu vào CSDL
+                    data.THUCPHAMs.InsertOnSubmit(tp);
+                    data.SubmitChanges();
+                }
+                return RedirectToAction("ThucPham","Admin");
+            }
+            
         }
         //Xóa thực phẩm 
 
@@ -435,7 +462,8 @@ namespace QuanLyDinhDuong.Controllers
         }
 
         [HttpPost]
-        public ActionResult SuaThucPham(FormCollection f, THUCPHAM tp)
+        [ValidateInput(false)]
+        public ActionResult SuaThucPham(FormCollection f, THUCPHAM tp, HttpPostedFileBase fileupload)
         {
             //var mathucpham = f["MATHUCPHAM"];
             var TENTHUCPHAM = f["TENTHUCPHAM"];
@@ -447,16 +475,50 @@ namespace QuanLyDinhDuong.Controllers
 
             tp = (from tps in data.THUCPHAMs where tps.MATHUCPHAM == Matp select tps).Single();
 
-            tp.TENTHUCPHAM = TENTHUCPHAM;
-            tp.DAM = float.Parse(DAM);
-            tp.BEO = float.Parse(BEO);
-            tp.XO = float.Parse(BEO);
-            tp.CALO = float.Parse(CALO);
-            tp.MALOAITHUCPHAM = int.Parse(MALOAITHUCPHAM.ToString());
+            if (fileupload == null)
+            {
+                tp.TENTHUCPHAM = TENTHUCPHAM;
+                tp.DAM = float.Parse(DAM);
+                tp.BEO = float.Parse(BEO);
+                tp.XO = float.Parse(BEO);
+                tp.CALO = float.Parse(CALO);
+                tp.MALOAITHUCPHAM = int.Parse(MALOAITHUCPHAM.ToString());
+                data.SubmitChanges();
+                return RedirectToAction("ThucPham", "Admin");
+                ViewBag.Thongbao = "Vui lòng chọn lại đường dẫn";
+                return View();
+            }
+            //Thêm vào CSDL
+            else
+            {
+                if (ModelState.IsValid)
+                {
+                    //Lưu tên file, lưu ý bổ sung thư viện using System.IO;
+                    var fileName = Path.GetFileName(fileupload.FileName);
+                    //Lưu đường dẫn của file
+                    var path = Path.Combine(Server.MapPath("~/Content/img"), fileName);
+                    //Kiểm tra hình ảnh tồn tại chưa?
 
-            data.SubmitChanges();
+                    if (System.IO.File.Exists(path))
+                        ViewBag.Thongbao = "Hình ảnh đã tồn tại";
+                    else
+                    {
+                        //Lưu hình ảnh vào đường dẫn 
+                        fileupload.SaveAs(path);
+                    }
+                    tp.ANHBIA = "/Content/img/" + fileName;
 
-            return RedirectToAction("ThucPham", "Admin");
+                    tp.TENTHUCPHAM = TENTHUCPHAM;
+                    tp.DAM = float.Parse(DAM);
+                    tp.BEO = float.Parse(BEO);
+                    tp.XO = float.Parse(XO);
+                    tp.CALO = float.Parse(CALO);
+                    tp.MALOAITHUCPHAM = int.Parse(MALOAITHUCPHAM);
+                    //Lưu vào CSDL
+                    data.SubmitChanges();
+                }
+                return RedirectToAction("ThucPham", "Admin");
+            }            
         }
 
         [HttpGet]

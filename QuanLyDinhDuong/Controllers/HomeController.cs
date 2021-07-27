@@ -67,15 +67,13 @@ namespace QuanLyDinhDuong.Controllers
         public ActionResult TinhToanChiSo(FormCollection collection,BENHNHAN bn)
         {
 
-            bn = (BENHNHAN) Session["MABENHNHAN"];
-            //bn = (from b in data.BENHNHANs where b.IDTAIKHOAN == "duyluan0104" select b).Single();
+            BENHNHAN bn1 = (BENHNHAN) Session["MABENHNHAN"];
+            bn = (from b in data.BENHNHANs where b.IDTAIKHOAN == bn1.IDTAIKHOAN select b).Single();
 
             var ChieuCao = collection["chieucao"];
             var CanNang = collection["cannang"];
             var mucdovandong = collection["mucvandong"];
             var gioitinh = collection["gioitinh"];
-
-           
 
             float cc = float.Parse(ChieuCao) /100;
             float cn = float.Parse(CanNang);
@@ -143,8 +141,8 @@ namespace QuanLyDinhDuong.Controllers
 
         public ActionResult KetQuaTinhToanChiSo()
         {
-            BENHNHAN bn = (BENHNHAN)Session["MABENHNHAN"];
-            //BENHNHAN bn = (from b in data.BENHNHANs where b.IDTAIKHOAN == "duyluan0104" select b).Single();
+            BENHNHAN bn1 = (BENHNHAN)Session["MABENHNHAN"];
+            BENHNHAN bn = (from b in data.BENHNHANs where b.IDTAIKHOAN == bn1.IDTAIKHOAN select b).Single();
             if (BMI < 16)
                 ViewData["ThongTinCoThe"] = "Rất Ốm";
 
