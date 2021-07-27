@@ -36,7 +36,7 @@ namespace QuanLyDinhDuong.Controllers
 
             return View(thucdon);
         }
-
+       
 
         public ActionResult XoaThucpham(string MaThucPham)
         {
@@ -70,10 +70,8 @@ namespace QuanLyDinhDuong.Controllers
         public ActionResult ThemThucDon()
         {
             //var thucdon = (from td in data.CTTDs where td.MATHUCDON == maTD select td).ToList();
-
             return View();
         }
-
 
         [HttpPost]
         public ActionResult ThemThucDon(FormCollection f, THUCDON td)
@@ -82,13 +80,10 @@ namespace QuanLyDinhDuong.Controllers
             var buoi = f["buoi"];
             var ngaylap = String.Format("{0:MM/dd/yyyy}", f["ngaylap"]);
 
-
             if (String.IsNullOrEmpty(buoi))
             {
                 ViewData["Loi1"] = "Bạn chưa nhập buổi của thực đơn";
             }
-
-
             else
             {
                 //td = (from tdv in data.THUCDONs where td.MABENHNHAN == "BN001" select tdv).Single();
@@ -101,6 +96,5 @@ namespace QuanLyDinhDuong.Controllers
             }
             return this.ThemThucDon();
         }
-
     }
 }

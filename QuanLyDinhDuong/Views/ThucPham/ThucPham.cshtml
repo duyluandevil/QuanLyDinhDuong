@@ -10,6 +10,10 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+@{ 
+    BENHNHAN bn = (BENHNHAN)Session["MABENHNHAN"];
+}
+
 <style>
     #imgBackground {
         background-image: url('../../images/foodbanner.jpeg');
@@ -98,15 +102,16 @@
 
 
     <script>
-
- 
-        if (@ViewBag.ThongBao == null)
-            //disable the submit button
-            
-
-
-
-
+        //var x = document.getElementById("XemThem");
+        //x.classList.remove("btn");
+        //var btns = x.getElementsByClassName("btn");
+        //for (var i = 0; i < btns.length; i++) {
+        //    btns[i].classList.remove("btn");
+        //}
+        
+        /*x.innerHTML = "Xem thêm...";*/
+        @*if (@ViewBag.ThongBao == null)
+            //disable the submit button*@            
     </script>
 
     </div>
