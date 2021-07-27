@@ -26,6 +26,14 @@ namespace QuanLyDinhDuong.Controllers
 
             //var thucphammoi = layThucPham(10);
             var lstthucpham = (from ltp in data.THUCPHAMs select ltp).ToList();
+
+
+
+            if (Session["IDTAIKHOAN"] == null)
+                ViewBag.ThongBao = null;
+            else
+                ViewBag.ThongBao = "notnull";
+
             return View(lstthucpham.ToPagedList(pageNum, pageSize));
         }
 
@@ -52,11 +60,14 @@ namespace QuanLyDinhDuong.Controllers
         
         public ActionResult ChiTietThucPham(string id)
         {
+            TAIKHOAN tk = (TAIKHOAN)Session["IDTAIKHOAN"];
+            BENHNHAN bn1 = (BENHNHAN)Session["MABENHNHAN"];
+
             MaThucPham = id;
             var tp = (from t in data.THUCPHAMs where t.MATHUCPHAM == id select t).Single();
 
-            var bn = getBenhNhan("duyluan0104");
-            var TDList = (from t in data.THUCDONs where t.MABENHNHAN == bn.MABENHNHAN select t).ToList();
+            var bn = bn1;
+            var TDList = (from t in data.THUCDONs where t.MABENHNHAN == bn1.MABENHNHAN select t).ToList();
             ViewBag.THUCDONs = TDList;
 
             return View(tp);

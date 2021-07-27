@@ -8,7 +8,7 @@
 @{
     ViewBag.Title = "ThucPham";
     Layout = "~/Views/Shared/_Layout.cshtml";
-}   
+}
 
 <style>
     #imgBackground {
@@ -29,27 +29,29 @@
         box-shadow: 0px 0px 30px black;
     }
 </style>
-<div class="header-backup"></div>
+
+
+    <div class="header-backup"></div>
 <div id="imgBackground">
     <div class="background">
 
         @Html.Action("LoaiThucPham", "ThucPham")
 
         @*<div style="float:left; width:300px; "  >
-                    <div id="list-example" class="list-group">
-                        <div class="list-group-item list-group-item-action" href="#list-item-1">
-                            <svg class="menu__item-icon" id="Capa_1" enable-background="new 0 0 512 512" height="15" viewBox="0 0 512 512" width="15"> <g> <i class="fab fa-playstation"> </i> </g> </svg>
-                            <span class="text-2"> Loại thực phẩm</span>
-        {
-                    <div id="list-example" class="list-group">
-                        <a class="list-group-item list-group-item-action" href="#list-item-1">
-                            <svg class="menu__item-icon" id="Capa_1" enable-background="new 0 0 512 512" height="15" viewBox="0 0 512 512" width="15"> <g> <i class="fab fa-playstation"> </i> </g> </svg>
-                            <span class="text-2"></span>
-                        </a>
-                    </div>
-                }
-                    </div>
-                </div>*@
+                        <div id="list-example" class="list-group">
+                            <div class="list-group-item list-group-item-action" href="#list-item-1">
+                                <svg class="menu__item-icon" id="Capa_1" enable-background="new 0 0 512 512" height="15" viewBox="0 0 512 512" width="15"> <g> <i class="fab fa-playstation"> </i> </g> </svg>
+                                <span class="text-2"> Loại thực phẩm</span>
+            {
+                        <div id="list-example" class="list-group">
+                            <a class="list-group-item list-group-item-action" href="#list-item-1">
+                                <svg class="menu__item-icon" id="Capa_1" enable-background="new 0 0 512 512" height="15" viewBox="0 0 512 512" width="15"> <g> <i class="fab fa-playstation"> </i> </g> </svg>
+                                <span class="text-2"></span>
+                            </a>
+                        </div>
+                    }
+                        </div>
+                    </div>*@
 
         @foreach (var item in Model)
         {
@@ -76,7 +78,7 @@
                     </div>
                     <div class="panel-footer clearfix">
                         <div class="pull-right">
-                            <a href="@Url.Action("ChiTietThucPham", "ThucPham", new { id = @item.MATHUCPHAM })" class="btn btn-primary">Xem thêm...</a>
+                            <a id="XemThem" href="@Url.Action("ChiTietThucPham", "ThucPham", new { id = @item.MATHUCPHAM })" class="btn btn-primary">Xem thêm...</a>
                         </div>
                     </div>
                 </div>
@@ -93,159 +95,20 @@
         </style>
 
         @* Thêm vào thực đơn *@
-        <div class="login-popup">
-            <div class="box">
-                <div class="form">
-                    <div class="close">&times;</div>
-                    <div class="content">
-                        <div>
-                            <h3>THÊM VÀO THỰC ĐƠN</h3>
-                            <div style="margin-top:-20px;">
-                                @Html.Action("DanhSachThucDon", "ThucPham")
-                            </div>
-                            <form class="cart clearfix mb-50 d-flex" method="post">
-                                <div class="quantity">
-                                    <input style="width: 327px; height: 40px; margin-top: 5px; margin-bottom: 20px; border: 1px solid #dddddd;" type="number" class="qty-text" id="qty" step="1" min="1" max="12" name="quantity" value="1">
-                                </div>
-                                <button style="background-color:orangered; color:white; width: 327px; height: 40px;" type="submit" name="addtocart" value="5" style="width: auto;" class="btn cart-submit d-block">Thêm vào thực đơn</button>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
 
-        
 
-        <style>
+    <script>
+
+ 
+        if (@ViewBag.ThongBao == null)
+            //disable the submit button
             
-            .login-popup {
-                position: fixed;
-                left: 0;
-                top: 0;
-                width: 100%;
-                height: 100%;
-                z-index: 1099;
-                background-color: rgba(0,0,0,0.6);
-                visibility: hidden;
-                opacity: 0;
-                transition: all 1s ease;
-            }
 
-            .login-popup.show {
-                visibility: visible;
-                opacity: 1;
-            }
 
-            .login-popup .box {
-                background-color: #ffffff;
-                width: 390px;
-                height: 322px;
-                position: absolute;
-                left: 50%;
-                top: 50%;
-                transform: translate(-50%,-50%);
-                display: flex;
-                flex-wrap: wrap;
-                opacity: 0;
-                margin-left: 50px;
-                transition: all 1s ease;
-                border-radius: 15px;
-            }
 
-            .login-popup.show .box {
-                opacity: 1;
-                margin-left: 0;
-            }
 
-            .login-popup .box .img-area {
-                flex: 0 0 50%;
-                max-width: 50%;
-                position: relative;
-                overflow: hidden;
-                padding: 30px;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-            }
+    </script>
 
-                .login-popup .box .img-area h1 {
-                    font-size: 30px;
-                }
-
-                .login-popup .box .img-area .img {
-                    position: absolute;
-                    left: 0;
-                    top: 0;
-                    width: 100%;
-                    height: 91.6%;
-                    background-image: url('../../Content/images/corona.jpg');
-                    background-size: cover;
-                    background-position: center;
-                    animation: zoomInOut 7s linear infinite;
-                    z-index: -1;
-                    border-top-left-radius: 15px;
-                    border-bottom-left-radius: 15px;
-                }
-
-            .login-popup .box .form {
-                flex: 0 0 50%;
-                max-width: 50%;
-                padding: 40px 30px;
-            }
-
-                .login-popup .box .form .close {
-                    position: absolute;
-                    right: 10px;
-                    top: 0px;
-                    font-size: 30px;
-                    cursor: pointer;
-                }
-
-            .box .content h3 {
-                color: #333;
-                line-height: 1em;
-                font-weight: bold;
-                font-size: 24px;
-                text-align: center;
-            }
-
-            .box .content h2 {
-                font-size: 30px;
-                color: #ff4d54;
-                font-weight: bold;
-            }
-
-            .box .content p {
-                text-align: center;
-            }
-        </style>
-
-        <script>
-            const loginPopup = document.querySelector(".login-popup");
-            const close = document.querySelector(".close");
-
-            //window.addEventListener("load", function () {
-            //    showPopup();
-            //})
-
-            function showPopup() {
-                const timeLimit = 1 // seconds;
-                let i = 0;
-                const timer = setInterval(function () {
-                    i++;
-                    if (i == timeLimit) {
-                        clearInterval(timer);
-                        loginPopup.classList.add("show");
-                    }
-                    console.log(i)
-                }, 10);
-            }
-            close.addEventListener("click", function () {
-                loginPopup.classList.remove("show");
-            })
-        </script>
-        
     </div>
 </div>
 
