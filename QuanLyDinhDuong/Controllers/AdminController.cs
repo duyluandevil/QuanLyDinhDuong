@@ -13,19 +13,65 @@ namespace QuanLyDinhDuong.Controllers
     {
         dbQlDDDataContext data = new dbQlDDDataContext();
         // GET: Admin
+        public ActionResult DangNhapAdmin()
+        {
+            return View();
+        }
+        [HttpPost]
+        public ActionResult DangNhapAdmin(FormCollection collection)
+        {
+            ViewData["Loi1"] = "";
+            ViewData["Loi2"] = "";
+            //Đăng nhập
+            var tkdn = collection["TenDangNhap"];
+            var mkdn = collection["MatKhau"];
+            if (String.IsNullOrEmpty(tkdn))
+            {
+                ViewData["Loi1"] = "Bạn chưa nhập tài khoản";
+            }
+            else if (String.IsNullOrEmpty(mkdn))
+            {
+                ViewData["Loi2"] = "Bạn chưa nhập mật khẩu";
+            }
+            else
+            {
+                var taikh = (from tks in data.TAIKHOANs where tks.IDTAIKHOAN == tkdn && tks.MATKHAU == mkdn && tks.MACHUCVU == 0 select tks).SingleOrDefault();
+                if (taikh != null)
+                {
+                    var benhnhan = (from bn in data.BENHNHANs where bn.IDTAIKHOAN == tkdn select bn).SingleOrDefault();
+                    Session["IDTAIKHOAN"] = taikh;
+                    Session["MABENHNHAN"] = benhnhan;
+                    return RedirectToAction("Admin", "Admin");
+                }
+                else ViewData["Loi1"] = "Tên đăng nhập hoặc mật khẩu không đúng";
+            }
+            return View();
+        }
         public ActionResult Admin()
         {
-
+            if (Session["IDTAIKHOAN"] == null)
+            {
+                return RedirectToAction("DangNhapAdmin", "Admin");
+            }
             return View();
         }
         public ActionResult TrangCaNhan()
         {
-            var tk = (from tks in data.TAIKHOANs where tks.IDTAIKHOAN == "duyluan0104" select tks).Single();
+            if (Session["IDTAIKHOAN"] == null)
+            {
+                return RedirectToAction("DangNhapAdmin", "Admin");
+            }
+            TAIKHOAN taikhoan = (TAIKHOAN)Session["IDTAIKHOAN"]; 
+            var tk = (from tks in data.TAIKHOANs where tks.IDTAIKHOAN == taikhoan.IDTAIKHOAN select tks).Single();
             return View(tk);
         }
 
         public ActionResult TaiKhoan()
         {
+            if (Session["IDTAIKHOAN"] == null)
+            {
+                return RedirectToAction("DangNhapAdmin", "Admin");
+            }
             var tk = (from tks in data.TAIKHOANs select tks).ToList();
             
             return View(tk);
@@ -118,6 +164,10 @@ namespace QuanLyDinhDuong.Controllers
         }
         public ActionResult BenhNhan()
         {
+            if (Session["IDTAIKHOAN"] == null)
+            {
+                return RedirectToAction("DangNhapAdmin", "Admin");
+            }
             var bn = (from bns in data.BENHNHANs select bns).ToList();
             
             return View(bn);
@@ -231,6 +281,10 @@ namespace QuanLyDinhDuong.Controllers
 
         public ActionResult ThucPham()
         {
+            if (Session["IDTAIKHOAN"] == null)
+            {
+                return RedirectToAction("DangNhapAdmin", "Admin");
+            }
             var tP = (from tPs in data.THUCPHAMs select tPs).ToList();
 
             var TpList = (from t in data.LOAITHUCPHAMs select t).ToList();
@@ -408,6 +462,10 @@ namespace QuanLyDinhDuong.Controllers
         [HttpGet]
         public ActionResult ThucDon()
         {
+            if (Session["IDTAIKHOAN"] == null)
+            {
+                return RedirectToAction("DangNhapAdmin", "Admin");
+            }
             var td = (from tds in data.THUCDONs select tds).ToList();
 
             return View(td);

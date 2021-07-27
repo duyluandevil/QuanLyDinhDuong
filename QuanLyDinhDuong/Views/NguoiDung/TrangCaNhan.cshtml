@@ -1,17 +1,17 @@
 ﻿@using QuanLyDinhDuong.Models
 @{
     ViewBag.Title = "TrangCaNhan";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    Layout = "~/Views/Shared/_LayoutNguoiDung.cshtml";
 }
 
-@{ 
+@{
     BENHNHAN bn = (BENHNHAN)Session["MABENHNHAN"];
-    TAIKHOAN tk = (TAIKHOAN) Session["IDTAIKHOAN"];
+    TAIKHOAN tk = (TAIKHOAN)Session["IDTAIKHOAN"];
 }
 
-<script src="~/Content/bootstrap.min1.profile.js"></script>
+@*<script src="~/Content/bootstrap.min1.profile.js"></script>
 <script src="~/Content/bootstrap.min.profile.js"></script>
-<script src="~/Content/jquery.min.profile.js"></script>
+<script src="~/Content/jquery.min.profile.js"></script>*@
 
 <!--<div class="container emp-profile">
     <form method="post">
@@ -273,268 +273,327 @@
 
 
 
+<div class="header-backup"></div>
+
 <style>
-    /*body {
-        margin: 0;
-        color: #6a6f8c;
-        background: #c8c8c8;
-        font: 600 16px/18px 'Open Sans', sans-serif
-    }*/
-    .background {
-        background-image: url('../../Content/img/people_tinhtoanchiso.png');
-        /*background-image: url('../../Content/img/bg_login.png');*/
-        background-size: cover;
-        /*background: #76b852;*/ /* fallback for old browsers */
-        /*background: -webkit-linear-gradient(right, #76b852, #8DC26F);
-        background: -moz-linear-gradient(right, #76b852, #8DC26F);
-        background: -o-linear-gradient(right, #76b852, #8DC26F);
-        background: linear-gradient(to left, #76b852, #8DC26F);*/
-        /*font-family: Arial, sans-serif;*/
-        -webkit-font-smoothing: antialiased;
-        -moz-osx-font-smoothing: grayscale;
-        font: 600 16px/18px 'Open Sans', sans-serif
-    }
-
-    .login-box {
-        width: 100%;
-        height: 900px;
-        margin: auto;
-        max-width: 525px;
-        min-height: 670px;
-        position: relative;
-        /*background: url(https://images.unsplash.com/photo-1507208773393-40d9fc670acf?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1268&q=80) no-repeat center;*/
-        box-shadow: 0 12px 15px 0 rgba(0, 0, 0, .24), 0 17px 50px 0 rgba(0, 0, 0, .19);
-    }
-
-    .login-snip {
-        width: 100%;
-        height: 100%;
-        position: absolute;
-        padding: 90px 70px 50px 70px;
-        /*background: rgba(0, 77, 77, .9);*/
-    }
-
-        .login-snip .login,
-        .login-snip .sign-up-form {
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            position: absolute;
-            transform: rotateY(180deg);
-            backface-visibility: hidden;
-            transition: all .4s linear
-        }
-
-        .login-snip .sign-in,
-        .login-snip .sign-up,
-        .login-space .group .check {
-            display: none
-        }
-
-        .login-snip .tab,
-        .login-space .group .label,
-        .login-space .group .button {
-            text-transform: uppercase
-        }
-
-        .login-snip .tab {
-            font-size: 22px;
-            margin-right: 15px;
-            padding-bottom: 5px;
-            margin: 0 15px 10px 0;
-            display: inline-block;
-            border-bottom: 2px solid transparent
-        }
-
-        .login-snip .sign-in:checked + .tab,
-        .login-snip .sign-up:checked + .tab {
-            color: #fff;
-            border-color: #1161ee
-        }
-
-    .login-space {
-        min-height: 345px;
-        position: relative;
-        perspective: 1000px;
-        transform-style: preserve-3d
-    }
-
-        .login-space .group {
-            margin-bottom: 15px
-        }
-
-            .login-space .group .label,
-            .login-space .group .input,
-            .login-space .group .button {
-                width: 100%;
-                color: #fff;
-                display: block
-            }
-
-            .login-space .group .input,
-            .login-space .group .button {
-                border: none;
-                padding: 15px 20px;
-                border-radius: 25px;
-                background: rgba(255, 255, 255, .1)
-            }
-
-            .login-space .group input[data-type="password"] {
-                text-security: circle;
-                -webkit-text-security: circle
-            }
-
-            .login-space .group .label {
-                color: #aaa;
-                font-size: 12px
-            }
-
-            .login-space .group .button {
-                background: #1161ee
-            }
-
-            .login-space .group label .icon {
-                width: 15px;
-                height: 15px;
-                border-radius: 2px;
-                position: relative;
-                display: inline-block;
-                background: rgba(255, 255, 255, .1)
-            }
-
-                .login-space .group label .icon:before,
-                .login-space .group label .icon:after {
-                    content: '';
-                    width: 10px;
-                    height: 2px;
-                    background: #fff;
-                    position: absolute;
-                    transition: all .2s ease-in-out 0s
-                }
-
-                .login-space .group label .icon:before {
-                    left: 3px;
-                    width: 5px;
-                    bottom: 6px;
-                    transform: scale(0) rotate(0)
-                }
-
-                .login-space .group label .icon:after {
-                    top: 6px;
-                    right: 0;
-                    transform: scale(0) rotate(0)
-                }
-
-            .login-space .group .check:checked + label {
-                color: #fff
-            }
-
-                .login-space .group .check:checked + label .icon {
-                    background: #1161ee
-                }
-
-                    .login-space .group .check:checked + label .icon:before {
-                        transform: scale(1) rotate(45deg)
-                    }
-
-                    .login-space .group .check:checked + label .icon:after {
-                        transform: scale(1) rotate(-45deg)
-                    }
-
-    .login-snip .sign-in:checked + .tab + .sign-up + .tab + .login-space .login {
-        transform: rotate(0)
-    }
-
-    .login-snip .sign-up:checked + .tab + .login-space .sign-up-form {
-        transform: rotate(0)
-    }
-
-    *,
-    :after,
-    :before {
-        box-sizing: border-box
-    }
-
-    .clearfix:after,
-    .clearfix:before {
-        content: '';
-        display: table
-    }
-
-    .clearfix:after {
-        clear: both;
-        display: block
-    }
-
-    a {
-        color: inherit;
-        text-decoration: none
-    }
-
-    .hr {
-        height: 2px;
-        margin: 60px 0 50px 0;
-        background: rgba(255, 255, 255, .2)
-    }
-
-    .foot {
-        text-align: center
-    }
-
-    .card {
-        padding: 2% 0 2%;
-        margin: auto;
-        width: 600px;
-    }
-
-    ::placeholder {
-        color: #b3b3b3
+    .sidebar-a {
+        width: 70%;
+        float: right;
+        margin-right: 70px;
     }
 </style>
+<div class="content">
+    <div class="container-fluid">
+        <div class="sidebar-a">
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="card">
+                        <div class="card-header card-header-primary">
+                            <h4 class="card-title">Thông tin trang cá nhân</h4>
+                        </div>
+                        <div class="card-body">
+                            <form>
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            <label class="bmd-label-floating">Tên đăng nhập</label>
+                                            <input id="edit" type="text" class="form-control" value="@tk.IDTAIKHOAN" disabled>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label class="bmd-label-floating">Địa chỉ email</label>
+                                            <input id="edit" type="email" class="form-control" value="@tk.EMAIL" disabled>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            <label class="bmd-label-floating">Số điện thoại</label>
+                                            <input id="edit" type="text" class="form-control" value="@tk.SDT" disabled>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label class="bmd-label-floating">Họ Tên</label>
+                                            <input id="edit" type="text" class="form-control" value="@tk.HOTEN" disabled>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            <label class="bmd-label-floating">Giới tính</label>
+                                            <input id="edit" type="text" class="form-control" value="@tk.GIOITINH" disabled>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            <label class="bmd-label-floating">Ngày sinh</label>
+                                            <input id="edit" type="text" class="form-control" value="@tk.NGAYSINH" disabled>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                @*<div class="row">
+            <div class="col-md-12">
+                <div class="form-group">
+                    <label>Thông tin cơ thể</label>
+                </div>
+            </div>
+        </div>*@
+                                <h4>Thông tin cơ thể</h4>
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            <label class="bmd-label-floating">Chiều cao</label>
+                                            <input id="edit" type="text" class="form-control" value="@bn.CHIEUCAO" disabled>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            <label class="bmd-label-floating">Cân nặng</label>
+                                            <input id="edit" type="text" class="form-control" value="@bn.CANNANG" disabled>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            <label class="bmd-label-floating">BMI</label>
+                                            <input type="text" class="form-control" value="@bn.BMI" disabled>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            <label class="bmd-label-floating">Lượng calo trong 1 ngày</label>
+                                            <input type="text" class="form-control" value="@bn.CALO" disabled>
+                                        </div>
+                                    </div>
+                                </div>
+                                <button type="submit" class="btn btn-primary pull-left">Đăng Xuất</button>
+                                <a href="@Url.Action("ChinhSuaThongTin","NguoiDung")" class="btn btn-primary pull-right">Cập nhật thông tin</a>
+                                <div class="clearfix"></div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@*<script>
+    $(document).ready(function () {
+        $().ready(function () {
+            $sidebar = $('.sidebar');
+
+            $sidebar_img_container = $sidebar.find('.sidebar-background');
+
+            $full_page = $('.full-page');
+
+            $sidebar_responsive = $('body > .navbar-collapse');
+
+            window_width = $(window).width();
+
+            fixed_plugin_open = $('.sidebar .sidebar-wrapper .nav li.active a p').html();
+
+            if (window_width > 767 && fixed_plugin_open == 'Dashboard') {
+                if ($('.fixed-plugin .dropdown').hasClass('show-dropdown')) {
+                    $('.fixed-plugin .dropdown').addClass('open');
+                }
+
+            }
+
+            $('.fixed-plugin a').click(function (event) {
+                // Alex if we click on switch, stop propagation of the event, so the dropdown will not be hide, otherwise we set the  section active
+                if ($(this).hasClass('switch-trigger')) {
+                    if (event.stopPropagation) {
+                        event.stopPropagation();
+                    } else if (window.event) {
+                        window.event.cancelBubble = true;
+                    }
+                }
+            });
+
+            $('.fixed-plugin .active-color span').click(function () {
+                $full_page_background = $('.full-page-background');
+
+                $(this).siblings().removeClass('active');
+                $(this).addClass('active');
+
+                var new_color = $(this).data('color');
+
+                if ($sidebar.length != 0) {
+                    $sidebar.attr('data-color', new_color);
+                }
+
+                if ($full_page.length != 0) {
+                    $full_page.attr('filter-color', new_color);
+                }
+
+                if ($sidebar_responsive.length != 0) {
+                    $sidebar_responsive.attr('data-color', new_color);
+                }
+            });
+
+            $('.fixed-plugin .background-color .badge').click(function () {
+                $(this).siblings().removeClass('active');
+                $(this).addClass('active');
+
+                var new_color = $(this).data('background-color');
+
+                if ($sidebar.length != 0) {
+                    $sidebar.attr('data-background-color', new_color);
+                }
+            });
+
+            $('.fixed-plugin .img-holder').click(function () {
+                $full_page_background = $('.full-page-background');
+
+                $(this).parent('li').siblings().removeClass('active');
+                $(this).parent('li').addClass('active');
+
+
+                var new_image = $(this).find("img").attr('src');
+
+                if ($sidebar_img_container.length != 0 && $('.switch-sidebar-image input:checked').length != 0) {
+                    $sidebar_img_container.fadeOut('fast', function () {
+                        $sidebar_img_container.css('background-image', 'url("' + new_image + '")');
+                        $sidebar_img_container.fadeIn('fast');
+                    });
+                }
+
+                if ($full_page_background.length != 0 && $('.switch-sidebar-image input:checked').length != 0) {
+                    var new_image_full_page = $('.fixed-plugin li.active .img-holder').find('img').data('src');
+
+                    $full_page_background.fadeOut('fast', function () {
+                        $full_page_background.css('background-image', 'url("' + new_image_full_page + '")');
+                        $full_page_background.fadeIn('fast');
+                    });
+                }
+
+                if ($('.switch-sidebar-image input:checked').length == 0) {
+                    var new_image = $('.fixed-plugin li.active .img-holder').find("img").attr('src');
+                    var new_image_full_page = $('.fixed-plugin li.active .img-holder').find('img').data('src');
+
+                    $sidebar_img_container.css('background-image', 'url("' + new_image + '")');
+                    $full_page_background.css('background-image', 'url("' + new_image_full_page + '")');
+                }
+
+                if ($sidebar_responsive.length != 0) {
+                    $sidebar_responsive.css('background-image', 'url("' + new_image + '")');
+                }
+            });
+
+            $('.switch-sidebar-image input').change(function () {
+                $full_page_background = $('.full-page-background');
+
+                $input = $(this);
+
+                if ($input.is(':checked')) {
+                    if ($sidebar_img_container.length != 0) {
+                        $sidebar_img_container.fadeIn('fast');
+                        $sidebar.attr('data-image', '#');
+                    }
+
+                    if ($full_page_background.length != 0) {
+                        $full_page_background.fadeIn('fast');
+                        $full_page.attr('data-image', '#');
+                    }
+
+                    background_image = true;
+                } else {
+                    if ($sidebar_img_container.length != 0) {
+                        $sidebar.removeAttr('data-image');
+                        $sidebar_img_container.fadeOut('fast');
+                    }
+
+                    if ($full_page_background.length != 0) {
+                        $full_page.removeAttr('data-image', '#');
+                        $full_page_background.fadeOut('fast');
+                    }
+
+                    background_image = false;
+                }
+            });
+
+            $('.switch-sidebar-mini input').change(function () {
+                $body = $('body');
+
+                $input = $(this);
+
+                if (md.misc.sidebar_mini_active == true) {
+                    $('body').removeClass('sidebar-mini');
+                    md.misc.sidebar_mini_active = false;
+
+                    $('.sidebar .sidebar-wrapper, .main-panel').perfectScrollbar();
+
+                } else {
+
+                    $('.sidebar .sidebar-wrapper, .main-panel').perfectScrollbar('destroy');
+
+                    setTimeout(function () {
+                        $('body').addClass('sidebar-mini');
+
+                        md.misc.sidebar_mini_active = true;
+                    }, 300);
+                }
+
+                // we simulate the window Resize so the charts will get updated in realtime.
+                var simulateWindowResize = setInterval(function () {
+                    window.dispatchEvent(new Event('resize'));
+                }, 180);
+
+                // we stop the simulation of Window Resize after the animations are completed
+                setTimeout(function () {
+                    clearInterval(simulateWindowResize);
+                }, 1000);
+
+            });
+        });
+    });
+</script>*@
 
 
 
-<div class="header-backup"></div>
-<div class="background">
+
+<!--<div class="background">
     <div class="background1">
-        <div class="row">
-            @*<div class="col-md-6 mx-auto p-0">*@
-            <div class="card">
-                <div class="login-box">
-                    <div class="login-snip" style="text-align: center">
-                        <input id="tab-1" type="radio" name="tab" class="sign-in" checked>
-                        <label for="tab-1" class="tab">Thông Tin Liên Hệ</label>
-                        <input id="tab-2" type="radio" name="tab" class="sign-up">
-                        <label for="tab-2" class="tab">Thông tin cơ thể</label>
-                        <div class="login-space">
-                            <div style="margin-top:20px;" class="login">
-                                <div class="group">
-                                    <label style="font-size:18px; color:white;" for="hoten" class="label">Họ và tên</label>
-                                    <input id="hoten" type="text" class="input" style="text-align: center" placeholder="Họ tên" value="@bn.HOTEN" disabled>
-                                </div>
-                                <div class="group">
-                                    <label style="font-size:18px; color:white;" for="tuoitac" class="label">Tuổi tác</label>
-                                    <input id="tuoitac" type="text" class="input" style="text-align: center" placeholder="Ngày sinh" value="@bn.NGAYSINH.Value.ToString("dd/MM/yyyy")" disabled>
-                                </div>
-                                <div class="group">
-                                    <label style="font-size:18px; color:white;" for="pass" class="label">Giới tính</label>
-                                    <input id="gioitinh" type="text" class="input" style="text-align: center" placeholder="Giới tính" value="@bn.GIOITINH" disabled>
-                                </div>
-                                <div class="group">
-                                    <label style="font-size:18px; color:white;" for="hoten" class="label">Số điện thoại</label>
-                                    <input id="sdt" type="text" class="input" style="text-align: center" placeholder="Số điện thoại" value="@tk.SDT" disabled>
-                                </div>
-                                <div class="group">
-                                    <label style="font-size:18px; color:white;" for="tuoitac" class="label">Email</label>
-                                    <input id="email" type="text" class="input" style="text-align: center" placeholder="Email" value="@tk.EMAIL" disabled>
-                                </div>
-                                <div style="margin-top:30px;" class="group">
-                                    <a href="@Url.Action("ChinhSuaThongTin", "NguoiDung")">
-                                        @*<input style="color:#dddddd;" class="button" value="Chỉnh sửa thông tin">*@
-                                        <button style="margin-top:10px" class="button">Chỉnh sửa thông tin</button>
+        <div class="row">-->
+@*<div class="col-md-6 mx-auto p-0">*@
+<!--<div class="card">
+    <div class="login-box">
+        <div class="login-snip" style="text-align: center">
+            <input id="tab-1" type="radio" name="tab" class="sign-in" checked>
+            <label for="tab-1" class="tab">Thông Tin Liên Hệ</label>
+            <input id="tab-2" type="radio" name="tab" class="sign-up">
+            <label for="tab-2" class="tab">Thông tin cơ thể</label>
+            <div class="login-space">
+                <div style="margin-top:20px;" class="login">
+                    <div class="group">
+                        <label style="font-size:18px; color:white;" for="hoten" class="label">Họ và tên</label>
+                        <input id="hoten" type="text" class="input" style="text-align: center" placeholder="Họ tên" value="@bn.HOTEN" disabled>
+                    </div>
+                    <div class="group">
+                        <label style="font-size:18px; color:white;" for="tuoitac" class="label">Tuổi tác</label>
+                        <input id="tuoitac" type="text" class="input" style="text-align: center" placeholder="Ngày sinh" value="@bn.NGAYSINH.Value.ToString("dd/MM/yyyy")" disabled>
+                    </div>
+                    <div class="group">
+                        <label style="font-size:18px; color:white;" for="pass" class="label">Giới tính</label>
+                        <input id="gioitinh" type="text" class="input" style="text-align: center" placeholder="Giới tính" value="@bn.GIOITINH" disabled>
+                    </div>
+                    <div class="group">
+                        <label style="font-size:18px; color:white;" for="hoten" class="label">Số điện thoại</label>
+                        <input id="sdt" type="text" class="input" style="text-align: center" placeholder="Số điện thoại" value="@tk.SDT" disabled>
+                    </div>
+                    <div class="group">
+                        <label style="font-size:18px; color:white;" for="tuoitac" class="label">Email</label>
+                        <input id="email" type="text" class="input" style="text-align: center" placeholder="Email" value="@tk.EMAIL" disabled>
+                    </div>
+                    <div style="margin-top:30px;" class="group">
+                        <a href="@Url.Action("ChinhSuaThongTin", "NguoiDung")">-->
+@*<input style="color:#dddddd;" class="button" value="Chỉnh sửa thông tin">*@
+<!--<button style="margin-top:10px" class="button">Chỉnh sửa thông tin</button>
                                     </a>
-                                    
+
                                 </div>
                             </div>
                             <div style="margin-top:20px;" class="sign-up-form">
@@ -561,5 +620,4 @@
             </div>
         </div>
     </div>
-</div>
-
+</div>-->
