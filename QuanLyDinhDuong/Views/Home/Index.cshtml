@@ -263,32 +263,68 @@
 <section class="contact">
     <div class="container">
         <div class="row">
-            <div class="contact-caption clearfix">
-                <div class="contact-heading text-center">
-                    <h2>Liên hệ</h2>
-                </div>
-                <div class="col-md-5 contact-info text-left">
-                    <h3>Thông tin liên hệ</h3>
-                    <div class="info-detail">
-                        <ul><li><i class="fa fa-calendar"></i><span>Thứ hai - Thứ sáu:</span> 9:30 đến 18:30 </li></ul>
-                        <ul><li><i class="fa fa-map-marker"></i><span>Địa chỉ:</span> 123 Some Street , London, UK, CP 123</li></ul>
-                        <ul><li><i class="fa fa-phone"></i><span>Số điện thoại:</span> (032) 987-1235</li></ul>
-                        <ul><li><i class="fa fa-fax"></i><span>Fax:</span> (123) 984-1234</li></ul>
-                        <ul><li><i class="fa fa-envelope"></i><span>Email:</span> info@doctor.com</li></ul>
-                    </div>
-                </div>
-                <div class="col-md-6 col-md-offset-1 contact-form">
-                    <h3>Để lại lời nhắn</h3>
 
-                    <form class="form">
-                        <input class="name" type="text" placeholder="Họ Tên">
-                        <input class="email" type="email" placeholder="Email">
-                        <input class="phone" type="text" placeholder="Số Điện Thoại:">
-                        <textarea class="message" name="message" id="message" cols="30" rows="10" placeholder="Lời nhắn"></textarea>
-                        <input class="submit-btn" type="submit" value="Gửi">
-                    </form>
-                </div>
-            </div>
+            <div id="map"></div>
+
+            <!-- Async script executes immediately and must be after any DOM elements used in callback. -->
+            <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVmkDHBddblHbba9VGV24Yu032wCb0uc4&callback=initMap&libraries=places&v=weekly"
+                    async></script>
         </div>
     </div>
 </section><!-- end of contact section -->
+
+@*<style>
+    #map {
+        width: 1000px;
+        height: 500px;
+    }
+
+    /* Optional: Makes the sample page fill the window. */
+
+    container {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+    }
+</style>*@
+
+<script>
+    let map;
+    let service;
+    let infowindow;
+
+    function initMap() {
+        const sydney = new google.maps.LatLng(-33.867, 151.195);
+        infowindow = new google.maps.InfoWindow();
+        map = new google.maps.Map(document.getElementById("map"), {
+            center: sydney,
+            zoom: 15,
+        });
+
+        const request = {
+            query: "Hutech University",
+            fields: ["name", "geometry"],
+        };
+        service = new google.maps.places.PlacesService(map);
+        service.findPlaceFromQuery(request, (results, status) => {
+            if (status === google.maps.places.PlacesServiceStatus.OK && results) {
+                for (let i = 0; i < results.length; i++) {
+                    createMarker(results[i]);
+                }
+                map.setCenter(results[0].geometry.location);
+            }
+        });
+    }
+
+    function createMarker(place) {
+        if (!place.geometry || !place.geometry.location) return;
+        const marker = new google.maps.Marker({
+            map,
+            position: place.geometry.location,
+        });
+        google.maps.event.addListener(marker, "click", () => {
+            infowindow.setContent(place.name || "");
+            infowindow.open(map);
+        });
+    }
+</script>
