@@ -171,23 +171,6 @@ namespace QuanLyDinhDuong.Controllers
             return PartialView(buoithucdon);
         }
 
-        public ActionResult ThemThucPhamVaoThucDon(CTTD cttd)
-        {
-            //var MaThucDon = f["ThucDon"];
-            //var td = (from tds in data.THUCDONs where tds.MATHUCDON.ToString() == MaThucDon select tds.BUOI).Single();
-
-            //var SoLuong = f["quantity"];
-
-            cttd.MATHUCPHAM = "TP009";
-            cttd.TENTHUCPHAM = "Trứng thối";
-            cttd.MATHUCDON = 1;
-
-
-            data.CTTDs.InsertOnSubmit(cttd);
-            data.SubmitChanges();
-
-            return RedirectToAction("DanhSachThucDon", "ThucDon");
-        }
-
+        
     }
 }

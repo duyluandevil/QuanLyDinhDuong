@@ -49,7 +49,7 @@ namespace QuanLyDinhDuong.Controllers
 
             //string url = this.Url.Action("ChiTietThuocDon", "ThucDon", new { id = maTD });
 
-            return RedirectToAction("ThucDon", "ThucDon");
+            return RedirectToAction("ChiTietThucDon", "ThucDon");
         }
 
         public ActionResult XoaThucDon(int MaThucDon)
