@@ -305,6 +305,7 @@
     <Content Include="Views\Shared\_LayoutNguoiDung.cshtml" />
     <Content Include="Views\Home\Index2.cshtml" />
     <Content Include="Views\NguoiDung\ChinhSuaThongTin.cshtml" />
+    <Content Include="Views\NguoiDung\DangXuat.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

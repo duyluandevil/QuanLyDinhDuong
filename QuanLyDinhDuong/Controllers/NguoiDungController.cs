@@ -140,8 +140,8 @@ namespace QuanLyDinhDuong.Controllers
             }
             return View();
         }
-        [HttpPost]
-        public ActionResult TrangCaNhan(FormCollection collection)
+
+        public ActionResult DangXuat()
         {
             Session["IDTAIKHOAN"] = null;
             Session["MABENHNHAN"] = null;
